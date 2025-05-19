@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Consultoria Financeira Empresarial | Diagnóstico Gratuito</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --w1-green: #33E0CB;
+            --w1-blue-dark: #07151A;
+            --w1-blue-light: #73A09F;
+            --w1-bg: #f6fcfb;
+        }
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            background: var(--w1-bg);
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 440px;
+            margin: 48px auto 0 auto;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 6px 36px rgba(7,21,26,0.09);
+            padding: 38px 32px 28px 32px;
+            border: 2.5px solid var(--w1-green);
+        }
+        h1 {
+            color: var(--w1-blue-dark);
+            font-size: 2.0rem;
+            text-align: center;
+            margin-bottom: 14px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+        .subheadline {
+            color: var(--w1-blue-light);
+            font-size: 1.04rem;
+            text-align: center;
+            margin-bottom: 28px;
+        }
+        .dores {
+            background: #e6fbf8;
+            border-left: 5px solid var(--w1-green);
+            border-radius: 10px;
+            margin-bottom: 22px;
+            color: #19504a;
+            font-size: 1.01rem;
+            padding: 15px 18px;
+        }
+        .personalizado {
+            background: #e9f3f2;
+            border-radius: 10px;
+            font-size: 1.01rem;
+            color: var(--w1-blue-dark);
+            margin-bottom: 19px;
+            padding: 13px 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        label {
+            font-weight: 600;
+            color: var(--w1-blue-dark);
+            font-size: 1rem;
+        }
+        input, select {
+            padding: 11px;
+            border-radius: 7px;
+            border: 1.4px solid #cbe9e6;
+            font-size: 1rem;
+            outline: none;
+        }
+        input:focus, select:focus {
+            border-color: var(--w1-green);
+        }
+        button, .cta-whatsapp {
+            background: linear-gradient(90deg, var(--w1-green) 25%, var(--w1-blue-light) 100%);
+            color: #fff;
+            border: none;
+            padding: 14px;
+            border-radius: 9px;
+            font-size: 1.12rem;
+            font-weight: 700;
+            margin-top: 12px;
+            cursor: pointer;
+            transition: box-shadow 0.12s;
+            box-shadow: 0 2px 8px rgba(51, 224, 203, 0.10);
+        }
+        button:hover, .cta-whatsapp:hover {
+            box-shadow: 0 4px 14px rgba(51, 224, 203, 0.17);
+            filter: brightness(1.04);
+        }
+        .footer {
+            margin-top: 16px;
+            text-align: center;
+            font-size: 0.94rem;
+            color: #78948e;
+        }
+        .whats-cta {
+            margin: 16px 0 0 0;
+            text-align: center;
+        }
+        .cta-whatsapp {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            background: #25d366;
+            border: none;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .cta-whatsapp svg {
+            width: 22px; height: 22px;
+            vertical-align: middle;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 16px 6px;
+            }
+            h1 { font-size: 1.15rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Consultoria Financeira Empresarial</h1>
+        <div class="subheadline">
+            Soluções sob medida para pequenas e médias empresas.<br>
+            Otimize resultados, aumente a lucratividade e tenha clareza total sobre a saúde financeira do seu negócio.
+        </div>
+        <div class="dores">
+            <b>Seu negócio enfrenta algum destes desafios?</b>
+            <ul style="padding-left:18px; margin-top: 6px; margin-bottom:0;">
+                <li>Dificuldade em controlar o fluxo de caixa?</li>
+                <li>Margem de lucro menor do que o esperado?</li>
+                <li>Problemas para separar contas pessoais e empresariais?</li>
+                <li>Precisa de um planejamento para crescer com segurança?</li>
+                <li>Falta clareza para tomar decisões financeiras?</li>
+            </ul>
+        </div>
+        <div class="personalizado">
+            Diagnóstico gratuito, individualizado e sem compromisso.<br>
+            Atendemos empresas de todos os segmentos.
+        </div>
+        <form id="leadForm">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" required>
+
+            <label for="empresa">Nome da Empresa</label>
+            <input type="text" id="empresa" name="empresa" required>
+
+            <label for="whatsapp">WhatsApp</label>
+            <input type="tel" id="whatsapp" name="whatsapp" required placeholder="(99) 99999-9999">
+
+            <label for="segmento">Segmento de Atuação</label>
+            <input type="text" id="segmento" name="segmento" required placeholder="Comércio, Serviços, Indústria, etc.">
+
+            <button type="submit">Quero meu Diagnóstico Empresarial</button>
+        </form>
+        <div class="whats-cta" style="display:none;" id="whatsSuccess">
+            <a href="#" class="cta-whatsapp" id="whatsLink" target="_blank">
+                <svg fill="none" viewBox="0 0 24 24"><path fill="#fff" d="M16.58 13.79c-.23-.12-1.35-.67-1.56-.74-.21-.08-.36-.12-.51.12-.15.23-.58.74-.71.89-.13.15-.26.17-.48.06-.23-.12-.98-.36-1.87-1.13-.69-.62-1.16-1.39-1.29-1.62-.13-.23-.01-.35.1-.46.11-.12.23-.31.34-.46.12-.15.15-.26.23-.43.08-.17.04-.32-.02-.45-.07-.12-.51-1.23-.7-1.68-.19-.46-.38-.4-.51-.41-.13-.01-.28-.01-.43-.01-.15 0-.4.06-.61.28-.21.22-.8.78-.8 1.9 0 1.12.82 2.2.93 2.36.11.15 1.61 2.45 3.95 3.34.55.19.98.31 1.31.4.55.14 1.04.12 1.43.07.44-.07 1.35-.55 1.54-1.08.19-.53.19-.98.14-1.08-.06-.1-.21-.16-.44-.28zm-4.58 7.21c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14.5C7.01 6.5 4.5 9.01 4.5 12s2.51 5.5 5.5 5.5 5.5-2.51 5.5-5.5-2.51-5.5-5.5-5.5z"/></svg>
+                Falar direto no WhatsApp
+            </a>
+        </div>
+        <div class="footer">
+            Seus dados estão seguros. Não enviamos spam.<br>
+            Consultoria Financeira Empresarial &copy; 2025
+        </div>
+    </div>
+    <script>
+        // Troque pelo seu número de WhatsApp no formato internacional, ex: 5599999999999
+        const numeroWpp = '5541991937663';
+        document.getElementById('leadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nome = document.getElementById('nome').value;
+            const empresa = document.getElementById('empresa').value;
+            const whats = document.getElementById('whatsapp').value.replace(/\D/g,'');
+            const segmento = document.getElementById('segmento').value;
+            const mensagem = encodeURIComponent(
+                `Olá! Quero agendar um diagnóstico financeiro para minha empresa.\n\nNome: ${nome}\nEmpresa: ${empresa}\nWhatsApp: ${whats}\nSegmento: ${segmento}`
+            );
+            const linkWpp = `https://wa.me/${numeroWpp}?text=${mensagem}`;
+            document.getElementById('leadForm').style.display = 'none';
+            document.getElementById('whatsSuccess').style.display = 'block';
+            document.getElementById('whatsLink').href = linkWpp;
+        });
+    </script>
+</body>
+</html>
