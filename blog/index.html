@@ -5,27 +5,147 @@
   <title>Blog | Consultoria Financeira</title>
   <meta name="description" content="Blog sobre organização, crescimento e dicas financeiras para empresas e profissionais.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap" rel="stylesheet">
   <style>
     body { font-family: Montserrat, Arial, sans-serif; background: #f6fcfb; margin:0; padding:0;}
-    .container { max-width:650px; margin:30px auto; background:#fff; border-radius:20px; box-shadow:0 4px 24px rgba(7,21,26,0.09); padding:40px 32px;}
-    h1 { color: #07151A; font-size:2rem; margin-bottom:22px;}
-    ul { list-style: none; padding-left:0; }
-    li { margin-bottom: 20px; }
-    a { color: #33E0CB; font-weight:600; font-size:1.11rem; text-decoration:none;}
-    a:hover { text-decoration:underline; }
-    .footer { margin-top:32px; text-align:center; font-size:.95rem; color: #78948e;}
+    .container { max-width:1100px; margin:40px auto; background:#fff; border-radius:20px; box-shadow:0 4px 24px rgba(7,21,26,0.09); padding:38px 32px;}
+    h1 { color: #07151A; font-size:2rem; margin-bottom:22px; text-align:center; }
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 30px;
+      margin-top: 34px;
+    }
+    .card {
+      background: #f4fefd;
+      border-radius: 14px;
+      box-shadow: 0 2px 8px rgba(51, 224, 203, 0.10);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.2s;
+      border: 1.6px solid #e3e8ef;
+      min-height: 370px;
+    }
+    .card:hover {
+      box-shadow: 0 4px 24px rgba(51,224,203,0.18);
+      border-color: #33E0CB;
+    }
+    .card-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      background: #c2f3eb;
+      border-bottom: 1px solid #e0f7f5;
+    }
+    .card-body {
+      padding: 20px 18px 16px 18px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card-title {
+      color: #07151A;
+      font-size: 1.22rem;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+    .card-desc {
+      color: #235159;
+      font-size: 1.01rem;
+      margin-bottom: 18px;
+      min-height: 44px;
+    }
+    .card-link {
+      background: linear-gradient(90deg, #33E0CB 30%, #73A09F 100%);
+      color: #fff;
+      text-decoration: none;
+      padding: 11px 24px;
+      border-radius: 7px;
+      font-weight: 600;
+      font-size: 1rem;
+      box-shadow: 0 1px 7px rgba(51,224,203,0.13);
+      display: inline-block;
+      text-align: center;
+      margin-top: auto;
+      transition: filter .18s;
+    }
+    .card-link:hover {
+      filter: brightness(1.06);
+      box-shadow: 0 2px 18px rgba(51,224,203,0.15);
+    }
+    @media (max-width: 900px) {
+      .container { padding: 10px 6px; }
+      .galeria { gap: 18px; }
+    }
+    @media (max-width: 600px) {
+      h1 { font-size:1.18rem; }
+      .container { border-radius: 0; padding: 3vw 1vw;}
+    }
+    .footer { margin-top:40px; text-align:center; font-size:.95rem; color: #78948e;}
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Blog de Consultoria Financeira</h1>
-    <ul>
-      <li><a href="post1.html">Como Organizar as Finanças da Sua Empresa</a></li>
-      <li><a href="post2.html">Planejamento Financeiro Pessoal: Por Onde Começar?</a></li>
-      <li><a href="post3.html">5 Erros que Prejudicam o Crescimento Financeiro</a></li>
-      <li><a href="post4.html">Quando Procurar uma Consultoria para sua Empresa?</a></li>
-      <li><a href="post5.html">O Papel do Fluxo de Caixa na Tomada de Decisões</a></li>
-    </ul>
+    <div class="galeria">
+      <!-- Post 1 -->
+      <div class="card">
+        <img class="card-img" src="img/post1.jpg" alt="Capa do post 1">
+        <div class="card-body">
+          <div>
+            <div class="card-title">Como Organizar as Finanças da Sua Empresa</div>
+            <div class="card-desc">Descubra estratégias práticas para estruturar o financeiro da sua empresa desde o primeiro passo.</div>
+          </div>
+          <a class="card-link" href="post1.html">Leia mais</a>
+        </div>
+      </div>
+      <!-- Post 2 -->
+      <div class="card">
+        <img class="card-img" src="img/post2.jpg" alt="Capa do post 2">
+        <div class="card-body">
+          <div>
+            <div class="card-title">Planejamento Financeiro Pessoal: Por Onde Começar?</div>
+            <div class="card-desc">Entenda o básico do planejamento financeiro para transformar sua vida financeira de forma definitiva.</div>
+          </div>
+          <a class="card-link" href="post2.html">Leia mais</a>
+        </div>
+      </div>
+      <!-- Post 3 -->
+      <div class="card">
+        <img class="card-img" src="img/post3.jpg" alt="Capa do post 3">
+        <div class="card-body">
+          <div>
+            <div class="card-title">5 Erros que Prejudicam o Crescimento Financeiro</div>
+            <div class="card-desc">Veja quais armadilhas evitar para acelerar o crescimento financeiro da sua empresa ou da sua vida.</div>
+          </div>
+          <a class="card-link" href="post3.html">Leia mais</a>
+        </div>
+      </div>
+      <!-- Post 4 -->
+      <div class="card">
+        <img class="card-img" src="img/post4.jpg" alt="Capa do post 4">
+        <div class="card-body">
+          <div>
+            <div class="card-title">Quando Procurar uma Consultoria para sua Empresa?</div>
+            <div class="card-desc">Saiba identificar o momento certo de buscar apoio profissional e escalar os resultados do seu negócio.</div>
+          </div>
+          <a class="card-link" href="post4.html">Leia mais</a>
+        </div>
+      </div>
+      <!-- Post 5 -->
+      <div class="card">
+        <img class="card-img" src="img/post5.jpg" alt="Capa do post 5">
+        <div class="card-body">
+          <div>
+            <div class="card-title">O Papel do Fluxo de Caixa na Tomada de Decisões</div>
+            <div class="card-desc">Descubra como um bom controle do fluxo de caixa pode mudar a história da sua empresa.</div>
+          </div>
+          <a class="card-link" href="post5.html">Leia mais</a>
+        </div>
+      </div>
+    </div>
     <div class="footer">
       © 2025 Consultoria Financeira
     </div>
