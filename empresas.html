@@ -19,7 +19,7 @@
             padding: 0;
         }
         .container {
-            max-width: 440px;
+            max-width: 520px;
             margin: 48px auto 0 auto;
             background: #fff;
             border-radius: 20px;
@@ -41,37 +41,22 @@
             text-align: center;
             margin-bottom: 28px;
         }
-        .dores {
-            background: #e6fbf8;
-            border-left: 5px solid var(--w1-green);
-            border-radius: 10px;
-            margin-bottom: 22px;
-            color: #19504a;
-            font-size: 1.01rem;
-            padding: 15px 18px;
-        }
-        .personalizado {
-            background: #e9f3f2;
-            border-radius: 10px;
-            font-size: 1.01rem;
-            color: var(--w1-blue-dark);
-            margin-bottom: 19px;
-            padding: 13px 15px;
-            text-align: center;
-            font-weight: 600;
-        }
         form {
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 18px;
         }
         label {
             font-weight: 600;
             color: var(--w1-blue-dark);
             font-size: 1rem;
+            margin-bottom: 4px;
         }
-        input, select {
-            padding: 11px;
+        input[type="text"],
+        input[type="number"],
+        input[type="tel"],
+        input[type="email"] {
+            padding: 10px;
             border-radius: 7px;
             border: 1.4px solid #cbe9e6;
             font-size: 1rem;
@@ -79,6 +64,27 @@
         }
         input:focus, select:focus {
             border-color: var(--w1-green);
+        }
+        .radios-group, .radio-inline {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .radio-inline {
+            align-items: center;
+        }
+        .radio-inline label {
+            font-weight: 400;
+            color: #19504a;
+            margin-left: 4px;
+            margin-right: 12px;
+            font-size: 0.99rem;
+        }
+        .footer {
+            margin-top: 18px;
+            text-align: center;
+            font-size: 0.94rem;
+            color: #78948e;
         }
         button, .cta-whatsapp {
             background: linear-gradient(90deg, var(--w1-green) 25%, var(--w1-blue-light) 100%);
@@ -96,12 +102,6 @@
         button:hover, .cta-whatsapp:hover {
             box-shadow: 0 4px 14px rgba(51, 224, 203, 0.17);
             filter: brightness(1.04);
-        }
-        .footer {
-            margin-top: 16px;
-            text-align: center;
-            font-size: 0.94rem;
-            color: #78948e;
         }
         .whats-cta {
             margin: 16px 0 0 0;
@@ -124,10 +124,8 @@
             width: 22px; height: 22px;
             vertical-align: middle;
         }
-        @media (max-width: 600px) {
-            .container {
-                padding: 16px 6px;
-            }
+        @media (max-width: 700px) {
+            .container { padding: 18px 6px; }
             h1 { font-size: 1.15rem; }
         }
     </style>
@@ -136,35 +134,46 @@
     <div class="container">
         <h1>Consultoria Financeira Empresarial</h1>
         <div class="subheadline">
-            Soluções sob medida para pequenas e médias empresas.<br>
-            Otimize resultados, aumente a lucratividade e tenha clareza total sobre a saúde financeira do seu negócio.
-        </div>
-        <div class="dores">
-            <b>Seu negócio enfrenta algum destes desafios?</b>
-            <ul style="padding-left:18px; margin-top: 6px; margin-bottom:0;">
-                <li>Dificuldade em controlar o fluxo de caixa?</li>
-                <li>Margem de lucro menor do que o esperado?</li>
-                <li>Problemas para separar contas pessoais e empresariais?</li>
-                <li>Precisa de um planejamento para crescer com segurança?</li>
-                <li>Falta clareza para tomar decisões financeiras?</li>
-            </ul>
-        </div>
-        <div class="personalizado">
             Diagnóstico gratuito, individualizado e sem compromisso.<br>
-            Atendemos empresas de todos os segmentos.
+            Soluções sob medida para pequenas e médias empresas.
         </div>
         <form id="leadForm">
-            <label for="nome">Nome</label>
-            <input type="text" id="nome" name="nome" required>
-
-            <label for="empresa">Nome da Empresa</label>
+            <label for="empresa">Nome da empresa</label>
             <input type="text" id="empresa" name="empresa" required>
 
-            <label for="whatsapp">WhatsApp</label>
-            <input type="tel" id="whatsapp" name="whatsapp" required placeholder="(99) 99999-9999">
+            <label for="cnpj">CNPJ</label>
+            <input type="text" id="cnpj" name="cnpj" required placeholder="00.000.000/0000-00">
 
-            <label for="segmento">Segmento de Atuação</label>
-            <input type="text" id="segmento" name="segmento" required placeholder="Comércio, Serviços, Indústria, etc.">
+            <label for="responsavel">Nome do responsável pelo preenchimento</label>
+            <input type="text" id="responsavel" name="responsavel" required>
+
+            <label>Quantidade de funcionários</label>
+            <div class="radios-group">
+                <div class="radio-inline"><input type="radio" id="func1" name="funcionarios" value="1-5" required><label for="func1">1-5</label></div>
+                <div class="radio-inline"><input type="radio" id="func2" name="funcionarios" value="6-10"><label for="func2">6-10</label></div>
+                <div class="radio-inline"><input type="radio" id="func3" name="funcionarios" value="11-30"><label for="func3">11-30</label></div>
+                <div class="radio-inline"><input type="radio" id="func4" name="funcionarios" value="31-50"><label for="func4">31-50</label></div>
+                <div class="radio-inline"><input type="radio" id="func5" name="funcionarios" value="mais de 50"><label for="func5">+50</label></div>
+            </div>
+
+            <label>Existe alguém do time responsável exclusivamente pelo setor financeiro?</label>
+            <div class="radios-group">
+                <div class="radio-inline"><input type="radio" id="fin1" name="responsavel_financeiro" value="Sim" required><label for="fin1">Sim</label></div>
+                <div class="radio-inline"><input type="radio" id="fin2" name="responsavel_financeiro" value="Não"><label for="fin2">Não</label></div>
+            </div>
+
+            <label>Faturamento mensal médio</label>
+            <div class="radios-group">
+                <div class="radio-inline"><input type="radio" id="fat1" name="faturamento" value="Até 50.000" required><label for="fat1">Até 50.000</label></div>
+                <div class="radio-inline"><input type="radio" id="fat2" name="faturamento" value="Entre 50.000 e 100.000"><label for="fat2">Entre 50.000 e 100.000</label></div>
+                <div class="radio-inline"><input type="radio" id="fat3" name="faturamento" value="Entre 100.000 e 500.000"><label for="fat3">Entre 100.000 e 500.000</label></div>
+                <div class="radio-inline"><input type="radio" id="fat4" name="faturamento" value="Entre 500.000 e 1.000.000"><label for="fat4">Entre 500.000 e 1.000.000</label></div>
+                <div class="radio-inline"><input type="radio" id="fat5" name="faturamento" value="Entre 1.000.000 e 5.000.000"><label for="fat5">Entre 1.000.000 e 5.000.000</label></div>
+                <div class="radio-inline"><input type="radio" id="fat6" name="faturamento" value="Acima de 5.000.000"><label for="fat6">Acima de 5.000.000</label></div>
+            </div>
+
+            <label for="objetivos">Objetivos financeiros para 2025</label>
+            <input type="text" id="objetivos" name="objetivos" required placeholder="Quais principais metas ou desafios da empresa para 2025?">
 
             <button type="submit">Quero meu Diagnóstico Empresarial</button>
         </form>
@@ -184,12 +193,23 @@
         const numeroWpp = '5541991937663';
         document.getElementById('leadForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            const nome = document.getElementById('nome').value;
             const empresa = document.getElementById('empresa').value;
-            const whats = document.getElementById('whatsapp').value.replace(/\D/g,'');
-            const segmento = document.getElementById('segmento').value;
+            const cnpj = document.getElementById('cnpj').value;
+            const responsavel = document.getElementById('responsavel').value;
+            const funcionarios = document.querySelector('input[name="funcionarios"]:checked')?.value || '';
+            const responsavel_fin = document.querySelector('input[name="responsavel_financeiro"]:checked')?.value || '';
+            const faturamento = document.querySelector('input[name="faturamento"]:checked')?.value || '';
+            const objetivos = document.getElementById('objetivos').value;
+
             const mensagem = encodeURIComponent(
-                `Olá! Quero agendar um diagnóstico financeiro para minha empresa.\n\nNome: ${nome}\nEmpresa: ${empresa}\nWhatsApp: ${whats}\nSegmento: ${segmento}`
+                `Olá! Quero agendar um diagnóstico financeiro para minha empresa.\n\n` +
+                `Nome da empresa: ${empresa}\n` +
+                `CNPJ: ${cnpj}\n` +
+                `Responsável pelo preenchimento: ${responsavel}\n` +
+                `Quantidade de funcionários: ${funcionarios}\n` +
+                `Responsável pelo setor financeiro: ${responsavel_fin}\n` +
+                `Faturamento mensal médio: ${faturamento}\n` +
+                `Objetivos para 2025: ${objetivos}`
             );
             const linkWpp = `https://wa.me/${numeroWpp}?text=${mensagem}`;
             document.getElementById('leadForm').style.display = 'none';
