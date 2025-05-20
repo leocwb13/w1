@@ -1,21 +1,3 @@
-name: Build Blog & Drafts
-on:
-  push:
-    paths: ["drafts/**.md"]
-
-permissions:
-  contents: write
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-      with: { fetch-depth: 0 }
-
-    - name: Install pandoc
-      run: sudo apt-get update && sudo apt-get install -y pandoc
-
     - name: Generate posts
       run: |
         slug(){ echo "$1" | tr '[:upper:]' '[:lower:]' |
@@ -25,31 +7,46 @@ jobs:
 
         for md in drafts/*.md; do
           [ -e "$md" ] || continue
+
           title=$(head -1 "$md" | sed 's/^# //')
           slug=$(slug "$title")
           date=$(date +%F)
           html="blog/${date}-${slug}.html"
+
+          # markdown → HTML
           body=$(pandoc "$md" -t html)
 
-          sed -e "s/<!-- {{TITLE}} -->/${title}/" \
-              -e "s|<!-- {{CONTENT}} -->|${body//|/\\|}|" \
-              partials/template-post.html > "$html"
+read -r -d '' TEMPLATE <<'EOF'
+<!-- /partials/template-post.html será usado abaixo -->
+EOF
 
-          card="<div class=\"card\">
-                   <a href=\"${date}-${slug}.html\">
-                     <div class=\"card-title\">${title}</div>
-                   </a>
-                 </div>"
-          sed -i "/<!-- posts -->/a ${card}" blog/index.html
+          # gera o post substituindo marcadores via AWK
+          awk -v title="$title" -v body="$body" '
+            BEGIN{RS=""; FS="\n"}
+            {
+              gsub(/<!-- \{\{TITLE\}\} -->/, title)
+              gsub(/<!-- \{\{CONTENT\}\} -->/, body)
+              print
+            }' partials/template-post.html > "$html"
 
+          # ----- atualiza galeria -----
+          card="<div class=\"card\"><a href=\"${date}-${slug}.html\">
+                   <div class=\"card-title\">${title}</div></a></div>"
+
+          awk -v c="$card" '
+            /<!-- posts -->/ { print; print c; next }
+            { print }
+          ' blog/index.html > blog/index.tmp && mv blog/index.tmp blog/index.html
+
+          # ----- sitemap -----
           grep -q "${date}-${slug}.html" sitemap.xml || \
             sed -i "$ i\\  <url><loc>https://consultoria.leonardograciano.com.br/blog/${date}-${slug}.html</loc></url>" sitemap.xml
 
           git mv "$md" "drafts/_done_${date}_${slug}.md"
         done
 
-        git config user.name "blog-bot"
+        git config user.name  "blog-bot"
         git config user.email "bot@users.noreply.github.com"
         git add blog/ drafts/ blog/index.html sitemap.xml
-        git commit -m "📝 novo post automático" || echo "nothing to commit"
+        git commit -m "📝 novo post automático" || echo "nada para commitar"
         git push
