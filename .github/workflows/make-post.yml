@@ -43,16 +43,30 @@ jobs:
           html="blog/${date}-${slug}.html"
           body=$(pandoc "$md" -t html)
 
-          awk -v title="$title" -v body="$body" '
-            /<!-- \{\{TITLE\}\} -->/   { sub(/<!-- \{\{TITLE\}\} -->/,   title) }
-            /<!-- \{\{CONTENT\}\} -->/ { sub(/<!-- \{\{CONTENT\}\} -->/, body) }
-            { print }
-          ' partials/template-post.html > "$html"
+          # ---- gera bloco de relacionados (pega 3 últimos já existentes) ----
+            related=$(ls -t blog/*.html 2>/dev/null | head -3 |
+            xargs -I{} basename {} .html |
+            awk -v sl="$slug" -v dt="$date" '
+              BEGIN{FS="-";OFS="-"}
+              { if ($0==dt"-"sl) next
+                split($0,a,"-"); 
+                file=$0".html"; 
+                title=toupper(substr(a[4],1,1)) substr(a[4],2)
+                for(i=5;i<=NF;i++){title=title" "toupper(substr($i,1,1)) substr($i,2)}
+                print "<a href=\""file"\">"title"</a>" }')
 
-          card="<div class=\"card\"><a href=\"${date}-${slug}.html\"><div class=\"card-title\">${title}</div></a></div>"
-          awk -v c="$card" '/<!-- posts -->/ {print;print c;next} {print}' \
-            blog/index.html > blog/index.tmp && mv blog/index.tmp blog/index.html
+          awk -v title="$title" -v body="$body" -v rel="$related" '
+           /<!-- \{\{TITLE\}\} -->/   { sub(/<!-- \{\{TITLE\}\} -->/, title) }
+           /<!-- \{\{CONTENT\}\} -->/ { sub(/<!-- \{\{CONTENT\}\} -->/, body) }
+           /<!-- \{\{RELATED\}\} -->/ { sub(/<!-- \{\{RELATED\}\} -->/, rel) }
+           { print }' partials/template-post.html > "$html"
 
+           # ---- adiciona CARD no index (no topo) ----
+            card="<div class=\"card\"><a href=\"${date}-${slug}.html\"><div class=\"card-title\">${title}</div></a></div>"
+            awk -v c="$card" '
+                 NR==1{print;c_inserted=1}
+                 {print}
+            ' blog/index.html > blog/index.tmp && mv blog/index.tmp blog/index.html
           grep -q "${date}-${slug}.html" sitemap.xml || \
             sed -i "\$ i\\  <url><loc>https://consultoria.leonardograciano.com.br/blog/${date}-${slug}.html</loc></url>" sitemap.xml
 
