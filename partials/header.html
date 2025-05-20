@@ -1,0 +1,31 @@
+<link href="https://fonts.googleapis.com/css?family=Montserrat:600&display=swap" rel="stylesheet">
+<style>
+  :root{--brand:#07151A;--link:#cbe9e6;--cta:#33E0CB}
+  .topnav{background:var(--brand);padding:12px 6vw;display:flex;align-items:center;gap:42px}
+  .topnav__logo img{height:34px}
+  .topnav a{color:#fff;text-decoration:none;font-family:Montserrat;font-weight:600;font-size:1rem}
+  .topnav a:hover{color:var(--cta)}
+  .topnav__spacer{flex:1}
+  .topnav__cta{display:flex;align-items:center;gap:6px;color:var(--cta)}
+  .topnav__cta svg{width:14px;height:14px;stroke:var(--cta)}
+  /* MOBILE */
+  @media(max-width:680px){
+    .topnav{flex-wrap:wrap;gap:20px}
+    .topnav a{font-size:.95rem}
+  }
+</style>
+
+<nav class="topnav">
+  <div class="topnav__logo"><a href="/"><img src="/blog/img/logo.svg" alt="Logo"></a></div>
+
+  <a href="/">Início</a>
+  <a href="/lead-pf.html">Consultoria PF</a>
+  <a href="/empresa.html">Consultoria PJ</a>
+  <a href="/blog/">Blog</a>
+  <div class="topnav__spacer"></div>
+
+  <a class="topnav__cta" href="https://wa.me/5541991937663" target="_blank">
+    <svg fill="none" viewBox="0 0 24 24"><path stroke-width="2" d="M5 12h14M13 5l7 7-7 7"/></svg>
+    Fale com um especialista
+  </a>
+</nav>
