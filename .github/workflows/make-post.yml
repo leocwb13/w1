@@ -2,7 +2,8 @@ name: Build Posts
 on:
   push:
     paths: [ "drafts/**.md" ]
-
+permissions:
+  contents: write
 jobs:
   build:
     runs-on: ubuntu-latest
