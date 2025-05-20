@@ -1,43 +1,71 @@
-<!-- /partials/template-post.html -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="utf-8">
-
-  <!-- ============ TÍTULO DO SEU POST ============ -->
-  <!--    NÃO edite – o workflow substitui -->
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title><!-- {{TITLE}} --></title>
 
-  <!-- mobile -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];
+     w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+     var f=d.getElementsByTagName(s)[0],j=d.createElement(s);
+     j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i;
+     f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-54VH7DCH');</script>
+  <!-- End GTM -->
 
-  <!-- ============ GTM (HEAD) ============ -->
-  <!--#include virtual="/partials/gtm-head.html" -->
-
-  <!-- ============ MENU / LOGO ============ -->
-  <!-- se você ainda não tem header.html, me avise -->
-  <!--#include virtual="/partials/header.html" -->
-
-  <!-- ============ CSS do post ============ -->
-  <link rel="stylesheet" href="/blog/css/post.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+     :root{--green:#33E0CB;--blue:#07151A;--grey:#f6fcfb}
+     body{margin:0;font-family:Montserrat,Arial,sans-serif;background:var(--grey);color:#222}
+     header{background:#07151A;padding:22px 8vw;display:flex;align-items:center;gap:48px}
+     header a{color:#fff;text-decoration:none;font-weight:600}
+     header .cta{margin-left:auto;background:var(--green);padding:10px 20px;border-radius:6px}
+     main{max-width:960px;margin:90px auto;padding:0 6vw;background:#fff;
+          border:2px solid var(--green);border-radius:14px;box-shadow:0 4px 30px rgba(0,0,0,.05)}
+     main h1{font-size:2.4rem;margin:40px 40px 24px;color:var(--blue)}
+     main article{padding:0 40px 60px;line-height:1.65;font-size:1.07rem}
+     main article h2{margin-top:38px;font-size:1.55rem;color:var(--blue)}
+     .related{border-top:1px solid #e8e8e8;padding:32px 40px}
+     .related h3{margin:0 0 18px;font-size:1.3rem;color:var(--blue)}
+     .related a{display:block;margin:8px 0;text-decoration:none;color:#222}
+     .related a:hover{color:var(--green)}
+     /* cookie banner */
+     #cookie-banner{position:fixed;bottom:0;left:0;right:0;background:#07151A;
+        color:#fff;padding:18px 6vw;font-size:.93rem;display:flex;align-items:center;z-index:999}
+     #cookie-banner button{margin-left:auto;background:var(--green);border:none;
+        padding:10px 20px;border-radius:6px;color:#fff;font-weight:700;cursor:pointer}
+     @media(max-width:700px){main h1{font-size:1.75rem}}
+  </style>
 </head>
 <body>
+  <!-- GTM (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-54VH7DCH"
+     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-  <!-- ============ GTM (BODY) ============ -->
-  <!--#include virtual="/partials/gtm-body.html" -->
+  <!-- HEADER -->
+  <header>
+      <a href="/"><strong>LG</strong> Consultoria</a>
+      <a href="/blog/">Blog</a>
+      <a href="/pf.html">Diagnóstico PF</a>
+      <a href="/pj.html">Diagnóstico PJ</a>
+      <a class="cta" href="https://wa.me/5541991937663">WhatsApp</a>
+  </header>
 
-  <main class="post-container">
-    <article class="post-body">
+  <!-- CONTEÚDO -->
+  <main>
+      <h1><!-- {{TITLE}} --></h1>
+      <article><!-- {{CONTENT}} --></article>
 
-      <!-- ============ CONTEÚDO CONVERTIDO ============ -->
-      <!--   também substituído automaticamente -->
-      <!-- {{CONTENT}} -->
-
-    </article>
+      <section class="related">
+          <h3>Leia também</h3>
+          <!-- {{RELATED}} -->
+      </section>
   </main>
 
-  <!-- ============ BANNER DE COOKIES ============ -->
-  <!--#include virtual="/partials/cookie-banner.html" -->
-
+  <!-- COOKIE BANNER -->
+  <div id="cookie-banner">
+     Usamos cookies para melhorar a experiência. 
+     <button onclick="document.getElementById('cookie-banner').remove()">Aceitar</button>
+  </div>
 </body>
 </html>
