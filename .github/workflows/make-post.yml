@@ -1,21 +1,17 @@
 name: Build Blog & Drafts
-
 on:
   push:
     paths: ["drafts/**.md"]
 
 permissions:
-  contents: write            # autoriza commit via workflow
+  contents: write        # permite commit
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
+    - uses: actions/checkout@v4
+      with: { fetch-depth: 0 }
 
     - name: Install pandoc
       run: sudo apt-get update && sudo apt-get install -y pandoc
@@ -23,47 +19,43 @@ jobs:
     - name: Generate posts
       shell: bash
       run: |
-        slugify(){ echo "$1" | tr '[:upper:]' '[:lower:]' |
-                   sed -E 's/[àáâãä]/a/g;s/[èéêë]/e/g;s/[ìíîï]/i/g;
-                            s/[òóôõö]/o/g;s/[ùúûü]/u/g;
-                            s/[^a-z0-9]+/-/g;s/^-+|-+$//g'; }
+        slug(){
+          echo "$1" | tr '[:upper:]' '[:lower:]' |
+          sed -E 's/[àáâãä]/a/g;s/[èéêë]/e/g;s/[ìíîï]/i/g;
+                   s/[òóôõö]/o/g;s/[ùúûü]/u/g;
+                   s/[^a-z0-9]+/-/g;s/^-+|-+$//g'
+        }
 
         for md in drafts/*.md; do
           [ -e "$md" ] || continue
-
-          title=$(head -1 "$md" | sed 's/^# //')
-          slug=$(slugify "$title")
+          title=$(head -1 "$md"|sed 's/^# //')
+          slug=$(slug "$title")
           date=$(date +%F)
           html="blog/${date}-${slug}.html"
+
           body=$(pandoc "$md" -t html)
 
-          # monta o post completo a partir do template
           sed \
             -e "s/<!-- {{TITLE}} -->/${title}/" \
             -e "s|<!-- {{CONTENT}} -->|${body//|/\\|}|" \
             partials/template-post.html > "$html"
 
-          # atualiza galeria no index
           card="<div class=\"card\">
                    <a href=\"${date}-${slug}.html\">
                      <div class=\"card-title\">${title}</div>
                    </a>
                  </div>"
-          # remove duplicata se houver
-          sed -i "/${date}-${slug}\.html/d" blog/index.html
-          # insere logo após marcador
+
           sed -i "/<!-- posts -->/a ${card}" blog/index.html
 
-          # sitemap
           grep -q "${date}-${slug}.html" sitemap.xml || \
             sed -i "$ i\\  <url><loc>https://consultoria.leonardograciano.com.br/blog/${date}-${slug}.html</loc></url>" sitemap.xml
 
-          # arquiva draft
           git mv "$md" "drafts/_done_${date}_${slug}.md"
         done
 
-          git config user.name  "blog-bot"
-          git config user.email "bot@users.noreply.github.com"
-          git add blog/ drafts/ blog/index.html sitemap.xml
-          git commit -m "📝 novo post automático" || echo "nada para commitar"
-          git push
+        git config user.name "blog-bot"
+        git config user.email "bot@users.noreply.github.com"
+        git add blog/ drafts/ blog/index.html sitemap.xml
+        git commit -m "📝 novo post automático" || echo "nothing to commit"
+        git push
