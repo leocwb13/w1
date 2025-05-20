@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    <div id="gtm-head"></div>
+<script>fetch("/partials/gtm-head.html")
+ .then(r=>r.text()).then(h=>document.getElementById("gtm-head").innerHTML=h);</script>
     <meta charset="UTF-8">
     <title>Consultoria Financeira Empresarial | Diagnóstico Gratuito</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -131,6 +134,10 @@
     </style>
 </head>
 <body>
+    <div id="gtm-body"></div>
+<script>fetch("/partials/gtm-body.html")
+ .then(r=>r.text()).then(h=>document.getElementById("gtm-body").insertAdjacentHTML('afterbegin',h));</script>
+
     <div class="container">
         <h1>Consultoria Financeira Empresarial</h1>
         <div class="subheadline">
