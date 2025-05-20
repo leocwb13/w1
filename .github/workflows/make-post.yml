@@ -1,0 +1,36 @@
+name: Build Posts
+on:
+  push:
+    paths: [ "drafts/**.md" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pandoc
+        run: sudo apt-get install -y pandoc
+      - name: Generate posts
+        run: |
+          for file in drafts/*.md; do
+            [ -e "$file" ] || continue
+            name=$(basename "$file" .md)
+            title=$(head -1 "$file" | sed 's/^# //')
+            html="blog/${name}.html"
+            pandoc "$file" -o "$html" --metadata title="$title"
+            # injeta header/footer GTM + nav
+            sed -i '1i<!--#include virtual="/partials/header.html" -->' "$html"
+            sed -i '$a<!--#include virtual="/partials/cookie-banner.html" -->' "$html"
+            # adiciona card no index
+            sed -i "/<!-- posts -->/a\ <div class=\"card\"><img class=\"card-img\" src=\"img/placeholder.jpg\" alt=\"${title}\"><div class=\"card-body\"><div><div class=\"card-title\">${title}</div><div class=\"card-desc\">Resumo automático…</div></div><a class=\"card-link\" href=\"${name}.html\">Leia mais</a></div></div>" blog/index.html
+            # adiciona no sitemap
+            echo "  <url><loc>https://consultoria.leonardograciano.com.br/blog/${name}.html</loc></url>" >> sitemap.xml
+            git rm "$file"
+          done
+      - name: Commit & push
+        run: |
+          git config user.name "bot"
+          git config user.email "bot@example.com"
+          git add blog/ sitemap.xml
+          git commit -m "Novo post automático"
+          git push
