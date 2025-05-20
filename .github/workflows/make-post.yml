@@ -1,52 +1,72 @@
-    - name: Generate posts
+name: build-blog
+
+on:
+  push:
+    paths:
+      - 'drafts/**/*.md'
+
+permissions:
+  contents: write          # necessário para dar git push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Install pandoc
       run: |
-        slug(){ echo "$1" | tr '[:upper:]' '[:lower:]' |
+        sudo apt-get update -y
+        sudo apt-get install -y pandoc
+
+    - name: Generate posts
+      shell: bash
+      run: |
+        set -e
+
+        slug(){
+          echo "$1" | tr '[:upper:]' '[:lower:]' | \
           sed -E 's/[àáâãä]/a/g;s/[èéêë]/e/g;s/[ìíîï]/i/g;
                    s/[òóôõö]/o/g;s/[ùúûü]/u/g;
-                   s/[^a-z0-9]+/-/g;s/^-+|-+$//g'; }
+                   s/[^a-z0-9]+/-/g;s/^-+|-+$//g'
+        }
 
         for md in drafts/*.md; do
-          [ -e "$md" ] || continue
-
+          [ -f "$md" ] || continue
           title=$(head -1 "$md" | sed 's/^# //')
           slug=$(slug "$title")
           date=$(date +%F)
           html="blog/${date}-${slug}.html"
-
-          # markdown → HTML
           body=$(pandoc "$md" -t html)
 
-read -r -d '' TEMPLATE <<'EOF'
-<!-- /partials/template-post.html será usado abaixo -->
-EOF
-
-          # gera o post substituindo marcadores via AWK
           awk -v title="$title" -v body="$body" '
-            BEGIN{RS=""; FS="\n"}
-            {
-              gsub(/<!-- \{\{TITLE\}\} -->/, title)
-              gsub(/<!-- \{\{CONTENT\}\} -->/, body)
-              print
-            }' partials/template-post.html > "$html"
-
-          # ----- atualiza galeria -----
-          card="<div class=\"card\"><a href=\"${date}-${slug}.html\">
-                   <div class=\"card-title\">${title}</div></a></div>"
-
-          awk -v c="$card" '
-            /<!-- posts -->/ { print; print c; next }
+            /<!-- \{\{TITLE\}\} -->/   { sub(/<!-- \{\{TITLE\}\} -->/,   title) }
+            /<!-- \{\{CONTENT\}\} -->/ { sub(/<!-- \{\{CONTENT\}\} -->/, body) }
             { print }
-          ' blog/index.html > blog/index.tmp && mv blog/index.tmp blog/index.html
+          ' partials/template-post.html > "$html"
 
-          # ----- sitemap -----
+          card="<div class=\"card\"><a href=\"${date}-${slug}.html\"><div class=\"card-title\">${title}</div></a></div>"
+          awk -v c="$card" '/<!-- posts -->/ {print;print c;next} {print}' \
+            blog/index.html > blog/index.tmp && mv blog/index.tmp blog/index.html
+
           grep -q "${date}-${slug}.html" sitemap.xml || \
-            sed -i "$ i\\  <url><loc>https://consultoria.leonardograciano.com.br/blog/${date}-${slug}.html</loc></url>" sitemap.xml
+            sed -i "\$ i\\  <url><loc>https://consultoria.leonardograciano.com.br/blog/${date}-${slug}.html</loc></url>" sitemap.xml
 
           git mv "$md" "drafts/_done_${date}_${slug}.md"
         done
 
+    - name: Commit & push
+      run: |
         git config user.name  "blog-bot"
         git config user.email "bot@users.noreply.github.com"
-        git add blog/ drafts/ blog/index.html sitemap.xml
-        git commit -m "📝 novo post automático" || echo "nada para commitar"
-        git push
+        git add blog/ drafts/ blog/index.html sitemap.xml || true
+        if ! git diff --cached --quiet; then
+          git commit -m "📝 novo post automático"
+          git push
+        else
+          echo "Sem mudanças para commitar"
+        fi
