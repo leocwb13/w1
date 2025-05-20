@@ -18,6 +18,9 @@ body{
   max-width:780px;
   margin:64px auto;
   padding:0 20px;
+
+  border:2px solid var(--accent);   /* se quiser borda estilo landing */
+  border-radius:20px;               /* altere aqui */
 }
 
 .post-body h1,
