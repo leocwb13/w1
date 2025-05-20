@@ -1,0 +1,25 @@
+name: deploy
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: pages
+  cancel-in-progress: false   # NÃO cancela o job em andamento
+
+permissions:
+  pages: write
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    #  ↓ espera blog-builder terminar (se existir outro job)
+    - uses: christopher-dg/wait-on-check-action@v1
+      with:
+        token: ${{ github.token }}
+        checkName: build    # nome do job gerador de artefato
+    - uses: actions/deploy-pages@v4
