@@ -1,0 +1,19 @@
+<style>
+.cookie-box{position:fixed;bottom:20px;left:20px;right:20px;
+ max-width:320px;margin:auto;background:#fff;border-radius:14px;
+ box-shadow:0 4px 14px rgba(0,0,0,.12);padding:18px;font-family:Montserrat;
+ display:flex;flex-direction:column;gap:12px;z-index:9999}
+.cookie-box p{margin:0;font-size:.9rem;color:#333}
+.cookie-box button{background:#33E0CB;border:none;border-radius:8px;
+ color:#fff;padding:10px;font-weight:600;cursor:pointer}
+</style>
+<div class="cookie-box" id="cookie-box" style="display:none">
+  <p>Usamos cookies para melhorar sua experiência.<br>Ao continuar, você concorda com nossa política.</p>
+  <button onclick="aceitaCookie()">Ok, entendi</button>
+</div>
+<script>
+function aceitaCookie(){localStorage.setItem("cookie-ok","1");
+ document.getElementById("cookie-box").style.display="none";}
+if(!localStorage.getItem("cookie-ok")){
+ document.getElementById("cookie-box").style.display="block";}
+</script>
