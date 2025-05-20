@@ -4,7 +4,7 @@ on:
     paths: ["drafts/**.md"]
 
 permissions:
-  contents: write        # permite commit
+  contents: write
 
 jobs:
   build:
@@ -17,35 +17,29 @@ jobs:
       run: sudo apt-get update && sudo apt-get install -y pandoc
 
     - name: Generate posts
-      shell: bash
       run: |
-        slug(){
-          echo "$1" | tr '[:upper:]' '[:lower:]' |
+        slug(){ echo "$1" | tr '[:upper:]' '[:lower:]' |
           sed -E 's/[àáâãä]/a/g;s/[èéêë]/e/g;s/[ìíîï]/i/g;
                    s/[òóôõö]/o/g;s/[ùúûü]/u/g;
-                   s/[^a-z0-9]+/-/g;s/^-+|-+$//g'
-        }
+                   s/[^a-z0-9]+/-/g;s/^-+|-+$//g'; }
 
         for md in drafts/*.md; do
           [ -e "$md" ] || continue
-          title=$(head -1 "$md"|sed 's/^# //')
+          title=$(head -1 "$md" | sed 's/^# //')
           slug=$(slug "$title")
           date=$(date +%F)
           html="blog/${date}-${slug}.html"
-
           body=$(pandoc "$md" -t html)
 
-          sed \
-            -e "s/<!-- {{TITLE}} -->/${title}/" \
-            -e "s|<!-- {{CONTENT}} -->|${body//|/\\|}|" \
-            partials/template-post.html > "$html"
+          sed -e "s/<!-- {{TITLE}} -->/${title}/" \
+              -e "s|<!-- {{CONTENT}} -->|${body//|/\\|}|" \
+              partials/template-post.html > "$html"
 
           card="<div class=\"card\">
                    <a href=\"${date}-${slug}.html\">
                      <div class=\"card-title\">${title}</div>
                    </a>
                  </div>"
-
           sed -i "/<!-- posts -->/a ${card}" blog/index.html
 
           grep -q "${date}-${slug}.html" sitemap.xml || \
