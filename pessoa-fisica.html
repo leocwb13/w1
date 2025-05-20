@@ -250,5 +250,11 @@
       document.getElementById('whatsLink').href = link;
     });
 </script>
+        <div id="cookie-placeholder"></div>
+<script>
+fetch("/partials/cookie-banner.html")
+ .then(r=>r.text()).then(h=>document.getElementById("cookie-placeholder").innerHTML=h);
+</script>
+
 </body>
 </html>
