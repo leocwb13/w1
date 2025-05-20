@@ -251,11 +251,12 @@ document.getElementById('leadForm').addEventListener('submit', async (e)=>{
   document.getElementById('whatsLink').href = linkWpp;
 });
 </script>
-    <div id="cookie-placeholder"></div>
+<!-- Cookie banner (LGPD) -->
+<div id="cookie-placeholder"></div>
 <script>
 fetch("/partials/cookie-banner.html")
- .then(r=>r.text()).then(h=>document.getElementById("cookie-placeholder").innerHTML=h);
+  .then(r => r.text())
+  .then(h => document.getElementById("cookie-placeholder").innerHTML = h);
 </script>
-
 </body>
 </html>
