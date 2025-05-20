@@ -25,3 +25,6 @@
     <loc>https://consultoria.leonardograciano.com.br/blog/post5.html</loc>
   </url>
 </urlset>
+  <url><loc>https://consultoria.leonardograciano.com.br/blog/"+new Date().toISOString().slice(0,10)+"-"+slug+".html</loc></url>
+  <url><loc>https://consultoria.leonardograciano.com.br/blog/2025-05-20-a-importancia-de-um-bom-controle-financeiro.html</loc></url>
+  <url><loc>https://consultoria.leonardograciano.com.br/blog/2025-05-20-minha-estrategia.html</loc></url>
