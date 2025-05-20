@@ -198,54 +198,54 @@
 <!-- … bloco whatsSuccess permanece igual -->
 
 <script>
-/* CONFIG */
-const numeroWpp = '5541991937663';
-const WEBHOOK   = 'https://primary-production-a61c.up.railway.app/webhook-test/git-hub';
-const ORIGEM    = 'Landing PF';
-
-/* ENVIA PRO N8N */
-async function enviaLead(dados){
-  try{
-    await fetch(WEBHOOK,{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify(dados)
+    /* CONFIG */
+    const numeroWpp = '5541991937663';
+    const WEBHOOK   = 'https://primary-production-a61c.up.railway.app/webhook-test/git-hub';
+    const ORIGEM    = 'Landing PF';
+    
+    /* ENVIA PRO N8N */
+    async function enviaLead(dados){
+      try{
+        await fetch(WEBHOOK,{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify(dados)
+        });
+      }catch(e){
+        console.error('Falha webhook:',e);
+      }
+    }
+    
+    /* HANDLER */
+    document.getElementById('leadForm').addEventListener('submit', async (e)=>{
+      e.preventDefault();               // não recarrega
+      if(!e.target.reportValidity())return; // força validação HTML5 (tel/email)
+    
+      const nome   = document.getElementById('nome').value.trim();
+      const email  = document.getElementById('email').value.trim();
+      const fone   = document.getElementById('whatsapp').value.replace(/\D/g,'');
+      const objTxt = document.getElementById('objetivo')
+                      .options[document.getElementById('objetivo').selectedIndex].text;
+    
+      /* monta payload */
+      const dados={
+        origem:ORIGEM,
+        nome,email,telefone:fone,objetivo:objTxt
+      };
+      await enviaLead(dados);
+    
+      /* monta link WhatsApp */
+      const mensagem = encodeURIComponent(
+        `Olá! Quero agendar meu diagnóstico financeiro gratuito.\n\n`+
+        `Nome: ${nome}\nE-mail: ${email}\nWhatsApp: ${fone}\nObjetivo: ${objTxt}`
+      );
+      const link = `https://wa.me/${numeroWpp}?text=${mensagem}`;
+    
+      /* feedback visual */
+      document.getElementById('leadForm').style.display='none';
+      document.getElementById('whatsSuccess').style.display='block';
+      document.getElementById('whatsLink').href = link;
     });
-  }catch(e){
-    console.error('Falha webhook:',e);
-  }
-}
-
-/* HANDLER */
-document.getElementById('leadForm').addEventListener('submit', async (e)=>{
-  e.preventDefault();               // não recarrega
-  if(!e.target.reportValidity())return; // força validação HTML5 (tel/email)
-
-  const nome   = document.getElementById('nome').value.trim();
-  const email  = document.getElementById('email').value.trim();
-  const fone   = document.getElementById('whatsapp').value.replace(/\D/g,'');
-  const objTxt = document.getElementById('objetivo')
-                  .options[document.getElementById('objetivo').selectedIndex].text;
-
-  /* monta payload */
-  const dados={
-    origem:ORIGEM,
-    nome,email,telefone:fone,objetivo:objTxt
-  };
-  await enviaLead(dados);
-
-  /* monta link WhatsApp */
-  const mensagem = encodeURIComponent(
-    `Olá! Quero agendar meu diagnóstico financeiro gratuito.\n\n`+
-    `Nome: ${nome}\nE-mail: ${email}\nWhatsApp: ${fone}\nObjetivo: ${objTxt}`
-  );
-  const link = `https://wa.me/${numeroWpp}?text=${mensagem}`;
-
-  /* feedback visual */
-  document.getElementById('leadForm').style.display='none';
-  document.getElementById('whatsSuccess').style.display='block';
-  document.getElementById('whatsLink').href = link;
-});
 </script>
 </body>
 </html>
