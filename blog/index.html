@@ -87,6 +87,13 @@
   </style>
 </head>
 <body>
+  <!-- inclui o header -->
+<div id="header-placeholder"></div>
+<script>
+fetch("/header.html")
+  .then(r=>r.text())
+  .then(h=>document.getElementById("header-placeholder").innerHTML=h);
+</script>
   <div class="container">
     <h1>Blog de Consultoria Financeira</h1>
     <div class="galeria">
