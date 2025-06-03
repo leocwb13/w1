@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Leonardo Graciano | Hub de Links</title>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --accent: #5dcbcb; /* cor principal W1 */
+      --accent-dark: #46a3a3;
+      --bg: #022028;    /* novo background solicitado */
+      --card-bg: #ffffff;
+      --text: #111111;
+    }
+    *{box-sizing:border-box;padding:0;margin:0}
+    body{
+      font-family:'Poppins',sans-serif;
+      background:var(--bg);
+      color:#f5f5f5;
+      display:flex;
+      justify-content:center;
+      min-height:100vh;
+    }
+    .container{
+      width:100%;
+      max-width:420px;
+      padding:32px 24px 64px;
+      text-align:center;
+    }
+    .avatar{
+      width:96px;
+      height:96px;
+      border-radius:50%;
+      object-fit:cover;
+      border:4px solid var(--accent);
+      margin-bottom:16px;
+    }
+    h1{font-size:1.35rem;font-weight:600;margin-bottom:4px;}
+    .subtitle{font-size:.9rem;line-height:1.4;margin-bottom:32px;color:#cfdfe0;}
+    .link-card{
+      display:block;
+      background:var(--card-bg);
+      color:var(--text);
+      text-decoration:none;
+      border-left:8px solid var(--accent);
+      padding:16px 20px;
+      margin-bottom:16px;
+      border-radius:8px;
+      transition:transform .15s ease,box-shadow .15s ease;
+    }
+    .link-card:hover{
+      transform:translateY(-2px);
+      box-shadow:0 4px 12px rgba(0,0,0,.25);
+    }
+    .link-title{font-size:1rem;font-weight:600;}
+    .link-desc{font-size:.775rem;color:#555;margin-top:4px;}
+    .footer{font-size:.75rem;color:#7c9fa3;margin-top:48px;}
+    @media (prefers-color-scheme: dark){
+      .link-card{background:#2d2d2d;color:#f0f0f0;}
+      .link-desc{color:#aaaaaa;}
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <img class="avatar" src="https://consultoria.leonardograciano.com.br/leonardo.jpg" alt="Leonardo Graciano" />
+    <h1>Leonardo Graciano</h1>
+    <p class="subtitle">Consultor Financeiro | W1 • Estratégias que fazem seu dinheiro trabalhar por você</p>
+
+    <!-- BOTÃO 1: EMPRESAS -->
+    <a class="link-card" href="https://consultoria.leonardograciano.com.br/empresas.html?utm_source=instagram&utm_medium=hub&utm_campaign=empresas_q3_2025&utm_content=btn_top">
+      <span class="link-title">Diagnóstico Financeiro – Empresas 💼</span>
+      <span class="link-desc">Reduza custos, otimize caixa e acelere o crescimento.</span>
+    </a>
+
+    <!-- BOTÃO 2: CALL 15 MIN -->
+    <a class="link-card" href="https://calendar.app.google/wrQkDsXd87dkEVR4A?utm_source=instagram&utm_medium=hub&utm_campaign=call15min_q3_2025&utm_content=btn_mid">
+      <span class="link-title">Conversa Estratégica (15&nbsp;min) 📞</span>
+      <span class="link-desc">Descubra rapidamente se a consultoria W1 é o match ideal.</span>
+    </a>
+
+    <!-- BOTÃO 3: PESSOA FÍSICA -->
+    <a class="link-card" href="https://consultoria.leonardograciano.com.br/pessoa-fisica.html?utm_source=instagram&utm_medium=hub&utm_campaign=pf_q3_2025&utm_content=btn_bottom">
+      <span class="link-title">Diagnóstico Financeiro – PF 🏠</span><br>
+      <span class="link-desc">Ganhe clareza, controle e plano de ação para suas finanças pessoais.</span>
+    </a>
+
+    <footer class="footer">Leonardo Graciano © 2025</footer>
+  </main>
+
+  <!-- GTM snippet: cole aqui -->
+</body>
+</html>
