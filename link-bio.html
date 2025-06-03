@@ -10,7 +10,7 @@
     :root {
       --accent: #5dcbcb; /* cor principal W1 */
       --accent-dark: #46a3a3;
-      --bg: #022028;    /* novo background solicitado */
+      --bg: #022028;    /* background escuro */
       --card-bg: #ffffff;
       --text: #111111;
     }
@@ -45,8 +45,8 @@
       color:var(--text);
       text-decoration:none;
       border-left:8px solid var(--accent);
-      padding:16px 20px;
-      margin-bottom:16px;
+      padding:18px 24px;
+      margin-bottom:18px;
       border-radius:8px;
       transition:transform .15s ease,box-shadow .15s ease;
     }
@@ -55,8 +55,21 @@
       box-shadow:0 4px 12px rgba(0,0,0,.25);
     }
     .link-title{font-size:1rem;font-weight:600;}
-    .link-desc{font-size:.775rem;color:#555;margin-top:4px;}
+    .link-desc{font-size:.78rem;color:#555;margin-top:6px;}
     .footer{font-size:.75rem;color:#7c9fa3;margin-top:48px;}
+
+    /* Escalonar para telas maiores */
+    @media (min-width:768px){
+      .container{max-width:560px;}
+      .avatar{width:120px;height:120px;margin-bottom:20px;}
+      h1{font-size:1.75rem;}
+      .subtitle{font-size:1rem;margin-bottom:40px;}
+      .link-card{padding:22px 28px;}
+      .link-title{font-size:1.125rem;}
+      .link-desc{font-size:.85rem;}
+    }
+
+    /* Dark‑mode automatico para quem for claro */
     @media (prefers-color-scheme: dark){
       .link-card{background:#2d2d2d;color:#f0f0f0;}
       .link-desc{color:#aaaaaa;}
@@ -71,13 +84,13 @@
 
     <!-- BOTÃO 1: EMPRESAS -->
     <a class="link-card" href="https://consultoria.leonardograciano.com.br/empresas.html?utm_source=instagram&utm_medium=hub&utm_campaign=empresas_q3_2025&utm_content=btn_top">
-      <span class="link-title">Diagnóstico Financeiro – Empresas 💼</span>
+      <span class="link-title">Diagnóstico Financeiro – Empresas 💼</span><br>
       <span class="link-desc">Reduza custos, otimize caixa e acelere o crescimento.</span>
     </a>
 
     <!-- BOTÃO 2: CALL 15 MIN -->
     <a class="link-card" href="https://calendar.app.google/wrQkDsXd87dkEVR4A?utm_source=instagram&utm_medium=hub&utm_campaign=call15min_q3_2025&utm_content=btn_mid">
-      <span class="link-title">Conversa Estratégica (15&nbsp;min) 📞</span>
+      <span class="link-title">Conversa Estratégica (15&nbsp;min) 📞</span><br>
       <span class="link-desc">Descubra rapidamente se a consultoria W1 é o match ideal.</span>
     </a>
 
