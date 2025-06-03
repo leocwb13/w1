@@ -106,13 +106,33 @@
       const objetivo=document.getElementById('objetivo').options[document.getElementById('objetivo').selectedIndex].text;
 
       /* link whatsapp */
-      const msg=encodeURIComponent(`Olá! Quero agendar meu diagnóstico financeiro gratuito para empresas.%0A%0A`+
-        `Nome: ${nome}%0AEmpresa: ${empresa}%0ACargo: ${cargo}%0AE-mail: ${email}%0A`+
-        `WhatsApp: ${tel}%0AFaturamento: ${faturamento}%0AFuncionários: ${funcionarios}%0A`+
-        `Principal dor: ${objetivo}`);
+      const msg = encodeURIComponent(
+        `Olá! Quero agendar meu diagnóstico financeiro gratuito para empresas.\n\n` +
+        `Nome: ${nome}\nEmpresa: ${empresa}\nCargo: ${cargo}\nE-mail: ${email}\n` +
+        `WhatsApp: ${tel}\nFaturamento: ${faturamento}\nFuncionários: ${funcionarios}\n` +
+        `Principal dor: ${objetivo}`
+      );
       const link=`https://wa.me/${NUM_WPP}?text=${msg}`;
+
+      await enviaLead({
+        origem:'Landing PJ',
+        nome,
+        empresa,
+        cargo,
+        email,
+        telefone:tel,
+        faturamento,
+        funcionarios,
+        objetivo
+      });
 
       /* feedback visual imediatamente */
       f.style.display='none';
       const success=document.getElementById('whatsSuccess');
-      document.getElementById
+      success.style.display='block';
+      document.getElementById('whatsLink').href=link;
+    });
+  </script>
+
+</body>
+</html>
