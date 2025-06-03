@@ -2,132 +2,42 @@
 <html lang="pt-BR">
 <head>
   <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-54VH7DCH');</script>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-54VH7DCH');</script>
   <!-- End Google Tag Manager -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Diagnóstico Financeiro – Empresas | W1</title>
-  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --accent:#5dcbcb;              /* cor principal W1 */
-      --accent-dark:#46a3a3;
-      --bg:#022028;                  /* fundo escuro */
-      --card-bg:#ffffff;             /* cards/branco */
-      --text:#111111;
-      --text-muted:#555;
-    }
+    :root{--accent:#5dcbcb;--accent-dark:#46a3a3;--bg:#022028;--card-bg:#fff;--text:#111;--text-muted:#555}
     *{box-sizing:border-box;padding:0;margin:0}
-    body{
-      font-family:'Poppins',sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      min-height:100vh;
-      display:flex;
-      justify-content:center;
-      padding:40px 8px;
-    }
-    .container{
-      width:100%;
-      max-width:560px;
-      background:var(--card-bg);
-      border-radius:18px;
-      border-left:10px solid var(--accent);
-      box-shadow:0 6px 36px rgba(0,0,0,.22);
-      padding:48px 36px 40px;
-    }
-    h1{
-      font-size:1.9rem;
-      font-weight:700;
-      color:var(--text);
-      text-align:center;
-      margin-bottom:14px;
-      letter-spacing:-.5px;
-    }
-    .subheadline{
-      font-size:1rem;
-      color:var(--text-muted);
-      text-align:center;
-      margin-bottom:28px;
-      line-height:1.45;
-    }
-    .dores{
-      background:rgba(93,203,203,.12);
-      border-left:6px solid var(--accent);
-      border-radius:10px;
-      padding:18px 20px;
-      color:#19504a;
-      font-size:1rem;
-      margin-bottom:22px;
-    }
-    .personalizado{
-      background:#e9f3f2;
-      border-radius:10px;
-      padding:14px 18px;
-      font-size:1rem;
-      font-weight:600;
-      color:var(--text);
-      text-align:center;
-      margin-bottom:20px;
-    }
-    form{display:flex;flex-direction:column;gap:16px;}
-    label{
-      font-weight:600;
-      color:var(--text);
-      font-size:.95rem;
-    }
-    input,select{
-      padding:12px 14px;
-      border-radius:8px;
-      border:1.5px solid #cbe9e6;
-      font-size:.95rem;
-      outline:none;
-    }
-    input:focus,select:focus{border-color:var(--accent);} 
-    button,.cta-whatsapp{
-      background:linear-gradient(90deg,var(--accent) 10%,var(--accent-dark) 100%);
-      color:#fff;
-      border:none;
-      padding:16px;
-      border-radius:9px;
-      font-size:1.1rem;
-      font-weight:700;
-      cursor:pointer;
-      transition:box-shadow .15s ease,transform .15s ease;
-      box-shadow:0 3px 10px rgba(93,203,203,.25);
-    }
-    button:hover,.cta-whatsapp:hover{
-      box-shadow:0 6px 16px rgba(93,203,203,.35);
-      transform:translateY(-2px);
-    }
-    .whats-cta{margin:24px 0 0;text-align:center;}
-    .cta-whatsapp{gap:8px;display:flex;align-items:center;justify-content:center;background:#25d366;width:100%;}
-    .cta-whatsapp svg{width:22px;height:22px;}
-    .footer{text-align:center;color:#7c9fa3;font-size:.8rem;margin-top:40px;}
-
-    @media(max-width:600px){
-      .container{padding:32px 20px;}
-      h1{font-size:1.5rem;}
-    }
+    body{font-family:'Poppins',sans-serif;background:var(--bg);display:flex;justify-content:center;padding:40px 8px;min-height:100vh}
+    .container{width:100%;max-width:560px;background:var(--card-bg);border-left:10px solid var(--accent);border-radius:18px;box-shadow:0 6px 36px rgba(0,0,0,.22);padding:48px 36px 40px}
+    h1{text-align:center;font-size:1.9rem;font-weight:700;margin-bottom:14px}
+    .subheadline{text-align:center;font-size:1rem;color:var(--text-muted);margin-bottom:28px;line-height:1.45}
+    .dores{background:rgba(93,203,203,.12);border-left:6px solid var(--accent);border-radius:10px;padding:18px 20px;margin-bottom:22px;color:#19504a;font-size:1rem}
+    .personalizado{background:#e9f3f2;border-radius:10px;padding:14px 18px;font-size:1rem;font-weight:600;text-align:center;margin-bottom:20px}
+    form{display:flex;flex-direction:column;gap:16px}
+    label{font-weight:600;font-size:.95rem}
+    input,select{padding:12px 14px;border-radius:8px;border:1.5px solid #cbe9e6;font-size:.95rem;outline:none}
+    input:focus,select:focus{border-color:var(--accent)}
+    button,.cta-whatsapp{background:linear-gradient(90deg,var(--accent) 10%,var(--accent-dark) 100%);color:#fff;border:none;padding:16px;border-radius:9px;font-size:1.1rem;font-weight:700;cursor:pointer;transition:.15s;box-shadow:0 3px 10px rgba(93,203,203,.25)}
+    button:hover,.cta-whatsapp:hover{box-shadow:0 6px 16px rgba(93,203,203,.35);transform:translateY(-2px)}
+    .whats-cta{margin:24px 0 0;text-align:center}
+    .cta-whatsapp{display:flex;align-items:center;justify-content:center;gap:8px;background:#25d366;width:100%}
+    .cta-whatsapp svg{width:22px;height:22px}
+    .footer{text-align:center;color:#7c9fa3;font-size:.8rem;margin-top:40px}
+    @media(max-width:600px){.container{padding:32px 20px}h1{font-size:1.5rem}}
   </style>
 </head>
 <body>
-  <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-54VH7DCH" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-
   <main class="container">
     <h1>Diagnóstico Financeiro para Empresas</h1>
     <p class="subheadline">Consultoria sob medida para destravar fluxo de caixa, reduzir custos e impulsionar crescimento.</p>
 
-    <div class="dores">
-      <strong>Situações que vemos todos os dias:</strong>
-      <ul style="padding-left:20px;margin:6px 0 0 0;">
+    <div class="dores"><strong>Situações que vemos todos os dias:</strong>
+      <ul style="padding-left:20px;margin:6px 0 0">
         <li>Receita cresce mas o lucro não acompanha.</li>
         <li>Falta clareza sobre custos fixos e variáveis.</li>
         <li>Capital de giro "apertado" todo mês.</li>
@@ -136,58 +46,73 @@
       </ul>
     </div>
 
-    <div class="personalizado">
-      O diagnóstico é gratuito, individualizado e sem compromisso.<br>
-      Empresas com faturamento mensal a partir de R$50&nbsp;mil.
-    </div>
+    <div class="personalizado">O diagnóstico é gratuito, individualizado e sem compromisso.<br>Empresas com faturamento mensal a partir de R$50&nbsp;mil.</div>
 
-    <!-- Formulário -->
     <form id="leadForm">
       <label for="nome">Nome</label>
-      <input type="text" id="nome" name="nome" required>
-
+      <input type="text" id="nome" required>
       <label for="empresa">Empresa / Razão Social</label>
-      <input type="text" id="empresa" name="empresa" required>
-
+      <input type="text" id="empresa" required>
       <label for="cargo">Cargo</label>
-      <input type="text" id="cargo" name="cargo" placeholder="Ex.: Sócio, CFO, Controller">
-
+      <input type="text" id="cargo" placeholder="Ex.: Sócio, CFO, Controller">
       <label for="email">E-mail</label>
-      <input type="email" id="email" name="email" required placeholder="exemplo@dominio.com">
-
+      <input type="email" id="email" required>
       <label for="whatsapp">WhatsApp</label>
-      <input type="tel" id="whatsapp" name="whatsapp" pattern="\d{10,11}" required title="Digite somente números, ex.: 41999999999">
-
+      <input type="tel" id="whatsapp" pattern="\d{10,11}" required title="Digite somente números, ex.: 41999999999">
       <label for="faturamento">Faturamento mensal</label>
-      <select id="faturamento" name="faturamento" required>
-        <option value="">Selecione</option>
-        <option value="50-100k">R$50k – R$100k</option>
-        <option value="100-300k">R$100k – R$300k</option>
-        <option value="300-1000k">R$300k – R$1M</option>
-        <option value="1m+">Acima de R$1M</option>
+      <select id="faturamento" required>
+        <option value="">Selecione</option><option>R$50k – R$100k</option><option>R$100k – R$300k</option><option>R$300k – R$1M</option><option>Acima de R$1M</option>
       </select>
-
       <label for="funcionarios">Número de funcionários</label>
-      <select id="funcionarios" name="funcionarios" required>
-        <option value="">Selecione</option>
-        <option value="1-10">1 – 10</option>
-        <option value="11-50">11 – 50</option>
-        <option value="51-200">51 – 200</option>
-        <option value="200+">200+</option>
+      <select id="funcionarios" required>
+        <option value="">Selecione</option><option>1 – 10</option><option>11 – 50</option><option>51 – 200</option><option>200+</option>
       </select>
-
       <label for="objetivo">Qual maior dor hoje?</label>
-      <select id="objetivo" name="objetivo" required>
-        <option value="fluxo_caixa">Fluxo de caixa desorganizado</option>
-        <option value="corte_custos">Reduzir custos / desperdícios</option>
-        <option value="investir_excesso_caixa">Investir excesso de caixa</option>
-        <option value="planejamento_expansao">Planejar expansão / franquias</option>
-        <option value="outro">Outro</option>
+      <select id="objetivo" required>
+        <option value="fluxo_caixa">Fluxo de caixa desorganizado</option><option value="corte_custos">Reduzir custos / desperdícios</option><option value="investir_excesso_caixa">Investir excesso de caixa</option><option value="planejamento_expansao">Planejar expansão / franquias</option><option value="outro">Outro</option>
       </select>
-
       <button type="submit">Quero meu Diagnóstico Gratuito</button>
     </form>
 
-    <div class="whats-cta" style="display:none;" id="whatsSuccess">
-      <a href="#" class="cta-whatsapp" id="whatsLink" target="_blank">
-        <svg fill="none" viewBox="0 0 24 24"><path fill="#fff" d="M16.58 13.79c-.23-.12-1...
+    <div class="whats-cta" id="whatsSuccess" style="display:none">
+      <a href="#" class="cta-whatsapp" id="whatsLink" target="_blank"><svg fill="none" viewBox="0 0 24 24"><path fill="#fff" d="M16.58 13.79c-.23-.12-1.35-.67-1.56-.74-.21-.08-.36-.12-.51.12-.15.23-.58.74-.71.89-.13.15-.26.17-.48.06-.23-.12-.98-.36-1.87-1.13-.69-.62-1.16-1.39-1.29-1.62-.13-.23-.01-.35.1-.46.11-.12.23-.31.34-.46.12-.15.15-.26.23-.43.08-.17.04-.32-.02-.45-.07-.12-.51-1.23-.7-1.68-.19-.46-.38-.4-.51-.41-.13-.01-.28-.01-.43-.01-.15 0-.4.06-.61.28-.21.22-.8.78-.8 1.9 0 1.12.82 2.2.93 2.36.11.15 1.61 2.45 3.95 3.34.55.19.98.31 1.31.4.55.14 1.04.12 1.43.07.44-.07 1.35-.55 1.54-1.08.19-.53.19-.98.14-1.08-.06-.1-.21-.16-.44-.28Z"/></svg>
+        Falar direto no WhatsApp</a>
+    </div>
+
+    <footer class="footer">Leonardo Graciano © 2025</footer>
+  </main>
+
+  <script>
+    /* CONFIG */
+    const NUM_WPP = '5541991937663';
+    const WEBHOOK = 'https://primary-production-a61c.up.railway.app/webhook-test/git-hub';
+
+    async function enviaLead(payload){
+      try{await fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});}catch(err){console.error('Falha webhook',err)} }
+
+    document.getElementById('leadForm').addEventListener('submit',async e=>{
+      e.preventDefault();
+      const f=e.target;
+      if(!f.reportValidity()) return;
+
+      /* coleta campos */
+      const nome=document.getElementById('nome').value.trim();
+      const empresa=document.getElementById('empresa').value.trim();
+      const cargo=document.getElementById('cargo').value.trim();
+      const email=document.getElementById('email').value.trim();
+      const tel=document.getElementById('whatsapp').value.replace(/\D/g,'');
+      const faturamento=document.getElementById('faturamento').value;
+      const funcionarios=document.getElementById('funcionarios').value;
+      const objetivo=document.getElementById('objetivo').options[document.getElementById('objetivo').selectedIndex].text;
+
+      /* link whatsapp */
+      const msg=encodeURIComponent(`Olá! Quero agendar meu diagnóstico financeiro gratuito para empresas.%0A%0A`+
+        `Nome: ${nome}%0AEmpresa: ${empresa}%0ACargo: ${cargo}%0AE-mail: ${email}%0A`+
+        `WhatsApp: ${tel}%0AFaturamento: ${faturamento}%0AFuncionários: ${funcionarios}%0A`+
+        `Principal dor: ${objetivo}`);
+      const link=`https://wa.me/${NUM_WPP}?text=${msg}`;
+
+      /* feedback visual imediatamente */
+      f.style.display='none';
+      const success=document.getElementById('whatsSuccess');
+      document.getElementById
