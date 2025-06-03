@@ -86,33 +86,67 @@
     /* CONFIG */
     const NUM_WPP = '5541991937663';
     const WEBHOOK = 'https://primary-production-a61c.up.railway.app/webhook-test/git-hub';
+    const ORIGEM  = 'Landing PJ';
 
     async function enviaLead(payload){
-      try{await fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});}catch(err){console.error('Falha webhook',err)} }
+      try {
+        await fetch(WEBHOOK, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      } catch (err) {
+        console.error('Falha webhook', err);
+      }
+    }
 
-    document.getElementById('leadForm').addEventListener('submit',async e=>{
+    document.getElementById('leadForm').addEventListener('submit', async e => {
       e.preventDefault();
-      const f=e.target;
-      if(!f.reportValidity()) return;
+      const f = e.target;
+      if (!f.reportValidity()) return;
 
       /* coleta campos */
-      const nome=document.getElementById('nome').value.trim();
-      const empresa=document.getElementById('empresa').value.trim();
-      const cargo=document.getElementById('cargo').value.trim();
-      const email=document.getElementById('email').value.trim();
-      const tel=document.getElementById('whatsapp').value.replace(/\D/g,'');
-      const faturamento=document.getElementById('faturamento').value;
-      const funcionarios=document.getElementById('funcionarios').value;
-      const objetivo=document.getElementById('objetivo').options[document.getElementById('objetivo').selectedIndex].text;
+      const nome = document.getElementById('nome').value.trim();
+      const empresa = document.getElementById('empresa').value.trim();
+      const cargo = document.getElementById('cargo').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const tel = document.getElementById('whatsapp').value.replace(/\D/g, '');
+      const faturamento = document.getElementById('faturamento').value;
+      const funcionarios = document.getElementById('funcionarios').value;
+      const objetivo = document.getElementById('objetivo').options[
+        document.getElementById('objetivo').selectedIndex
+      ].text;
+
+      /* payload para webhook */
+      const payload = {
+        origem: ORIGEM,
+        nome,
+        empresa,
+        cargo,
+        email,
+        telefone: tel,
+        faturamento,
+        funcionarios,
+        objetivo
+      };
+      await enviaLead(payload);
 
       /* link whatsapp */
-      const msg=encodeURIComponent(`Olá! Quero agendar meu diagnóstico financeiro gratuito para empresas.%0A%0A`+
-        `Nome: ${nome}%0AEmpresa: ${empresa}%0ACargo: ${cargo}%0AE-mail: ${email}%0A`+
-        `WhatsApp: ${tel}%0AFaturamento: ${faturamento}%0AFuncionários: ${funcionarios}%0A`+
-        `Principal dor: ${objetivo}`);
-      const link=`https://wa.me/${NUM_WPP}?text=${msg}`;
+      const msg = encodeURIComponent(
+        `Olá! Quero agendar meu diagnóstico financeiro gratuito para empresas.%0A%0A` +
+        `Nome: ${nome}%0AEmpresa: ${empresa}%0ACargo: ${cargo}%0AE-mail: ${email}%0A` +
+        `WhatsApp: ${tel}%0AFaturamento: ${faturamento}%0AFuncionários: ${funcionarios}%0A` +
+        `Principal dor: ${objetivo}`
+      );
+      const link = `https://wa.me/${NUM_WPP}?text=${msg}`;
 
       /* feedback visual imediatamente */
-      f.style.display='none';
-      const success=document.getElementById('whatsSuccess');
-      document.getElementById
+      f.style.display = 'none';
+      const success = document.getElementById('whatsSuccess');
+      success.style.display = 'block';
+      document.getElementById('whatsLink').href = link;
+    });
+  </script>
+
+</body>
+</html>
