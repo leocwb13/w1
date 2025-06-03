@@ -146,15 +146,38 @@
       <label for="nome">Nome</label>
       <input type="text" id="nome" name="nome" required>
 
+      <label for="empresa">Empresa / Razão Social</label>
+      <input type="text" id="empresa" name="empresa" required>
+
+      <label for="cargo">Cargo</label>
+      <input type="text" id="cargo" name="cargo" placeholder="Ex.: Sócio, CFO, Controller">
+
       <label for="email">E-mail</label>
       <input type="email" id="email" name="email" required placeholder="exemplo@dominio.com">
 
       <label for="whatsapp">WhatsApp</label>
       <input type="tel" id="whatsapp" name="whatsapp" pattern="\d{10,11}" required title="Digite somente números, ex.: 41999999999">
 
+      <label for="faturamento">Faturamento mensal</label>
+      <select id="faturamento" name="faturamento" required>
+        <option value="">Selecione</option>
+        <option value="50-100k">R$50k – R$100k</option>
+        <option value="100-300k">R$100k – R$300k</option>
+        <option value="300-1000k">R$300k – R$1M</option>
+        <option value="1m+">Acima de R$1M</option>
+      </select>
+
+      <label for="funcionarios">Número de funcionários</label>
+      <select id="funcionarios" name="funcionarios" required>
+        <option value="">Selecione</option>
+        <option value="1-10">1 – 10</option>
+        <option value="11-50">11 – 50</option>
+        <option value="51-200">51 – 200</option>
+        <option value="200+">200+</option>
+      </select>
+
       <label for="objetivo">Qual maior dor hoje?</label>
       <select id="objetivo" name="objetivo" required>
-        <option value="">Selecione</option>
         <option value="fluxo_caixa">Fluxo de caixa desorganizado</option>
         <option value="corte_custos">Reduzir custos / desperdícios</option>
         <option value="investir_excesso_caixa">Investir excesso de caixa</option>
@@ -167,4 +190,4 @@
 
     <div class="whats-cta" style="display:none;" id="whatsSuccess">
       <a href="#" class="cta-whatsapp" id="whatsLink" target="_blank">
-        <svg fill="none" viewBox="0 0 24 24"><path fill="#fff" d="M16.58 13.79c-.23-.12-1.35-.67-1.56-.74-.21-.08-.36-.12-.51.12-.15.23-.58.74-.71.89-.13.15-.26.17-.48.06-.23-.12-.98-.36-1.87-1.13-.69-.62-1.16-1.39-1.29-1.62-.13-.23-.01-.35.1-.46.11-.12.23-.31.34-.46.12-.15.15-.26.23-.43.08-.17.04-.32-.02-.45-.07-.12-.51-1.23-.7-1.68-.19-.46-.38-.4-.51-.41-.13-.01-.28-.01-.43-.01-.15 0-.4.06-.61.28-.21.22-.8.78-.8 1.9 0 1.12.82 2.2.93 2.36.11.15 1.61 2.45 3.95 3.34.55.19.98.31 1.31.4.55.14 1
+        <svg fill="none" viewBox="0 0 24 24"><path fill="#fff" d="M16.58 13.79c-.23-.12-1...
