@@ -1,0 +1,15 @@
+# Ignore Python cache and testing artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Ignore temporary files
+*.tmp
+*~
+
+# Ignore build artifacts
+build/
+dist/
+
+# MacOS DS_Store
+.DS_Store
