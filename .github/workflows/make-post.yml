@@ -61,12 +61,9 @@ jobs:
            /<!-- \{\{RELATED\}\} -->/ { sub(/<!-- \{\{RELATED\}\} -->/, rel) }
            { print }' partials/template-post.html > "$html"
 
-           # ---- adiciona CARD no index (no topo) ----
+          # ---- adiciona CARD no index usando marcador ----
             card="<div class=\"card\"><a href=\"${date}-${slug}.html\"><div class=\"card-title\">${title}</div></a></div>"
-            awk -v c="$card" '
-                 NR==1{print;c_inserted=1}
-                 {print}
-            ' blog/index.html > blog/index.tmp && mv blog/index.tmp blog/index.html
+            awk -v card="$card" '/<!-- posts -->/{print card; print; next} {print}' blog/index.html > blog/index.tmp && mv blog/index.tmp blog/index.html
           grep -q "${date}-${slug}.html" sitemap.xml || \
             sed -i "\$ i\\  <url><loc>https://consultoria.leonardograciano.com.br/blog/${date}-${slug}.html</loc></url>" sitemap.xml
 
