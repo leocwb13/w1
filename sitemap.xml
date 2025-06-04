@@ -8,7 +8,6 @@
   <url><loc>https://consultoria.leonardograciano.com.br/blog/post3.html</loc></url>
   <url><loc>https://consultoria.leonardograciano.com.br/blog/post4.html</loc></url>
   <url><loc>https://consultoria.leonardograciano.com.br/blog/post5.html</loc></url>
-  <url><loc>https://consultoria.leonardograciano.com.br/blog/"+new Date().toISOString().slice(0,10)+"-"+slug+".html</loc></url>
   <url><loc>https://consultoria.leonardograciano.com.br/blog/2025-05-20-a-importancia-de-um-bom-controle-financeiro.html</loc></url>
   <url><loc>https://consultoria.leonardograciano.com.br/blog/2025-05-20-como-parcelar-impacta-diretamente-seu-fluxo-de-caixa.html</loc></url>
   <url><loc>https://consultoria.leonardograciano.com.br/blog/2025-05-20-por-que-parcelar-compras-impacta-diretamente-o-seu-fluxo-de-caixa.html</loc></url>
