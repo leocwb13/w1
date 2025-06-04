@@ -30,3 +30,7 @@ Se for fazer deploy manualmente ou pré‑visualizar o site com as URLs reais, d
 ## Testes
 
 No momento não existem testes automatizados. Quando forem adicionados, configure o ambiente instalando as dependências indicadas (por exemplo, `npm install` ou `pip install -r requirements.txt`) e execute a ferramenta de testes definida pelo projeto. Atualize este README conforme necessário.
+
+## Licença
+
+Distribuído sob a licença MIT. Consulte o arquivo [LICENSE](./LICENSE) para mais detalhes.
