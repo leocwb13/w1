@@ -15,11 +15,18 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+      WHATSAPP: ${{ secrets.WHATSAPP }}
     steps:
-    - uses: actions/checkout@v4
-    #  ↓ espera blog-builder terminar (se existir outro job)
-    - uses: christopher-dg/wait-on-check-action@v1
-      with:
-        token: ${{ github.token }}
-        checkName: build    # nome do job gerador de artefato
-    - uses: actions/deploy-pages@v4
+      - uses: actions/checkout@v4
+      #  ↓ espera blog-builder terminar (se existir outro job)
+      - uses: christopher-dg/wait-on-check-action@v1
+        with:
+          token: ${{ github.token }}
+          checkName: build    # nome do job gerador de artefato
+      - name: Replace tokens
+        run: |
+          find . -name '*.html' -exec sed -i "s|{{WEBHOOK_URL}}|${WEBHOOK_URL}|g" {} +
+          find . -name '*.html' -exec sed -i "s|{{WHATSAPP}}|${WHATSAPP}|g" {} +
+      - uses: actions/deploy-pages@v4
