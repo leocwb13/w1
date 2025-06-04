@@ -18,6 +18,15 @@ A publicação acontece via GitHub Pages através da workflow [`deploy.yml`](./.
 
 Para pré‑visualizar localmente, clone o projeto e abra qualquer arquivo HTML do diretório em seu navegador. Não há passos de build manual, pois todo processamento é feito pelas ações do GitHub.
 
+### Variáveis de ambiente
+
+A action de deploy substitui tokens nos HTML usando dois segredos configurados no repositório:
+
+- `WEBHOOK_URL` – URL para onde os formulários são enviados.
+- `WHATSAPP` – número usado nos links do WhatsApp (apenas dígitos, exemplo `5541999999999`).
+
+Se for fazer deploy manualmente ou pré‑visualizar o site com as URLs reais, defina essas variáveis e substitua os tokens `{{WEBHOOK_URL}}` e `{{WHATSAPP}}` antes de publicar.
+
 ## Testes
 
 No momento não existem testes automatizados. Quando forem adicionados, configure o ambiente instalando as dependências indicadas (por exemplo, `npm install` ou `pip install -r requirements.txt`) e execute a ferramenta de testes definida pelo projeto. Atualize este README conforme necessário.
