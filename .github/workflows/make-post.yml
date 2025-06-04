@@ -68,7 +68,8 @@ jobs:
                  {print}
             ' blog/index.html > blog/index.tmp && mv blog/index.tmp blog/index.html
           url="https://consultoria.leonardograciano.com.br/blog/${date}-${slug}.html"
-          if ! grep -q "$url" sitemap.xml; then
+          # adiciona no sitemap apenas se o link ainda nao existir
+          if ! grep -Fq "$url" sitemap.xml; then
             sed -i '/<\/urlset>/i\  <url><loc>'"$url"'</loc></url>' sitemap.xml
           fi
 
