@@ -67,8 +67,10 @@ jobs:
                  NR==1{print;c_inserted=1}
                  {print}
             ' blog/index.html > blog/index.tmp && mv blog/index.tmp blog/index.html
-          grep -q "${date}-${slug}.html" sitemap.xml || \
-            sed -i "\$ i\\  <url><loc>https://consultoria.leonardograciano.com.br/blog/${date}-${slug}.html</loc></url>" sitemap.xml
+          url="https://consultoria.leonardograciano.com.br/blog/${date}-${slug}.html"
+          if ! grep -q "$url" sitemap.xml; then
+            sed -i '/<\/urlset>/i\  <url><loc>'"$url"'</loc></url>' sitemap.xml
+          fi
 
           git mv "$md" "drafts/_done_${date}_${slug}.md"
         done

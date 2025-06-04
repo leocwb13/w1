@@ -1,30 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://consultoria.leonardograciano.com.br/</loc>
-  </url>
-  <url>
-    <loc>https://consultoria.leonardograciano.com.br/empresa.html</loc>
-  </url>
-  <url>
-    <loc>https://consultoria.leonardograciano.com.br/blog/</loc>
-  </url>
-  <url>
-    <loc>https://consultoria.leonardograciano.com.br/blog/post1.html</loc>
-  </url>
-  <url>
-    <loc>https://consultoria.leonardograciano.com.br/blog/post2.html</loc>
-  </url>
-  <url>
-    <loc>https://consultoria.leonardograciano.com.br/blog/post3.html</loc>
-  </url>
-  <url>
-    <loc>https://consultoria.leonardograciano.com.br/blog/post4.html</loc>
-  </url>
-  <url>
-    <loc>https://consultoria.leonardograciano.com.br/blog/post5.html</loc>
-  </url>
-</urlset>
+  <url><loc>https://consultoria.leonardograciano.com.br/</loc></url>
+  <url><loc>https://consultoria.leonardograciano.com.br/empresa.html</loc></url>
+  <url><loc>https://consultoria.leonardograciano.com.br/blog/</loc></url>
+  <url><loc>https://consultoria.leonardograciano.com.br/blog/post1.html</loc></url>
+  <url><loc>https://consultoria.leonardograciano.com.br/blog/post2.html</loc></url>
+  <url><loc>https://consultoria.leonardograciano.com.br/blog/post3.html</loc></url>
+  <url><loc>https://consultoria.leonardograciano.com.br/blog/post4.html</loc></url>
+  <url><loc>https://consultoria.leonardograciano.com.br/blog/post5.html</loc></url>
   <url><loc>https://consultoria.leonardograciano.com.br/blog/"+new Date().toISOString().slice(0,10)+"-"+slug+".html</loc></url>
   <url><loc>https://consultoria.leonardograciano.com.br/blog/2025-05-20-a-importancia-de-um-bom-controle-financeiro.html</loc></url>
   <url><loc>https://consultoria.leonardograciano.com.br/blog/2025-05-20-como-parcelar-impacta-diretamente-seu-fluxo-de-caixa.html</loc></url>
@@ -32,3 +15,4 @@
   <url><loc>https://consultoria.leonardograciano.com.br/blog/2025-05-20-por-que-parcelar-impacta-diretamente-o-seu-fluxo-de-caixa.html</loc></url>
   <url><loc>https://consultoria.leonardograciano.com.br/blog/2025-05-20-como-o-parcelamento-impacta-diretamente-seu-fluxo-de-caixa.html</loc></url>
   <url><loc>https://consultoria.leonardograciano.com.br/blog/2025-05-20-minha-estrategia.html</loc></url>
+</urlset>
