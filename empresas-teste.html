@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-54VH7DCH');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Consultoria Financeira – Leonardo Graciano</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --accent: #5dcbcb;
+      --accent-dark: #46a3a3;
+      --bg-dark: #011a23;
+      --bg-light: #f9fafb;
+      --card-bg: #ffffff;
+      --text-dark: #111;
+      --text-light: #777;
+      --text-white: #fff;
+      --transition: 0.3s ease;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Poppins', sans-serif; background: var(--bg-light); color: var(--text-dark); }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+    header { background: #fff; /* remove sticky behavior */ position: relative; border-bottom: 1px solid #e5e7eb; }
+    .header-inner { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
+    .logo { font-size: 1.5rem; font-weight: 600; color: var(--text-dark); }
+    nav { display: none; }
+    .btn-cta { background: var(--accent); color: var(--text-white); padding: 0.75rem 1.5rem; border: none; border-radius: 6px; font-weight: 600; transition: background var(--transition); }
+    .btn-cta:hover { background: var(--accent-dark); }
+    .mobile-menu-btn { font-size: 1.5rem; background: none; border: none; color: var(--text-dark); cursor: pointer; display: block; }
+    @media (min-width: 768px) {
+      nav { display: block; }
+      .nav-list { display: flex; gap: 2rem; }
+      .nav-list a { font-size: 1rem; color: var(--text-light); transition: color var(--transition); }
+      .nav-list a:hover { color: var(--text-dark); }
+      .mobile-menu-btn { display: none; }
+    }
+
+    /* Hero */
+    .hero { background: var(--bg-dark) url('https://via.placeholder.com/1920x1080') center/cover no-repeat; color: var(--text-white); padding: 4rem 0; position: relative; min-height: 70vh; display: flex; align-items: center; justify-content: center; }
+    .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(1,26,35,0.6); }
+    .hero-content { position: relative; z-index: 1; text-align: center; }
+    .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+    .hero p { font-size: 1.125rem; margin-bottom: 2rem; color: #e0e0e0; }
+
+    /* Progress Bar */
+    .progress-bar { position: fixed; top: 0; left: 0; width: 0%; height: 4px; background: var(--accent); z-index: 200; transition: width 0.2s ease-out; }
+
+    /* Números (Stats) */
+    .stats { background: var(--bg-light); padding: 4rem 0; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 2rem; }
+    .stat-card { background: var(--card-bg); border-radius: 8px; padding: 2rem; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+    .stat-number { font-size: 2rem; font-weight: 600; color: var(--accent); margin-bottom: 0.5rem; }
+    .stat-label { font-size: 1rem; color: var(--text-dark); }
+
+    /* Soluções */
+    .solutions { padding: 4rem 0; }
+    .solutions h2 { text-align: center; font-size: 1.75rem; margin-bottom: 2rem; }
+    .solutions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+    .solution-card { background: var(--card-bg); border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); overflow: hidden; transition: transform var(--transition), box-shadow var(--transition); }
+    .solution-card:hover { transform: translateY(-6px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .solution-icon { background: #f3f4f6; padding: 2rem; text-align: center; }
+    .solution-icon img { width: 80px; height: 80px; }
+    .solution-content { padding: 1.5rem; }
+    .solution-content h3 { font-size: 1.25rem; margin-bottom: 0.75rem; }
+    .solution-content p { font-size: 0.95rem; color: var(--text-light); }
+
+    /* CTA Intermediária */
+    .cta-section { background: var(--accent); color: var(--text-white); text-align: center; padding: 3rem 0; }
+    .cta-section h2 { font-size: 1.75rem; margin-bottom: 1rem; }
+    .cta-section .btn-cta { background: var(--text-white); color: var(--accent); }
+    .cta-section .btn-cta:hover { background: #f0f0f0; color: var(--accent-dark); }
+
+    /* Pilares (Timeline) */
+    .pillars { background: var(--bg-dark); color: var(--text-white); padding: 4rem 0; }
+    .pillars-container { display: flex; flex-direction: column; gap: 2rem; max-width: 800px; margin: 0 auto; }
+    .pillar-item { display: flex; align-items: flex-start; gap: 1rem; cursor: pointer; }
+    .pillar-item .circle { width: 40px; height: 40px; border: 2px solid var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; color: var(--accent); flex-shrink: 0; transition: background var(--transition), color var(--transition); }
+    .pillar-item .circle.inactive { border-color: #40515a; color: #40515a; }
+    .pillar-item .circle.active { background: var(--accent); color: var(--text-white); }
+    .pillar-item .text { font-size: 1.125rem; line-height: 1.4; }
+    .pillar-content { background: var(--bg-dark); border-left: 2px solid var(--accent); margin-left: 1.5rem; padding-left: 1.5rem; display: none; }
+    .pillar-content.active { display: block; }
+    .pillar-content p { font-size: 0.95rem; color: #d1d5db; margin-top: 0.5rem; }
+
+    /* Depoimentos */
+    .testimonials { background: var(--bg-light); padding: 4rem 0; }
+    .testimonials h2 { text-align: center; font-size: 1.75rem; margin-bottom: 2rem; }
+    .testimonial-wrapper { position: relative; max-width: 800px; margin: 0 auto; }
+    .testimonial-list { display: flex; overflow: hidden; gap: 1rem; position: relative; }
+    .testimonial-card { background: var(--card-bg); border-radius: 8px; padding: 2rem; min-width: 280px; flex-shrink: 0; box-shadow: 0 2px 6px rgba(0,0,0,0.05); scroll-snap-align: center; }
+    .testimonial-card p { font-style: italic; color: var(--text-dark); margin-bottom: 1.5rem; }
+    .testimonial-author { font-weight: 600; font-size: 1rem; color: var(--text-dark); }
+    .testimonial-role { font-size: 0.9rem; color: var(--text-light); }
+    .testimonial-nav { display: flex; justify-content: center; gap: 1rem; margin-top: 1rem; }
+    .testimonial-nav button { background: var(--accent); color: var(--text-white); border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; transition: background var(--transition); }
+    .testimonial-nav button:hover { background: var(--accent-dark); }
+
+    /* Client Logos */
+    .clients { padding: 4rem 0; background: var(--bg-light); }
+    .clients h2 { text-align: center; font-size: 1.75rem; margin-bottom: 2rem; }
+    .clients-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 2rem; align-items: center; justify-items: center; }
+    .clients-grid img { filter: grayscale(100%); opacity: 0.7; transition: opacity var(--transition); }
+    .clients-grid img:hover { opacity: 1; }
+
+    /* Sobre */
+    .about { padding: 4rem 0; }
+    .about-container { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center; max-width: 1000px; margin: 0 auto; }
+    .about-text h2 { font-size: 1.75rem; margin-bottom: 1rem; }
+    .about-text p { font-size: 1rem; color: var(--text-light); margin-bottom: 1rem; }
+    @media (min-width: 768px) { .about-container { grid-template-columns: 1fr 1fr; } }
+
+    /* FAQ */
+    .faq { background: var(--bg-light); padding: 4rem 0; }
+    .faq h2 { text-align: center; font-size: 1.75rem; margin-bottom: 2rem; }
+    .faq-item { max-width: 800px; margin: 0 auto 1.5rem; border-bottom: 1px solid #e5e7eb; padding-bottom: 1rem; }
+    .faq-item summary { font-size: 1.125rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after { content: '+'; font-size: 1.25rem; }
+    .faq-item details[open] summary::after { transform: rotate(45deg); }
+    .faq-item p { font-size: 0.95rem; color: var(--text-light); margin-top: 0.5rem; }
+
+    /* Contato */
+    .contact { padding: 4rem 0; }
+    .contact-container { background: var(--card-bg); border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); max-width: 600px; margin: 0 auto; padding: 2rem 1.5rem; }
+    .contact-container h2 { font-size: 1.75rem; margin-bottom: 1rem; text-align: center; }
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; }
+    .form-group label { font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .form-group input, .form-group select, .form-group textarea { padding: 0.75rem 1rem; border: 1px solid #d1d5db; border-radius: 6px; font-size: 1rem; outline: none; transition: border-color var(--transition); }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent); }
+    .form-row { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    @media (min-width: 600px) { .form-row { grid-template-columns: 1fr 1fr; } }
+    .btn-submit { background: var(--accent); color: var(--text-white); padding: 0.75rem 1.5rem; border: none; border-radius: 6px; font-size: 1rem; font-weight: 600; margin-top: 1rem; transition: background var(--transition); }
+    .btn-submit:hover { background: var(--accent-dark); }
+
+    /* Footer */
+    footer { background: var(--bg-dark); color: var(--text-light); padding: 2rem 0; }
+    .footer-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+    .footer-col h4 { font-size: 1rem; margin-bottom: 0.75rem; color: var(--text-white); }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.5rem; }
+    .footer-col ul li a { font-size: 0.95rem; color: var(--text-light); transition: color var(--transition); }
+    .footer-col ul li a:hover { color: var(--text-white); }
+    .footer-social { display: flex; gap: 1rem; margin-top: 0.5rem; }
+    .footer-social a { color: var(--text-light); font-size: 1.25rem; transition: color var(--transition); }
+    .footer-social a:hover { color: var(--text-white); }
+    .footer-bottom { text-align: center; font-size: 0.85rem; margin-top: 2rem; color: #9ca3af; }
+
+    /* Testimonials Arrow Buttons */
+    .testimonial-nav { position: absolute; top: 50%; width: 100%; display: flex; justify-content: space-between; transform: translateY(-50%); }
+    .testimonial-nav button { background: rgba(0,0,0,0.5); border: none; color: #fff; padding: 0.5rem 1rem; cursor: pointer; border-radius: 50%; }
+    .testimonial-nav button:hover { background: rgba(0,0,0,0.7); }
+  </style>
+</head>
+<body>
+  <div class="progress-bar" id="progressBar"></div>
+  <header>
+    <div class="container header-inner">
+      <div class="logo">Leonardo Graciano</div>
+      <nav>
+        <ul class="nav-list">
+          <li><a href="#hero">Início</a></li>
+          <li><a href="#stats">Números</a></li>
+          <li><a href="#solutions">Soluções</a></li>
+          <li><a href="#pillars">Pilares</a></li>
+          <li><a href="#testimonials">Depoimentos</a></li>
+          <li><a href="#about">Sobre</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact" class="btn-cta">Contato</a></li>
+        </ul>
+      </nav>
+      <button class="mobile-menu-btn">☰</button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="container hero-content">
+      <h1>Destrave Seu Potencial Financeiro</h1>
+      <p>Consultoria personalizada para profissionais e empresas que buscam clareza, controle e crescimento patrimonial.</p>
+      <a href="#contact" class="btn-cta">Quero Meu Diagnóstico</a>
+    </div>
+  </section>
+
+  <!-- Números (Stats) -->
+  <section class="stats" id="stats">
+    <div class="container">
+      <h2 class="text-center">Números que Comprovam Nossa Expertise</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number" data-target="200">0</div>
+          <div class="stat-label">Clientes Atendidos</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-target="150">0</div>
+          <div class="stat-label">Planejamentos Concluídos</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-target="40">0</div>
+          <div class="stat-label">Casos de Sucesso</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-target="10">0</div>
+          <div class="stat-label">Anos de Experiência</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="text-center" style="margin:2rem 0;">
+    <a href="#contact" class="btn-cta">Solicitar Diagnóstico</a>
+  </div>
+
+  <!-- Soluções -->
+  <section class="solutions" id="solutions">
+    <div class="container">
+      <h2>Nossas Soluções</h2>
+      <div class="solutions-grid">
+        <div class="solution-card">
+          <div class="solution-icon"><img src="https://cdn.sanity.io/images/vtdu2snp/production/024f6c23317e5e8617ee720d6f4f78bfda9ce3d0-171x109.svg" alt="Gestão Financeira Inteligente"></div>
+          <div class="solution-content">
+            <h3>Gestão Financeira Inteligente</h3>
+            <p>Aumente sua margem de lucro e geração de caixa com decisões financeiras baseadas em dados e estratégias precisas.</p>
+          </div>
+        </div>
+        <div class="solution-card">
+          <div class="solution-icon"><img src="https://cdn.sanity.io/images/vtdu2snp/production/c3ff88df19bb723bc3e42b5a51098487d647b078-201x112.svg" alt="Planejamento Estratégico Sob Medida"></div>
+          <div class="solution-content">
+            <h3>Planejamento Estratégico Sob Medida</h3>
+            <p>Desenhamos o futuro do seu negócio com um plano claro e executável, alinhado aos seus objetivos empresariais.</p>
+          </div>
+        </div>
+        <div class="solution-card">
+          <div class="solution-icon"><img src="https://cdn.sanity.io/images/vtdu2snp/production/b345a6dd356063e4927f69c510dc3ce27294e143-202x110.svg" alt="Expansão de Mercado"></div>
+          <div class="solution-content">
+            <h3>Expansão de Mercado</h3>
+            <p>Alavanque novas oportunidades e amplie sua presença com confiança e suporte dedicado.</p>
+          </div>
+        </div>
+        <div class="solution-card">
+          <div class="solution-icon"><img src="https://cdn.sanity.io/images/vtdu2snp/production/83ec534563365785694b4c3997ef2e3ccd322d5e-200x110.svg" alt="Otimização de Processos"></div>
+          <div class="solution-content">
+            <h3>Otimização de Processos</h3>
+            <p>Reduza custos e aumente a eficiência operacional com automações e controles financeiros inteligentes.</p>
+          </div>
+        </div>
+        <div class="solution-card">
+          <div class="solution-icon"><img src="https://cdn.sanity.io/images/vtdu2snp/production/9315076e9a3eb1064aff3afa86ec91bb1145448d-200x110.svg" alt="Aumentando o Valuation"></div>
+          <div class="solution-content">
+            <h3>Aumentando o Valuation</h3>
+            <p>Maximize o valor de mercado aplicando estratégias de crescimento que atraem investidores.</p>
+          </div>
+        </div>
+        <div class="solution-card">
+          <div class="solution-icon"><img src="https://cdn.sanity.io/images/vtdu2snp/production/63bee9c7a2ac6727d0259a75db9c357a3fa4f32a-200x112.svg" alt="Modelagem Financeira"></div>
+          <div class="solution-content">
+            <h3>Modelagem Financeira</h3>
+            <p>Utilize modelagem avançada para identificar alavancas críticas que impulsionam lucro e geração de valor sustentável.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Intermediária -->
+  <section class="cta-section reveal">
+    <div class="container">
+      <h2>Pronto para Transformar seu Negócio?</h2>
+      <a href="#contact" class="btn-cta">Agende Seu Diagnóstico Gratuito</a>
+    </div>
+  </section>
+
+  <!-- Pilares (Timeline) -->
+  <section class="pillars" id="pillars">
+    <div class="container pillars-container">
+      <h2 class="text-center">Nossos Pilares de Consultoria</h2>
+      <div class="pillar-item" data-index="0">
+        <div class="circle">01</div>
+        <div class="text">Foco em Resultado</div>
+      </div>
+      <div class="pillar-content" data-content="0">
+        <p>Nosso compromisso é com o impacto direto no crescimento e rentabilidade do seu negócio.</p>
+      </div>
+      <div class="pillar-item inactive" data-index="1">
+        <div class="circle inactive">02</div>
+        <div class="text">Tecnologia de Ponta</div>
+      </div>
+      <div class="pillar-content" data-content="1">
+        <p>Utilizamos ferramentas e métodos avançados para transformar a maneira como você faz negócios.</p>
+      </div>
+      <div class="pillar-item inactive" data-index="2">
+        <div class="circle inactive">03</div>
+        <div class="text">Parcerias Estratégicas</div>
+      </div>
+      <div class="pillar-content" data-content="2">
+        <p>Alinhamos nossos conhecimentos às melhores empresas de mercado para oferecer soluções completas.</p>
+      </div>
+      <div class="pillar-item inactive" data-index="3">
+        <div class="circle inactive">04</div>
+        <div class="text">Visão de Longo Prazo</div>
+      </div>
+      <div class="pillar-content" data-content="3">
+        <p>Planejamos hoje para garantir a sustentabilidade e crescimento duradouro do seu negócio.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Depoimentos -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <h2 class="text-center">Depoimentos</h2>
+      <div class="testimonial-wrapper">
+        <div class="testimonial-list" id="testimonialList">
+          <div class="testimonial-card">
+            <p>"Com a orientação do Leonardo, minha empresa otimizou processos e aumentou o lucro em 30% em apenas 6 meses."</p>
+            <div class="testimonial-author">Maria Fernandes</div>
+            <div class="testimonial-role">CEO - TechCorp</div>
+          </div>
+          <div class="testimonial-card">
+            <p>"O planejamento estratégico foi essencial para escalarmos nosso negócio sem perder o controle financeiro."</p>
+            <div class="testimonial-author">Carlos Oliveira</div>
+            <div class="testimonial-role">Diretor Financeiro - BuildEng</div>
+          </div>
+          <div class="testimonial-card">
+            <p>"A consultoria do Leonardo nos ajudou a captar investimentos e elevar nosso valuation em mais de 50%."</p>
+            <div class="testimonial-author">Ana Paula Rocha</div>
+            <div class="testimonial-role">Fundadora - FoodStart</div>
+          </div>
+        </div>
+        <div class="testimonial-nav">
+          <button id="prevTestimonial">◀</button>
+          <button id="nextTestimonial">▶</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="text-center" style="margin:2rem 0;">
+    <a href="#contact" class="btn-cta">Quero meu Diagnóstico</a>
+  </div>
+
+  <!-- Logos de Clientes -->
+  <section class="clients" id="clients">
+    <div class="container">
+      <h2 class="text-center">Clientes que Confiaram em Nós</h2>
+      <div class="clients-grid">
+        <img src="https://farmaciasnissei.com.br/media/sistema/logo-redes.png" alt="Nissei">
+        <img src="/logos/logo1-bw.png" alt="Cliente 1">
+        <img src="/logos/logo2-bw.png" alt="Cliente 2">
+        <img src="/logos/logo3-bw.png" alt="Cliente 3">
+        <img src="/logos/logo4-bw.png" alt="Cliente 4">
+      </div>
+    </div>
+  </section>
+
+  <!-- Sobre -->
+  <section class="about" id="about">
+    <div class="container about-container">
+      <div class="about-text">
+        <h2>Quem é Leonardo Graciano?</h2>
+        <p>Sou consultor financeiro dedicado a ajudar empresas a alcançar liberdade e segurança financeira. Com mais de 10 anos de experiência, minha missão é oferecer clareza e controle por meio de soluções personalizadas.</p>
+        <p>Já atendi centenas de clientes, desde startups até grandes corporações. Minha abordagem combina tecnologia de ponta e insights humanos para impulsionar resultados reais e sustentáveis.</p>
+      </div>
+      <div class="about-image">
+        <img src="https://consultoria.leonardograciano.com.br/leonardo.jpg" alt="Leonardo Graciano">
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <h2 class="text-center">Perguntas Frequentes</h2>
+      <div class="faq-item">
+        <details>
+          <summary>Como funciona o processo de consultoria?</summary>
+          <p>Iniciamos com um diagnóstico gratuito para entender sua realidade financeira. Em seguida, entregamos um plano estratégico, executamos as soluções e fazemos acompanhamento contínuo.</p>
+        </details>
+      </div>
+      <div class="faq-item">
+        <details>
+          <summary>Quais são os valores e formas de pagamento?</summary>
+          <p>Os valores variam conforme escopo e complexidade do projeto. Trabalhamos com contratos mensais ou por projeto específico, com opções de parcelamento.</p>
+        </details>
+      </div>
+      <div class="faq-item">
+        <details>
+          <summary>Preciso ter um valor mínimo para começar?</summary>
+          <p>Não exigimos valor mínimo. Nosso foco é organizar suas finanças e criar um plano de crescimento personalizado para sua empresa.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contato -->
+  <section class="contact" id="contact">
+    <div class="container contact-container">
+      <h2>Agende Seu Diagnóstico Gratuito</h2>
+      <form id="contactForm" class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nomeC">Nome Completo</label>
+            <input type="text" id="nomeC" name="nomeC" required>
+          </div>
+          <div class="form-group">
+            <label for="emailC">E-mail</label>
+            <input type="email" id="emailC" name="emailC" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="empresaC">Empresa</label>
+            <input type="text" id="empresaC" name="empresaC">
+          </div>
+          <div class="form-group">
+            <label for="objetivoC">Objetivo Empresarial</label>
+            <select id="objetivoC" name="objetivoC" required>
+              <option value="">Selecione</option>
+              <option value="organizar_financas">Organizar finanças</option>
+              <option value="planejar_investimentos">Planejar investimentos</option>
+              <option value="aumentar_valuation">Aumentar valuation</option>
+              <option value="otimizar_processos">Otimizar processos</option>
+              <option value="outro">Outro</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="mensagemC">Como podemos ajudar?</label>
+          <textarea id="mensagemC" name="mensagemC" rows="4" placeholder="Descreva sua demanda financeira"></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Enviar</button>
+      </form>
+      <div class="contact-map" style="margin-top:2rem; text-align:center;">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3603.0342176161157!2d-49.3101442237052!3d-25.43711953317514!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dce3a260c4a03b%3A0xfd41e31d92b77310!2sBarig%C3%BCi%20Business%20Center!5e0!3m2!1spt-BR!2sbr!4v1749043248488!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0; max-width:100%;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-container">
+      <div class="footer-col">
+        <h4>Menu</h4>
+        <ul>
+          <li><a href="#hero">Início</a></li>
+          <li><a href="#solutions">Soluções</a></li>
+          <li><a href="#pillars">Pilares</a></li>
+          <li><a href="#contact">Contato</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Sobre</h4>
+        <ul>
+          <li><a href="#about">Quem Sou</a></li>
+          <li><a href="#testimonials">Depoimentos</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="mailto:leonardograciano.w1@gmail.com">leonardograciano.w1@gmail.com</a></li>
+          <li><a href="https://goo.gl/maps/exemplo" target="_blank">Barigüi Business Center, Curitiba</a></li>
+        </ul>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/leograciano_" aria-label="Instagram">Instagram</a>
+          <a href="https://www.linkedin.com/in/leonardo-graciano/" aria-label="LinkedIn">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">Leonardo Graciano - Consultor financeiro ₢ 2025</div>
+  </footer>
+
+  <script>
+    // Barra de Progresso
+    (function() {
+      const bar = document.getElementById('progressBar');
+      window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = (scrollTop / docHeight) * 100;
+        bar.style.width = pct + '%';
+      });
+    })();
+
+    // Animação de Contadores (Stats)
+    (function() {
+      const counters = document.querySelectorAll('.stat-number');
+      const obsOptions = { threshold: 0.5 };
+      const animate = el => {
+        const target = +el.getAttribute('data-target');
+        let count = 0;
+        const step = target / 200;
+        function update() {
+          count += step;
+          if (count < target) {
+            el.textContent = Math.floor(count);
+            requestAnimationFrame(update);
+          } else {
+            el.textContent = target;
+          }
+        }
+        requestAnimationFrame(update);
+      };
+      const observer = new IntersectionObserver((entries, o) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animate(entry.target);
+            o.unobserve(entry.target);
+          }
+        });
+      }, obsOptions);
+      counters.forEach(c => observer.observe(c));
+    })();
+
+    // Timeline Interativo (Pilares)
+    (function() {
+      const items = document.querySelectorAll('.pillar-item');
+      const contents = document.querySelectorAll('.pillar-content');
+      items.forEach(item => {
+        item.addEventListener('click', () => {
+          const idx = item.getAttribute('data-index');
+          items.forEach(i => i.querySelector('.circle').classList.add('inactive'));
+          items.forEach(i => i.querySelector('.circle').classList.remove('active'));
+          const circle = item.querySelector('.circle');
+          circle.classList.remove('inactive');
+          circle.classList.add('active');
+          contents.forEach(c => c.classList.remove('active'));
+          document.querySelector(`.pillar-content[data-content='${idx}']`).classList.add('active');
+        });
+      });
+      // Ativar primeiro
+      items[0].click();
+    })();
+
+    // Depoimentos - Slider Básico
+    (function() {
+      const list = document.getElementById('testimonialList');
+      let index = 0;
+      const cards = list.children;
+      function showCard(i) {
+        Array.from(cards).forEach((card, idx) => {
+          card.style.display = idx === i ? 'block' : 'none';
+        });
+      }
+      document.getElementById('prevTestimonial').addEventListener('click', () => {
+        index = (index - 1 + cards.length) % cards.length;
+        showCard(index);
+      });
+      document.getElementById('nextTestimonial').addEventListener('click', () => {
+        index = (index + 1) % cards.length;
+        showCard(index);
+      });
+      showCard(0);
+    })();
+
+    // Mobile Menu Toggle
+    (function() {
+      const btn = document.querySelector('.mobile-menu-btn');
+      const navList = document.querySelector('.nav-list');
+      btn.addEventListener('click', () => navList.classList.toggle('open'));
+    })();
+  </script>
+</body>
+</html>
