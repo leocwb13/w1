@@ -1003,12 +1003,6 @@
 
                 // IMPORTANTE: Substitua esta URL pela URL do seu webhook
                 const webhookUrl = 'https://primary-production-a61c.up.railway.app/webhook/git-hub';
-
-                if (webhookUrl === 'https://primary-production-a61c.up.railway.app/webhook/git-hub' || webhookUrl === '') {
-                    console.error('URL do Webhook não definida.');
-                    if(formStatus) formStatus.innerHTML = `<p style="color: #ff6b6b;">Erro de configuração do servidor. Tente mais tarde.</p>`;
-                    return;
-                }
                 
                 // Desabilitar botão e mostrar feedback de envio
                 submitButton.disabled = true;
