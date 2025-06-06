@@ -279,7 +279,6 @@
         .about-image img { border-radius: 12px; box-shadow: var(--shadow-lg); width:100%; height:auto; aspect-ratio: 4/5; object-fit: cover;}
         .about-text .btn { margin-top:1rem; }
 
-
         /* FAQ Section */
         .faq-grid { max-width: 800px; margin-left:auto; margin-right:auto; }
         .faq-item { 
@@ -341,7 +340,7 @@
         .btn-submit svg { margin-left: 0.5rem; stroke: var(--bg-dark); }
         .btn-submit:hover { background: var(--accent-dark); transform: translateY(-2px); }
         .contact-map iframe { filter: grayscale(0.8) invert(0.95) contrast(0.9); border-radius: 8px;}
-
+        #formStatus p { font-weight: 500; }
 
         /* Footer */
         footer { background: var(--bg-dark); color: var(--text-light); padding: 4rem var(--container-padding) 2rem; font-size: 0.9rem; }
@@ -355,7 +354,7 @@
         .footer-social { display: flex; gap: 1rem; margin-top: 1.25rem; }
         .footer-social a { color: var(--text-light); font-size: 1.5rem; display: inline-block; }
         .footer-social a:hover { color: var(--text-white); transform: scale(1.15) translateY(-2px); }
-        .footer-social img { height:28px; width:28px; }
+        .footer-social svg { height:28px; width:28px; }
         .footer-bottom { text-align: center; font-size: 0.875rem; margin-top: 2.5rem; color: #9ca3af; }
 
     </style>
@@ -391,6 +390,8 @@
     </header>
 
     <main>
+        <!-- O conteúdo principal (main) começa aqui -->
+        <!-- O espaçamento do topo é controlado pelo padding-top no body -->
         <!-- Hero Section -->
         <section class="hero" id="hero">
             <div class="hero-bg-shape-1"></div>
@@ -407,7 +408,7 @@
                     </a>
                 </div>
                 <div class="hero-image-wrapper">
-                    <img src="https://consultoria.leonardograciano.com.br/img/atlas.jpg" alt="Leonardo Graciano - Consultor Financeiro W1">
+                    <img src="https://consultoria.leonardograciano.com.br/leonardo.jpg" alt="Leonardo Graciano - Consultor Financeiro W1">
                 </div>
             </div>
         </section>
@@ -703,7 +704,7 @@
                     <p class="section-subtitle">Agende um diagnóstico estratégico gratuito e sem compromisso. Estou pronto para entender seus desafios e desenhar as melhores soluções para o seu negócio.</p>
                 </div>
                 <div class="contact-container">
-                    <form id="contactForm" class="contact-form" action="https://formspree.io/f/SEU_CODIGO_FORMSPREE" method="POST">
+                    <form id="contactForm" class="contact-form">
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="nomeC">Nome Completo*</label>
@@ -746,6 +747,7 @@
                             </svg>
                         </button>
                     </form>
+                    <div id="formStatus" style="margin-top: 1.5rem; text-align: center;"></div>
                 </div>
                 <div class="contact-map" style="margin-top: 3.5rem; text-align: center;">
                     <iframe 
@@ -810,11 +812,11 @@
     <script>
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
+        // Progress Bar
         (function() {
             const bar = document.getElementById('progressBar');
-            if (!bar) return;
             const header = document.querySelector('header');
-            if(!header) return;
+            if (!bar || !header) return;
             let headerHeight = header.offsetHeight;
 
             function updateProgressBar() {
@@ -822,7 +824,6 @@
                 bar.style.top = headerHeight + 'px'; 
 
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                const effectiveScrollTop = Math.max(0, scrollTop);
                 
                 const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
                 
@@ -831,13 +832,12 @@
             }
             
             window.addEventListener('scroll', updateProgressBar);
-            window.addEventListener('resize', () => { 
-                 updateProgressBar();
-            });
+            window.addEventListener('resize', updateProgressBar);
             updateProgressBar();
             setTimeout(updateProgressBar, 100); 
         })();
 
+        // Stats Counters Animation
         (function() {
             const counters = document.querySelectorAll('.stat-number');
             if (counters.length === 0) return;
@@ -849,7 +849,7 @@
                 el.dataset.animated = true;
 
                 let count = 0;
-                const duration = 2000; // ms
+                const duration = 2000;
                 const frameDuration = 1000 / 60; 
                 const totalFrames = Math.round(duration / frameDuration);
                 let increment = target / totalFrames;
@@ -878,6 +878,7 @@
             counters.forEach(c => observer.observe(c));
         })();
 
+        // Interactive Pillars (W1 Style)
         (function() {
             const container = document.getElementById('pillarsContainer');
             if (!container) return;
@@ -894,6 +895,7 @@
             });
         })();
 
+        // Testimonials Slider
         (function() {
             const list = document.getElementById('testimonialList');
             const prevButton = document.getElementById('prevTestimonial');
@@ -940,6 +942,7 @@
             updateButtons();
         })();
 
+        // Mobile Menu Toggle
         (function() {
             const openBtn = document.getElementById('mobileMenuOpen');
             const nav = document.getElementById('mainNav');
@@ -984,6 +987,71 @@
                     }
                 });
             }
+        })();
+        
+        // NOVO: Script para Envio do Formulário para Webhook
+        (function() {
+            const form = document.getElementById('contactForm');
+            const formStatus = document.getElementById('formStatus');
+            if (!form) return;
+
+            const submitButton = form.querySelector('button[type="submit"]');
+            const originalButtonHTML = submitButton.innerHTML;
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Impede o envio padrão do formulário
+
+                // IMPORTANTE: Substitua esta URL pela URL do seu webhook
+                const webhookUrl = 'https://primary-production-a61c.up.railway.app/webhook/git-hub';
+
+                if (webhookUrl === 'https://primary-production-a61c.up.railway.app/webhook/git-hub' || webhookUrl === '') {
+                    console.error('URL do Webhook não definida.');
+                    if(formStatus) formStatus.innerHTML = `<p style="color: #ff6b6b;">Erro de configuração do servidor. Tente mais tarde.</p>`;
+                    return;
+                }
+                
+                // Desabilitar botão e mostrar feedback de envio
+                submitButton.disabled = true;
+                submitButton.innerHTML = 'Enviando...';
+                if(formStatus) formStatus.innerHTML = '';
+
+                // Coletar dados do formulário
+                const formData = new FormData(form);
+                const data = {};
+                formData.forEach((value, key) => {
+                    data[key] = value;
+                });
+                
+                // Enviar os dados para o webhook
+                fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json(); // Ou response.text() dependendo do que seu webhook retorna
+                    }
+                    // Se a resposta do servidor não for 'ok', lança um erro para ser pego pelo .catch()
+                    return response.json().then(err => { throw new Error(err.error || 'Ocorreu um erro no servidor.') });
+                })
+                .then(data => {
+                    console.log('Sucesso:', data);
+                    form.reset(); // Limpa o formulário
+                    if(formStatus) formStatus.innerHTML = `<p style="color: var(--accent);">Obrigado! Sua mensagem foi enviada com sucesso. Entraremos em contato em breve.</p>`;
+                    submitButton.innerHTML = 'Enviado!';
+                })
+                .catch((error) => {
+                    console.error('Erro:', error);
+                    if(formStatus) formStatus.innerHTML = `<p style="color: #ff6b6b;">Desculpe, ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente mais tarde.</p>`;
+                    // Reabilita o botão em caso de erro para que o usuário possa tentar novamente
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = originalButtonHTML;
+                });
+            });
         })();
 
     </script>
