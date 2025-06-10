@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-54VH7DCH');</script>
+    <!-- End Google Tag Manager -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Planejamento Financeiro Pessoal – Leonardo Graciano (W1 Consultoria)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #32ddc9; 
+            --accent-dark: #28b0a4;
+            --bg-dark: #022028;    
+            --bg-medium-dark: #0a131a; 
+            --bg-light: #f4f6f8; 
+            --card-bg: #ffffff;
+            --text-dark: #1f2937; 
+            --text-medium: #4b5563;
+            --text-light: #6b7280;
+            --text-white: #ffffff;
+            --border-color: #e5e7eb;
+            --border-dark-theme: #374151;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --transition: 0.3s ease;
+            --container-padding: 1.5rem;
+            --header-height: 70px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background: var(--bg-light); 
+            color: var(--text-dark); 
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        main {
+            padding-top: var(--header-height);
+        }
+        a { text-decoration: none; color: var(--accent); transition: color var(--transition); }
+        a:hover { color: var(--accent-dark); }
+        img { max-width: 100%; display: block; }
+        
+        .container { 
+            width: 90%; 
+            max-width: 1200px; 
+            margin-left: auto;
+            margin-right: auto; 
+            padding-left: var(--container-padding);
+            padding-right: var(--container-padding);
+        }
+
+        section { padding: 5rem 0; }
+        .section-header { margin-bottom: 3.5rem; text-align: center; }
+        .section-tag {
+            display: inline-block; padding: 0.3rem 0.9rem;
+            background-color: rgba(50, 221, 201, 0.1); 
+            color: var(--accent); border-radius: 9999px; 
+            font-size: 0.8rem; font-weight: 600;
+            margin-bottom: 1rem; text-transform: uppercase;
+            letter-spacing: 0.075em;
+        }
+        .dark-section .section-tag { background-color: rgba(255, 255, 255, 0.1); }
+        .section-title { 
+            font-size: clamp(2rem, 5vw, 2.75rem); 
+            font-weight: 700; margin-bottom: 1rem; 
+            color: var(--text-dark); line-height: 1.25;
+        }
+        .section-subtitle { 
+            font-size: clamp(1rem, 2.5vw, 1.125rem); 
+            color: var(--text-medium); max-width: 750px; 
+            margin-left: auto; margin-right: auto; 
+        }
+        .dark-section .section-title, .dark-section .section-subtitle { color: var(--text-white); }
+        .dark-section .section-subtitle { color: rgba(255,255,255,0.85); }
+
+        /* Header */
+        header { 
+            background: var(--card-bg); position: fixed;
+            top:0; left:0; right:0; z-index: 1000;
+            border-bottom: 1px solid var(--border-color); 
+            box-shadow: var(--shadow-sm); height: var(--header-height);
+            display: flex; align-items: center;
+        }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; width:100%; }
+        .logo-link { display: inline-block; }
+        .logo-img { height: 38px; width: auto; }
+        
+        nav { display: none; }
+        .nav-list { list-style: none; }
+        
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 0.75rem 1.5rem; border-radius: 8px; 
+            font-weight: 600; font-size: 1rem; 
+            line-height: 1.5; transition: all var(--transition);
+            cursor: pointer; border: 1px solid transparent; text-align:center;
+        }
+        .btn-primary { 
+            background: var(--accent); color: var(--bg-dark); border-color: var(--accent);
+            box-shadow: 0 2px 4px rgba(50, 221, 201, 0.2);
+        }
+        .btn-primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); transform: translateY(-3px); box-shadow: 0 6px 12px rgba(50, 221, 201, 0.3); }
+        .btn-primary svg { margin-left: 0.6rem; stroke: var(--bg-dark); transition: transform 0.2s ease; }
+        .btn-primary:hover svg { transform: translateX(4px); }
+
+        .btn-secondary { background: transparent; color: var(--text-dark); border: 2px solid var(--border-color); }
+        .btn-secondary:hover { background-color: var(--accent); color:var(--bg-dark); border-color: var(--accent); transform: translateY(-2px); }
+        
+        .mobile-menu-btn { 
+            font-size: 1.75rem; background: none; border: none; 
+            color: var(--text-dark); cursor: pointer; display: block; padding: 0.5rem;
+        }
+        
+        @media (min-width: 992px) {
+            nav { display: block; }
+            .nav-list { display: flex; gap: 2rem; align-items: center; }
+            .nav-list a:not(.btn) { font-size: 0.95rem; color: var(--text-medium); font-weight: 500; position: relative; padding-bottom: 0.3rem;}
+            .nav-list a:not(.btn)::after {
+                content: ''; position: absolute; bottom: 0; left: 0;
+                width: 0; height: 2px; background-color: var(--accent);
+                transition: width 0.3s ease;
+            }
+            .nav-list a:not(.btn):hover::after { width: 100%; }
+            .nav-list a:not(.btn):hover { color: var(--text-dark); }
+            .mobile-menu-btn { display: none; }
+        }
+
+        @media (max-width: 991px) {
+            body.menu-open { overflow: hidden; }
+            nav { 
+                position: fixed; top: 0; right: -100%; 
+                width: 300px; max-width: 85%;
+                height: 100vh; background: var(--card-bg); 
+                box-shadow: var(--shadow-lg); padding-top: var(--header-height); 
+                transition: right 0.35s cubic-bezier(0.23, 1, 0.32, 1); 
+                overflow-y: auto; z-index: 999; 
+            }
+            nav.open { right: 0; }
+            .nav-list { flex-direction: column; gap: 0; align-items: stretch; }
+            .nav-list li { border-bottom: 1px solid var(--border-color); }
+            .nav-list li:first-child { border-top: 1px solid var(--border-color); }
+            .nav-list a { display: block; padding: 1.25rem 1.5rem; color: var(--text-dark); font-size: 1rem; font-weight:500;}
+            .nav-list a:hover { background-color: var(--bg-light); color: var(--accent); }
+            .nav-list a.btn { margin: 1.5rem; display: block; text-align: center; }
+            .mobile-menu-btn.close-btn { position: absolute; top: calc( (var(--header-height) - 30px ) / 2) ; right: 1rem; font-size: 2rem; z-index: 1001; }
+        }
+
+        /* Progress Bar */
+        .progress-bar { position: fixed; top: var(--header-height); left: 0; width: 0%; height: 4px; background: var(--accent); z-index: 1001; transition: width 0.15s ease-out; }
+
+        /* Hero Section */
+        .hero { 
+            background: var(--bg-dark); 
+            color: var(--text-white); padding: 6rem 0;
+            position: relative; text-align: center;
+        }
+        .hero::before { 
+            content: ''; position: absolute; top: 0; left: 0; 
+            width: 100%; height: 100%; 
+            background: linear-gradient(rgba(2, 32, 40, 0.8), rgba(2, 32, 40, 0.7)), url('https://images.unsplash.com/photo-1554224155-8d044b40325b?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover; background-position: center; filter: blur(2px);
+        }
+        .hero-content { position: relative; z-index: 1; }
+        .hero-content .section-tag { background-color: rgba(255,255,255,0.1); }
+        .hero-content h1 { 
+            font-size: clamp(2.5rem, 5vw, 3.75rem); 
+            font-weight: 700; margin-bottom: 1.5rem; 
+            color: var(--text-white); line-height: 1.2;
+        }
+        .hero-content p { 
+            font-size: clamp(1.1rem, 2.5vw, 1.25rem); 
+            margin-bottom: 2.5rem; color: rgba(255,255,255,0.9); 
+            max-width: 700px; margin-left: auto; margin-right: auto; 
+        }
+        .hero .btn-primary { padding: 0.875rem 1.75rem; font-size: 1.05rem;}
+
+        /* Solutions Section */
+        .solutions-pf { background: white; }
+        .solutions-pf-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
+            gap: 1.5rem; 
+        }
+        .solution-pf-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: left;
+            transition: all var(--transition);
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-md);
+        }
+        .solution-pf-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+        .solution-pf-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        .solution-pf-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        .solution-pf-card p {
+            font-size: 0.95rem;
+            color: var(--text-medium);
+            flex-grow: 1; 
+            margin-bottom: 1.5rem;
+        }
+        .solution-pf-card a { font-weight: 600; }
+        
+        /* Passo a Passo Section */
+        .passo-a-passo { background-color: var(--bg-dark); }
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 3rem auto 0;
+            list-style: none;
+            padding: 1rem 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 20px;
+            width: 4px;
+            background: var(--border-dark-theme);
+        }
+        .timeline-item {
+            margin-bottom: 50px;
+            position: relative;
+            padding-left: 60px;
+        }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: var(--bg-dark);
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--bg-dark);
+        }
+        .timeline-content h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-white);
+            margin-bottom: 0.5rem;
+        }
+        .timeline-content p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+        }
+
+        /* Social Proof Section */
+        .social-proof {
+            background-color: var(--bg-light);
+            text-align: center;
+        }
+        .social-proof-content {
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            max-width: 800px;
+            margin: auto;
+        }
+        .social-proof h2 {
+            font-size: 4rem;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .social-proof p {
+            font-size: 1.1rem;
+            color: var(--text-medium);
+            margin-bottom: 2rem;
+        }
+        
+        /* Testimonials Section */
+        .testimonial-wrapper { position: relative; max-width: 750px; margin-left:auto; margin-right:auto; overflow: hidden; }
+        .testimonial-list { display: flex; transition: transform 0.5s ease-in-out; }
+        .testimonial-card { background: var(--card-bg); border-radius: 12px; padding: 2.5rem; min-width: 100%; flex-shrink: 0; box-shadow: var(--shadow-lg); text-align: center; border: 1px solid var(--border-color); }
+        .testimonial-card .quote-icon { font-size: 2.5rem; color: var(--accent); margin-bottom: 1rem; }
+        .testimonial-card p.quote { font-size: 1.05rem; font-style: italic; color: var(--text-medium); margin-bottom: 1.5rem; line-height: 1.8; }
+        .testimonial-author { font-weight: 600; font-size: 1rem; color: var(--text-dark); margin-top: 1rem; }
+        .testimonial-role { font-size: 0.875rem; color: var(--text-light); }
+        .testimonial-nav { display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; }
+        .testimonial-nav button { background: var(--accent); color: var(--bg-dark); border: none; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; transition: background var(--transition), transform var(--transition); font-size:1.5rem; display:flex; align-items:center; justify-content:center; }
+        .testimonial-nav button:hover { background: var(--accent-dark); transform: scale(1.1); }
+        .testimonial-nav button:disabled { background-color: var(--border-color); cursor: not-allowed; transform: scale(1); }
+        
+        /* About Section */
+        .about-container { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center; }
+        @media (min-width: 992px) { .about-container { grid-template-columns: calc(55% - 2rem) calc(45% - 2rem); gap: 4rem; } .about-image { order: 2; } .about-text { order: 1; } }
+        .about-text .section-tag { margin-bottom: 1rem; }
+        .about-text .section-title { text-align: left; margin-bottom: 1.5rem;}
+        .about-text p { font-size: 1rem; color: var(--text-medium); margin-bottom: 1.25rem; }
+        .about-image img { border-radius: 12px; box-shadow: var(--shadow-lg); width:100%; height:auto; aspect-ratio: 4/5; object-fit: cover;}
+        .about-text .btn { margin-top:1rem; }
+        
+        /* FAQ Section */
+        .faq-grid { max-width: 800px; margin-left:auto; margin-right:auto; }
+        .faq-item { margin-bottom: 1rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--card-bg); box-shadow: var(--shadow-sm); transition: box-shadow var(--transition); }
+        .faq-item:hover { box-shadow: var(--shadow-md); }
+        .faq-item summary { font-size: 1.125rem; font-weight: 500; cursor: pointer; padding: 1.25rem 1.5rem; display: flex; justify-content: space-between; align-items: center; list-style: none; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.75rem; color: var(--accent); transition: transform var(--transition); font-weight:300; }
+        .faq-item details[open] summary { border-bottom: 1px solid var(--border-color); color: var(--accent); }
+        .faq-item details[open] summary::after { transform: rotate(45deg); }
+        .faq-item .faq-content { padding: 1rem 1.5rem 1.5rem; font-size: 0.95rem; color: var(--text-medium); border-top: 1px solid var(--border-color); margin-top:-1px;}
+        .faq-item details[open] .faq-content { animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Contact Section */
+        .contact { background-color: var(--bg-dark); }
+        .contact-container { background: var(--bg-medium-dark); border-radius: 12px; box-shadow: var(--shadow-lg); max-width: 750px; margin: 0 auto; padding: 3rem 2.5rem; }
+        .contact-container h2 { font-size: 1.875rem; margin-bottom: 1.5rem; text-align: center; color: var(--text-white); }
+        .contact-form { display: flex; flex-direction: column; gap: 1.5rem; }
+        .form-group label { font-size: 0.9rem; margin-bottom: 0.5rem; color: rgba(255,255,255,0.85); display:block; }
+        .form-group input, .form-group select, .form-group textarea { padding: 0.875rem 1rem; border: 1px solid var(--border-dark-theme); border-radius: 6px; font-size: 1rem; outline: none; transition: border-color var(--transition), box-shadow var(--transition); background-color: #111827; color: var(--text-white); font-family: 'Poppins', sans-serif; width:100%; }
+        .form-group input::placeholder, .form-group textarea::placeholder { color: #9ca3af; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(50, 221, 201, 0.3); }
+        .form-group select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2332ddc9' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1em; }
+        .form-row { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+        @media (min-width: 600px) { .form-row { grid-template-columns: 1fr 1fr; } }
+        .btn-submit { background: var(--accent); color: var(--bg-dark); padding: 0.875rem 1.75rem; border: none; border-radius: 6px; font-size: 1.05rem; font-weight: 600; margin-top: 1rem; transition: all var(--transition); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+        .btn-submit svg { margin-left: 0.5rem; stroke: var(--bg-dark); }
+        .btn-submit:hover { background: var(--accent-dark); transform: translateY(-2px); }
+        .contact-map iframe { filter: grayscale(0.8) invert(0.95) contrast(0.9); border-radius: 8px;}
+        #formStatus p { font-weight: 500; }
+        footer { background: var(--bg-dark); color: var(--text-light); padding: 4rem var(--container-padding) 2rem; font-size: 0.9rem; }
+        .footer-top { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--border-dark-theme); }
+        .footer-col h4 { font-size: 1.1rem; margin-bottom: 1.25rem; color: var(--text-white); font-weight: 500;}
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.65rem; }
+        .footer-col ul li a { color: var(--text-light); }
+        .footer-col ul li a:hover { color: var(--text-white); text-decoration: underline; }
+        .footer-col p { margin-bottom: 1rem; line-height: 1.6; }
+        .footer-social { display: flex; gap: 1rem; margin-top: 1.25rem; }
+        .footer-social a { color: var(--text-light); font-size: 1.5rem; display: inline-block; }
+        .footer-social a:hover { color: var(--text-white); transform: scale(1.15) translateY(-2px); }
+        .footer-social svg { height:28px; width:28px; }
+        .footer-bottom { text-align: center; font-size: 0.875rem; margin-top: 2.5rem; color: #9ca3af; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-inner">
+            <a href="#hero" class="logo-link">
+                <img src="https://cdn.sanity.io/images/vtdu2snp/production/1134c0bb26207343c7833808c1e7e14a1dd4050e-72x36.svg" alt="W1 Consultoria Logo" class="logo-img">
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuOpen" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainNav">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+            <nav id="mainNav">
+                <ul class="nav-list" id="navList">
+                    <li><a href="#hero">Início</a></li>
+                    <li><a href="#solutions">Soluções</a></li>
+                    <li><a href="#passo-a-passo">Como Funciona</a></li>
+                    <li><a href="#about">Sobre Mim</a></li>
+                    <li><a href="#testimonials">Depoimentos</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact" class="btn btn-primary">Fale Comigo
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 18 10" fill="none" stroke-width="2.5">
+                            <path d="M0 5H17M17 5L13 1M17 5L13 9"></path>
+                        </svg>
+                    </a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <div class="hero-content">
+                <span class="section-tag">Planejamento Financeiro Pessoal</span>
+                <h1>Sinta a sensação de transformar seus objetivos em conquistas</h1>
+                <p>Meu Planejamento Financeiro 100% personalizado está a um clique de distância. Vamos construir juntos o futuro que você deseja.</p>
+                <a href="#contact" class="btn btn-primary">Fale com um especialista
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="10" viewBox="0 0 18 10" fill="none" stroke-width="2.5">
+                        <path d="M0 5H17M17 5L13 1M17 5L13 9"></path>
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- Solutions Section -->
+        <section class="solutions-pf" id="solutions">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Como Posso Ajudar</span>
+                    <h2 class="section-title">Soluções para Desbloquear seu Potencial Financeiro</h2>
+                    <p class="section-subtitle">Serviços completos e personalizados para cada fase da sua vida, garantindo segurança, crescimento e a realização dos seus sonhos.</p>
+                </div>
+                <div class="solutions-pf-grid">
+                    <div class="solution-pf-card">
+                        <div class="solution-pf-icon">
+                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8.009 8.009 0 0 1-8 8z"></path><path d="M12 10.5a.5.5 0 0 0-.5.5v5a.5.5 0 0 0 1 0v-5a.5.5 0 0 0-.5-.5zM12 7a1 1 0 1 0 1 1 1 1 0 0 0-1-1z"></path></svg>
+                        </div>
+                        <h3>Planejamento Financeiro 360º</h3>
+                        <p>Uma visão completa da sua vida financeira, organizando seu presente para construir o futuro que você deseja com segurança e clareza.</p>
+                        <a href="#contact">Saiba Mais &rarr;</a>
+                    </div>
+                    <div class="solution-pf-card">
+                        <div class="solution-pf-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M7 17a3 3 0 1 0-3-3 3.003 3.003 0 0 0 3 3zm0-4a1 1 0 1 1-1 1 1 1 0 0 1 1-1zm10 4a3 3 0 1 0-3-3 3.003 3.003 0 0 0 3 3zm0-4a1 1 0 1 1-1 1 1 1 0 0 1 1-1zM4 6a1 1 0 0 0-1 1v1h16V7a1 1 0 0 0-1-1H4zm14 4H6v1h12V10zM6 13h12v-1H6v1z"></path></svg>
+                        </div>
+                        <h3>Wealth Management</h3>
+                        <p>Gestão de patrimônio sofisticada para proteger e multiplicar seus bens, com estratégias de alocação alinhadas ao seu perfil.</p>
+                        <a href="#contact">Saiba Mais &rarr;</a>
+                    </div>
+                    <div class="solution-pf-card">
+                        <div class="solution-pf-icon">
+                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12.553 2.11a1 1 0 0 0-1.106 0l-7.5 5a1 1 0 0 0 .553 1.838l.947-.315v9.117a1 1 0 0 0 1 1h2v-4a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v4h2a1 1 0 0 0 1-1V8.633l.947.315a1 1 0 0 0 .553-1.838l-7.5-5zM12 6.649l5.5 3.667V18.5h-2v-4a3 3 0 0 0-3-3h-1a3 3 0 0 0-3 3v4H6V10.316L12 6.649z"></path></svg>
+                        </div>
+                        <h3>Planejamento de Aposentadoria</h3>
+                        <p>Construa um plano sólido para garantir uma aposentadoria tranquila e com o padrão de vida que você planejou.</p>
+                        <a href="#contact">Saiba Mais &rarr;</a>
+                    </div>
+                    <div class="solution-pf-card">
+                        <div class="solution-pf-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12.51 2.046a1.5 1.5 0 0 0-1.02 0l-8.5 4.907a1.5 1.5 0 0 0-.75 1.3V15.7c0 .53.28.99.75 1.3l8.5 4.907a1.5 1.5 0 0 0 1.5 0l8.5-4.907a1.5 1.5 0 0 0 .75-1.3V8.25a1.5 1.5 0 0 0-.75-1.3l-8.5-4.907zM12 3.81l7 4.043v7.29L12 19.18V3.811zM3.5 8.253L11.25 12.6v7.45L3.5 15.7v-7.45z"></path></svg>
+                        </div>
+                        <h3>Planejamento Sucessório e de Legado</h3>
+                        <p>Estruture a transição do seu patrimônio com segurança jurídica e fiscal, garantindo a proteção da sua família e a perenidade do seu legado.</p>
+                        <a href="#contact">Saiba Mais &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Passo a Passo Section -->
+        <section class="passo-a-passo dark-section" id="passo-a-passo">
+            <div class="container">
+                 <div class="section-header">
+                    <span class="section-tag">Como Funciona</span>
+                    <h2 class="section-title">Permita-se Viver o Futuro Financeiro que Você Sempre Quis</h2>
+                    <p class="section-subtitle">Descubra as etapas da minha consultoria, um processo transparente e focado em você.</p>
+                </div>
+                <ul class="timeline">
+                    <li class="timeline-item">
+                        <div class="timeline-number">01</div>
+                        <div class="timeline-content">
+                            <h3>Agendamento e Reunião Inicial</h3>
+                            <p>Tudo começa com uma conversa. Você preenche o formulário e agendamos um primeiro encontro para entender seus objetivos, sonhos e sua situação financeira atual.</p>
+                        </div>
+                    </li>
+                    <li class="timeline-item">
+                        <div class="timeline-number">02</div>
+                        <div class="timeline-content">
+                            <h3>Diagnóstico Financeiro</h3>
+                            <p>Com as informações que você compartilhou, realizo um diagnóstico completo, mapeando oportunidades de melhoria e as melhores estratégias para seus objetivos de curto, médio e longo prazo.</p>
+                        </div>
+                    </li>
+                     <li class="timeline-item">
+                        <div class="timeline-number">03</div>
+                        <div class="timeline-content">
+                            <h3>Apresentação do Plano</h3>
+                            <p>Apresento seu Planejamento Financeiro 100% personalizado. Aqui, você terá clareza sobre o caminho a seguir, com estratégias de investimentos, proteção e sucessão.</p>
+                        </div>
+                    </li>
+                     <li class="timeline-item">
+                        <div class="timeline-number">04</div>
+                        <div class="timeline-content">
+                            <h3>Implementação e Acompanhamento</h3>
+                            <p>Após sua aprovação, iniciamos a implementação do plano. Estarei ao seu lado continuamente, monitorando os resultados e ajustando as estratégias sempre que necessário.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Social Proof Section -->
+        <section class="social-proof" id="social-proof">
+            <div class="container">
+                <div class="social-proof-content">
+                    <h2>94%</h2>
+                    <p>Dos meus clientes me recomendariam a um amigo ou familiar.</p>
+                    <a href="#contact" class="btn btn-primary">Quero Ser o Próximo</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials" id="testimonials">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Resultados Reais</span>
+                    <h2 class="section-title">O Que Meus Clientes Dizem</h2>
+                    <p class="section-subtitle">Pessoas que transformaram suas finanças com uma consultoria personalizada e estratégica.</p>
+                </div>
+                <div class="testimonial-wrapper">
+                    <div class="testimonial-list" id="testimonialList">
+                        <div class="testimonial-card">
+                            <div class="quote-icon">“</div>
+                            <p class="quote">"Não conhecia quase nada de economia e investimentos. Com a ajuda do Leonardo, fiz meu primeiro planejamento e hoje tenho segurança para investir e pensar no futuro."</p>
+                            <div class="testimonial-author">Vitor M.</div>
+                            <div class="testimonial-role">Engenheiro de Software</div>
+                        </div>
+                        <div class="testimonial-card">
+                             <div class="quote-icon">“</div>
+                            <p class="quote">"Eu comecei sem nada. Hoje, com o planejamento do Léo, tenho duas academias, um box de crossfit e estou prestes a abrir mais duas. A organização que ele trouxe foi fundamental."</p>
+                            <div class="testimonial-author">Guilherme</div>
+                            <div class="testimonial-role">Empreendedor</div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="quote-icon">“</div>
+                            <p class="quote">"Estou passando para agradecer a consultoria. Foi essencial para eu ter clareza e tomar as melhores decisões para proteger o futuro da minha família. Recomendo de olhos fechados!"</p>
+                            <div class="testimonial-author">Guilherme C.</div>
+                            <div class="testimonial-role">Médico</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-nav">
+                        <button id="prevTestimonial" aria-label="Depoimento Anterior" disabled>&#8249;</button>
+                        <button id="nextTestimonial" aria-label="Próximo Depoimento">&#8250;</button>
+                    </div>
+                </div>
+            </section>
+        
+        <!-- About Section -->
+        <section class="about" id="about">
+            <div class="container about-container">
+                <div class="about-text">
+                    <span class="section-tag">Sobre Mim</span>
+                    <h2 class="section-title">Leonardo Graciano</h2>
+                    <p>Como consultor financeiro na W1 Consultoria, minha paixão é traduzir a complexidade do mercado financeiro em estratégias claras e acessíveis para pessoas como você. Com mais de uma década de experiência, ajudo meus clientes a construir um futuro financeiro sólido, seja para a aposentadoria, para proteger a família ou para realizar grandes sonhos.</p>
+                    <p>Acredito que um bom planejamento financeiro é a base para a liberdade e a tranquilidade. Meu trabalho é ser seu parceiro nessa jornada, oferecendo orientação personalizada e as melhores soluções do mercado.</p>
+                    <a href="https://www.linkedin.com/in/leonardo-graciano/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Conecte-se no LinkedIn</a>
+                </div>
+                <div class="about-image">
+                    <img src="https://consultoria.leonardograciano.com.br/leonardo.jpg" alt="Leonardo Graciano, Consultor Financeiro Pessoal">
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq" id="faq">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Dúvidas?</span>
+                    <h2 class="section-title">Perguntas Frequentes</h2>
+                    <p class="section-subtitle">Encontre respostas para as dúvidas mais comuns sobre o planejamento financeiro pessoal.</p>
+                </div>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <details>
+                            <summary>Eu preciso ter muito dinheiro para começar um planejamento financeiro?</summary>
+                            <div class="faq-content">
+                                <p>Não. O planejamento financeiro é para todos, independentemente do seu patrimônio atual. O mais importante é a sua disposição para organizar suas finanças e planejar o futuro. A consultoria se adapta à sua realidade para criar um plano viável e eficiente para você.</p>
+                            </div>
+                        </details>
+                    </div>
+                    <div class="faq-item">
+                        <details>
+                            <summary>Como a consultoria pode me ajudar a me aposentar mais cedo?</summary>
+                            <div class="faq-content">
+                                <p>Através de um planejamento de aposentadoria, analisamos seu padrão de vida desejado, calculamos o montante necessário e criamos uma estratégia de investimentos e aportes mensais para que você alcance sua independência financeira no prazo que desejar, com segurança.</p>
+                            </div>
+                        </details>
+                    </div>
+                    <div class="faq-item">
+                        <details>
+                            <summary>Meu dinheiro estará seguro?</summary>
+                            <div class="faq-content">
+                                <p>Sim. Como consultor, meu papel é orientar sobre as melhores estratégias e produtos do mercado. Seu patrimônio permanecerá em seu nome, em instituições financeiras sólidas e regulamentadas. A W1 Consultoria é parceira da XP Investimentos, garantindo acesso aos melhores produtos com toda a segurança.</p>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact dark-section" id="contact">
+            <div class="container">
+                <div class="section-header">
+                     <span class="section-tag">Próximo Passo</span>
+                    <h2 class="section-title">Vamos Iniciar sua Jornada Rumo à Liberdade Financeira?</h2>
+                    <p class="section-subtitle">Preencha o formulário para um primeiro contato sem compromisso. Estou pronto para entender seus objetivos e desenhar um futuro financeiro próspero para você e sua família.</p>
+                </div>
+                <div class="contact-container">
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="nomeC">Nome Completo*</label>
+                                <input type="text" id="nomeC" name="nomeC" placeholder="Seu nome completo" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="emailC">Seu Melhor E-mail*</label>
+                                <input type="email" id="emailC" name="email" placeholder="seu.email@dominio.com" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="profissao">Sua Profissão*</label>
+                                <input type="text" id="profissao" name="profissao" placeholder="Ex: Médico, Advogado, etc." required>
+                            </div>
+                             <div class="form-group">
+                                <label for="telefoneC">Telefone/WhatsApp*</label>
+                                <input type="tel" id="telefoneC" name="telefoneC" placeholder="(XX) XXXXX-XXXX" required>
+                            </div>
+                        </div>
+                         <div class="form-row">
+                            <div class="form-group">
+                                <label for="perfil_financeiro">Qual seu perfil financeiro hoje?*</label>
+                                <select id="perfil_financeiro" name="perfil_financeiro" required>
+                                    <option value="">Selecione seu perfil</option>
+                                    <option value="poupador">Poupador (Consigo guardar dinheiro)</option>
+                                    <option value="zero_a_zero">Zero a Zero (Gasto tudo que ganho)</option>
+                                    <option value="devedor">Devedor (Estou no vermelho)</option>
+                                </select>
+                            </div>
+                             <div class="form-group">
+                                <label for="faixa_renda">Sua faixa de renda mensal?*</label>
+                                <select id="faixa_renda" name="faixa_renda" required>
+                                    <option value="">Selecione a faixa de renda</option>
+                                    <option value="ate_5k">Até R$ 5.000</option>
+                                    <option value="5k_10k">Entre R$ 5.000 e R$ 10.000</option>
+                                    <option value="10k_20k">Entre R$ 10.000 e R$ 20.000</option>
+                                    <option value="acima_20k">Acima de R$ 20.000</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="objetivoC">Principal Objetivo Financeiro*</label>
+                            <select id="objetivoC" name="objetivoC" required>
+                                <option value="">Selecione seu principal objetivo</option>
+                                <option value="aposentadoria">Planejar Aposentadoria</option>
+                                <option value="liberdade_financeira">Alcançar a Liberdade Financeira</option>
+                                <option value="proteger_familia">Proteger minha Família e Patrimônio</option>
+                                <option value="investir_melhor">Investir Melhor meu Dinheiro</option>
+                                <option value="organizar_dividas">Organizar minhas Finanças/Dívidas</option>
+                                <option value="outro">Outro (descreva abaixo)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensagemC">Deixe uma mensagem (opcional)</label>
+                            <textarea id="mensagemC" name="mensagemC" rows="4" placeholder="Se quiser, conte um pouco mais sobre seus objetivos."></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Iniciar Minha Jornada Financeira
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="10" viewBox="0 0 18 10" fill="none" stroke-width="2.5">
+                                <path d="M0 5H17M17 5L13 1M17 5L13 9"></path>
+                            </svg>
+                        </button>
+                    </form>
+                    <div id="formStatus" style="margin-top: 1.5rem; text-align: center;"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-col">
+                    <a href="#hero">
+                       <img src="https://cdn.sanity.io/images/vtdu2snp/production/1134c0bb26207343c7833808c1e7e14a1dd4050e-72x36.svg" alt="W1 Consultoria Logo" style="height: 38px; margin-bottom: 1.5rem;">
+                    </a>
+                    <p>Leonardo Graciano, seu parceiro estratégico na W1 Consultoria para o sucesso financeiro do seu negócio.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="#hero">Início</a></li>
+                        <li><a href="#solutions">Soluções</a></li>
+                        <li><a href="#passo-a-passo">Como Funciona</a></li>
+                        <li><a href="#about">Sobre Mim</a></li>
+                        <li><a href="#testimonials">Depoimentos</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#contact">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Entre em Contato</h4>
+                     <ul>
+                        <li><a href="mailto:leonardograciano.w1@gmail.com">leonardograciano.w1@gmail.com</a></li>
+                        <li><a href="https://wa.me/5541998150010" target="_blank" rel="noopener noreferrer">(41) 99815-0010</a></li>
+                        <li>Barigüi Business Center, Curitiba - PR</li>
+                    </ul>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/leograciano_" aria-label="Instagram de Leonardo Graciano" target="_blank" rel="noopener noreferrer">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.917 3.917 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.916 3.916 0 0 0-.923-1.417A3.916 3.916 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.282.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.095.047-3.232.047s-2.39-.009-3.232-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.095-.046-3.231s.008-2.389.046-3.232c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zM8 4.865a3.135 3.135 0 1 0 0 6.27 3.135 3.135 0 0 0 0-6.27zM8 9.58a1.58 1.58 0 1 1 0-3.16 1.58 1.58 0 0 1 0 3.16zm4.562-5.186a.82.82 0 1 0 0 1.64.82.82 0 0 0 0-1.64z"/></svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/leonardo-graciano/" aria-label="LinkedIn de Leonardo Graciano" target="_blank" rel="noopener noreferrer">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v6.088h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                Leonardo Graciano | W1 Consultoria Financeira Empresarial &copy; <span id="currentYear"></span>. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        (function() {
+            const bar = document.getElementById('progressBar');
+            const header = document.querySelector('header');
+            if (!bar || !header) return;
+            let headerHeight = header.offsetHeight;
+
+            function updateProgressBar() {
+                headerHeight = header.offsetHeight;
+                bar.style.top = headerHeight + 'px'; 
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const pct = totalHeight > 0 ? (scrollTop / totalHeight) * 100 : 0;
+                bar.style.width = Math.min(100, Math.max(0, pct)) + '%';
+            }
+            window.addEventListener('scroll', updateProgressBar);
+            window.addEventListener('resize', updateProgressBar);
+            updateProgressBar();
+            setTimeout(updateProgressBar, 100); 
+        })();
+
+        (function() {
+            const counters = document.querySelectorAll('.stat-number');
+            if (counters.length === 0) return;
+            const obsOptions = { threshold: 0.3, rootMargin: '0px 0px -50px 0px' };
+            
+            const animate = el => {
+                const target = +el.getAttribute('data-target');
+                if (isNaN(target) || el.dataset.animated) return; 
+                el.dataset.animated = true;
+                let count = 0;
+                const duration = 2000;
+                const frameDuration = 1000 / 60; 
+                const totalFrames = Math.round(duration / frameDuration);
+                let increment = target / totalFrames;
+                if (target === 0) increment = 0;
+                function updateCount() {
+                    count += increment;
+                    if ((increment > 0 && count < target) || (increment < 0 && count > target)) {
+                        el.textContent = Math.ceil(count);
+                        requestAnimationFrame(updateCount);
+                    } else {
+                        el.textContent = target;
+                    }
+                }
+                requestAnimationFrame(updateCount);
+            };
+
+            const observer = new IntersectionObserver((entries, o) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animate(entry.target);
+                        o.unobserve(entry.target); 
+                    }
+                });
+            }, obsOptions);
+            counters.forEach(c => observer.observe(c));
+        })();
+
+        (function() {
+            const container = document.getElementById('pillarsContainer');
+            if (!container) return;
+            const items = container.querySelectorAll('.pillar-item-w1');
+            items.forEach(item => {
+                item.addEventListener('click', () => {
+                    const currentActive = container.querySelector('.pillar-item-w1.active');
+                    if (currentActive && currentActive !== item) {
+                        currentActive.classList.remove('active');
+                    }
+                    item.classList.toggle('active');
+                });
+            });
+        })();
+
+        (function() {
+            const list = document.getElementById('testimonialList');
+            const prevButton = document.getElementById('prevTestimonial');
+            const nextButton = document.getElementById('nextTestimonial');
+            if (!list || !prevButton || !nextButton) return;
+            const cards = Array.from(list.children);
+            if (cards.length <= 1) { 
+                 prevButton.style.display = 'none';
+                 nextButton.style.display = 'none';
+                 return;
+            }
+
+            let index = 0;
+            const totalCards = cards.length;
+
+            function updateButtons() {
+                prevButton.disabled = index === 0;
+                nextButton.disabled = index === totalCards - 1;
+            }
+
+            function showCard(i) {
+                list.style.transform = `translateX(-${i * 100}%)`;
+                updateButtons();
+            }
+            list.style.display = 'flex';
+            list.style.transition = 'transform 0.4s cubic-bezier(0.65, 0, 0.35, 1)';
+            cards.forEach(card => {
+                card.style.minWidth = '100%';
+                card.style.flexShrink = '0';
+                card.style.padding = '0 0.75rem';
+            });
+            list.parentElement.style.padding = '0 0.25rem'; 
+
+            prevButton.addEventListener('click', () => {
+                index = Math.max(0, index - 1);
+                showCard(index);
+            });
+            nextButton.addEventListener('click', () => {
+                index = Math.min(totalCards - 1, index + 1);
+                showCard(index);
+            });
+            updateButtons();
+        })();
+
+        (function() {
+            const openBtn = document.getElementById('mobileMenuOpen');
+            const nav = document.getElementById('mainNav');
+            const navList = document.getElementById('navList');
+            let closeBtnInstance = null;
+
+            if (!openBtn || !nav) return;
+
+            function createCloseButton() {
+                const button = document.createElement('button');
+                button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`;
+                button.classList.add('mobile-menu-btn', 'close-btn');
+                button.setAttribute('aria-label', 'Fechar menu');
+                button.addEventListener('click', toggleMenu);
+                nav.insertBefore(button, nav.firstChild);
+                return button;
+            }
+
+            function toggleMenu() {
+                const isOpen = nav.classList.toggle('open');
+                openBtn.setAttribute('aria-expanded', isOpen.toString());
+                document.body.classList.toggle('menu-open', isOpen);
+
+                if (isOpen) {
+                    if (!closeBtnInstance) closeBtnInstance = createCloseButton();
+                    closeBtnInstance.style.display = 'block';
+                    openBtn.style.display = 'none';
+                } else {
+                    if (closeBtnInstance) closeBtnInstance.style.display = 'none';
+                    openBtn.style.display = 'block';
+                }
+            }
+
+            openBtn.addEventListener('click', toggleMenu);
+
+            if (navList) {
+                navList.addEventListener('click', function(event) {
+                    if (event.target.tagName === 'A' && nav.classList.contains('open')) {
+                        if (event.target.getAttribute('href').startsWith('#')) {
+                             setTimeout(toggleMenu, 100);
+                        }
+                    }
+                });
+            }
+        })();
+        
+        (function() {
+            const form = document.getElementById('contactForm');
+            const formStatus = document.getElementById('formStatus');
+            if (!form) return;
+
+            const submitButton = form.querySelector('button[type="submit"]');
+            const originalButtonHTML = submitButton.innerHTML;
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); 
+                const webhookUrl = 'https://hook.us1.make.com/k9f7b11c2e4v6y2d7a22h6w6b1m7c2c9';
+
+                if (webhookUrl === 'SUA_URL_DO_WEBHOOK_AQUI' || webhookUrl === '') {
+                    console.error('URL do Webhook não definida.');
+                    if(formStatus) formStatus.innerHTML = `<p style="color: #ff6b6b;">Erro de configuração do servidor. Tente mais tarde.</p>`;
+                    return;
+                }
+                
+                submitButton.disabled = true;
+                submitButton.innerHTML = 'Enviando...';
+                if(formStatus) formStatus.innerHTML = '';
+
+                const formData = new FormData(form);
+                const data = {};
+                formData.forEach((value, key) => {
+                    data[key] = value;
+                });
+                
+                fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return response.text();
+                    }
+                    throw new Error('Ocorreu um erro no servidor.');
+                })
+                .then(data => {
+                    console.log('Sucesso:', data);
+                    form.reset(); 
+                    if(formStatus) formStatus.innerHTML = `<p style="color: var(--accent);">Obrigado! Sua mensagem foi enviada com sucesso. Entraremos em contato em breve.</p>`;
+                    submitButton.innerHTML = 'Enviado!';
+                    setTimeout(() => {
+                        submitButton.disabled = false;
+                        submitButton.innerHTML = originalButtonHTML;
+                        if(formStatus) formStatus.innerHTML = '';
+                    }, 5000);
+                })
+                .catch((error) => {
+                    console.error('Erro:', error);
+                    if(formStatus) formStatus.innerHTML = `<p style="color: #ff6b6b;">Desculpe, ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente mais tarde.</p>`;
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = originalButtonHTML;
+                });
+            });
+        })();
+
+    </script>
+</body>
+</html>
