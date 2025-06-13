@@ -45,7 +45,7 @@
         }
         a { text-decoration: none; color: var(--accent); transition: color var(--transition); }
         a:hover { color: var(--accent-dark); }
-        img { max-width: 100%; display: block; }
+        img, svg { max-width: 100%; display: block; }
         
         .container { 
             width: 90%; 
@@ -106,13 +106,36 @@
             background: var(--accent); color: var(--bg-dark); border-color: var(--accent);
             box-shadow: 0 2px 4px rgba(50, 221, 201, 0.2);
         }
-        .btn-primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); transform: translateY(-3px); box-shadow: 0 6px 12px rgba(50, 221, 201, 0.3); }
+        .btn-primary:hover { 
+            background: var(--card-bg); 
+            color: var(--text-dark); 
+            border-color: var(--card-bg); 
+            transform: translateY(-3px); 
+            box-shadow: 0 6px 12px rgba(50, 221, 201, 0.3); 
+        }
         .btn-primary svg { margin-left: 0.6rem; stroke: var(--bg-dark); transition: transform 0.2s ease; }
-        .btn-primary:hover svg { transform: translateX(4px); }
+        .btn-primary:hover svg { stroke: var(--text-dark); transform: translateX(4px); }
 
         .btn-secondary { background: transparent; color: var(--text-dark); border: 2px solid var(--border-color); }
         .btn-secondary:hover { background-color: var(--accent); color:var(--bg-dark); border-color: var(--accent); transform: translateY(-2px); }
         
+        .rfm-marquee-container { position: relative; overflow: hidden; }
+        .rfm-overlay {
+        position:absolute; inset:0;
+        background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 20%, rgba(255,255,255,0) 80%, rgba(255,255,255,1) 100%);
+        pointer-events:none;
+        }
+        .rfm-marquee {
+        display: flex; gap: 2rem;
+        animation: marquee var(--duration) linear var(--iteration-count);
+        }
+        @keyframes marquee {
+        0%   { transform: translateX(0); }
+        100% { transform: translateX(calc(-1 * var(--width) / 2)); }
+        }
+        .client-logo { flex-shrink: 0; min-width: var(--min-width); object-fit: contain; }
+
+
         .mobile-menu-btn { 
             font-size: 1.75rem; background: none; border: none; 
             color: var(--text-dark); cursor: pointer; display: block; padding: 0.5rem;
@@ -155,38 +178,103 @@
         /* Progress Bar */
         .progress-bar { position: fixed; top: var(--header-height); left: 0; width: 0%; height: 4px; background: var(--accent); z-index: 1001; transition: width 0.15s ease-out; }
 
-        /* Hero Section */
-        .hero { 
-            background: var(--bg-dark); 
-            color: var(--text-white); padding: 6rem 0;
-            position: relative; text-align: center;
-        }
-        .hero::before { 
-            content: ''; position: absolute; top: 0; left: 0; 
-            width: 100%; height: 100%; 
-            background: linear-gradient(rgba(2, 32, 40, 0.8), rgba(2, 32, 40, 0.7)), url('https://images.unsplash.com/photo-1554224155-8d044b40325b?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover; background-position: center; filter: blur(2px);
-        }
-        .hero-content { position: relative; z-index: 1; }
-        .hero-content .section-tag { background-color: rgba(255,255,255,0.1); }
-        .hero-content h1 { 
-            font-size: clamp(2.5rem, 5vw, 3.75rem); 
-            font-weight: 700; margin-bottom: 1.5rem; 
-            color: var(--text-white); line-height: 1.2;
-        }
-        .hero-content p { 
-            font-size: clamp(1.1rem, 2.5vw, 1.25rem); 
-            margin-bottom: 2.5rem; color: rgba(255,255,255,0.9); 
-            max-width: 700px; margin-left: auto; margin-right: auto; 
-        }
-        .hero .btn-primary { padding: 0.875rem 1.75rem; font-size: 1.05rem;}
+            /* Hero Section */
+            .hero {
+            position: relative;
+            display: flex;
+            align-items: center;
+            min-height: 80vh;
+            overflow: hidden;
+            text-align: left;
+            }
+            /* camada da imagem com filtro de brilho */
+            .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('https://consultoria.leonardograciano.com.br/img/atlas.jpg') 
+                        center right/cover no-repeat;
+            filter: brightness(0.5) contrast(1.1);
+            z-index: 0;
+            }
+            /* gradiente mais largo e mais escuro */
+            .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; bottom: 0;
+            width: 65%;
+            background: linear-gradient(
+                to right,
+                rgba(2,23,31,0.9) 0%,
+                rgba(2,23,31,0) 100%
+            );
+            z-index: 1;
+            }
+
+            .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 45%;
+            margin-left: 5%;
+            }
+            .section-tag {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--accent);
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+            }
+            .hero-content h1 {
+            font-size: clamp(2rem,5vw,3rem);
+            font-weight: 300;
+            color: var(--text-white);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            }
+            .hero-content p {
+            font-size: clamp(1rem,2.5vw,1.25rem);
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            }
+            .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.75rem;
+            font-size: 1rem;
+            font-weight: 600;
+            background: var(--accent);
+            color: var(--text-white);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+            }
+            .btn-primary:hover {
+            background: var(--accent-dark);
+            }
 
         /* Solutions Section */
         .solutions-pf { background: white; }
         .solutions-pf-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
-            gap: 1.5rem; 
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(1, 1fr); /* padrão mobile */
+            transition: all 0.3s ease;
+            }
+
+            @media (min-width: 768px) {
+            .solutions-pf-grid {
+                grid-template-columns: repeat(2, 1fr); /* tablets */
+            }
+            }
+
+            @media (min-width: 1024px) {
+            .solutions-pf-grid {
+                grid-template-columns: repeat(4, 1fr); /* desktop com 4 cards fixos */
+            }
         }
         .solution-pf-card {
             background-color: var(--card-bg);
@@ -204,6 +292,8 @@
             font-size: 2.5rem;
             color: var(--accent);
             margin-bottom: 1rem;
+            width: 48px;
+            height: 48px;
         }
         .solution-pf-card h3 {
             font-size: 1.25rem;
@@ -216,7 +306,7 @@
             flex-grow: 1; 
             margin-bottom: 1.5rem;
         }
-        .solution-pf-card a { font-weight: 600; }
+        .solution-pf-card a { font-weight: 600; display:inline-flex; align-items:center; gap: 0.5rem;}
         
         /* Passo a Passo Section */
         .passo-a-passo { background-color: var(--bg-dark); }
@@ -230,16 +320,17 @@
         .timeline::before {
             content: '';
             position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 20px;
-            width: 4px;
+            top: 22px;
+            bottom: 22px;
+            left: 21px;
+            width: 2px;
             background: var(--border-dark-theme);
+             z-index: 1;
         }
         .timeline-item {
             margin-bottom: 50px;
             position: relative;
-            padding-left: 60px;
+            padding-left: 65px;
         }
         .timeline-item:last-child { margin-bottom: 0; }
         .timeline-number {
@@ -256,7 +347,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 3px solid var(--bg-dark);
+            border: 4px solid var(--bg-dark);
+            z-index: 2;
         }
         .timeline-content h3 {
             font-size: 1.3rem;
@@ -269,44 +361,206 @@
             font-size: 0.95rem;
         }
 
-        /* Social Proof Section */
+        /* Social Proof Section - com imagem + gradiente */
         .social-proof {
-            background-color: var(--bg-light);
-            text-align: center;
+        position: relative;
+        background: url('https://images.pexels.com/photos/955395/pexels-photo-955395.jpeg?cs=srgb&dl=pexels-cytonn-955395.jpg&fm=jpg') center right / cover no-repeat;
+        min-height: 420px;
+        display: flex;
+        align-items: center;
         }
+
+        .social-proof::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to right, rgba(2, 23, 31, 0.92) 35%, rgba(2, 23, 31, 0.4) 100%);
+        z-index: 0;
+        }
+
+        .social-proof-overlay {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        padding: 4rem 5%;
+        display: flex;
+        justify-content: flex-start;
+        }
+
         .social-proof-content {
-            background: var(--card-bg);
-            padding: 3rem;
-            border-radius: 12px;
-            box-shadow: var(--shadow-lg);
-            max-width: 800px;
-            margin: auto;
+        max-width: 600px;
+        color: white;
         }
-        .social-proof h2 {
-            font-size: 4rem;
-            color: var(--accent);
-            font-weight: 700;
-            margin-bottom: 0.5rem;
+
+        .social-proof-content h2 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
         }
-        .social-proof p {
-            font-size: 1.1rem;
-            color: var(--text-medium);
-            margin-bottom: 2rem;
+
+        .social-proof-content .highlight-number {
+        color: #32DDC9;
         }
+
+        .social-proof-content p {
+        font-size: 1.2rem;
+        margin-bottom: 2.5rem;
+        line-height: 1.6;
+        color: rgba(255,255,255,0.95);
+        }
+
+        .social-proof-content .btn-primary {
+        background: #32DDC9;
+        color: #012025;
+        padding: 0.875rem 1.75rem;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1rem;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        transition: background 0.3s ease;
+        }
+        .social-proof-content .btn-primary:hover {
+        background: #28c2b7;
+        }
+
+        /* Clientes Parceiros*/
+        .client-logos-section {
+        background: var(--bg-light);
+        padding: 4rem 0;
+        text-align: center;
+        }
+
+        .client-logos-section .section-header {
+        margin-bottom: 2rem;
+        }
+
+        .client-logos-section .section-header h3 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: var(--text-dark);
+        }
+
+        .client-logos-section .section-header p {
+        font-size: 1rem;
+        color: var(--text-medium);
+        max-width: 600px;
+        margin: 0 auto;
+        }
+
+        .rfm-marquee-container {
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+        margin-top: 2rem;
+        }
+
+        .rfm-marquee {
+        display: flex;
+        align-items: center;
+        animation: marqueeScroll var(--duration, 20s) linear infinite;
+        gap: 3rem;
+        }
+
+        .client-logo {
+        height: 50px;
+        object-fit: contain;
+        opacity: 0.8;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .client-logo:hover {
+        transform: scale(1.1);
+        opacity: 1;
+        }
+
+        @keyframes marqueeScroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-50%)); }
+        }
+
         
         /* Testimonials Section */
-        .testimonial-wrapper { position: relative; max-width: 750px; margin-left:auto; margin-right:auto; overflow: hidden; }
-        .testimonial-list { display: flex; transition: transform 0.5s ease-in-out; }
-        .testimonial-card { background: var(--card-bg); border-radius: 12px; padding: 2.5rem; min-width: 100%; flex-shrink: 0; box-shadow: var(--shadow-lg); text-align: center; border: 1px solid var(--border-color); }
-        .testimonial-card .quote-icon { font-size: 2.5rem; color: var(--accent); margin-bottom: 1rem; }
-        .testimonial-card p.quote { font-size: 1.05rem; font-style: italic; color: var(--text-medium); margin-bottom: 1.5rem; line-height: 1.8; }
-        .testimonial-author { font-weight: 600; font-size: 1rem; color: var(--text-dark); margin-top: 1rem; }
-        .testimonial-role { font-size: 0.875rem; color: var(--text-light); }
-        .testimonial-nav { display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; }
-        .testimonial-nav button { background: var(--accent); color: var(--bg-dark); border: none; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; transition: background var(--transition), transform var(--transition); font-size:1.5rem; display:flex; align-items:center; justify-content:center; }
-        .testimonial-nav button:hover { background: var(--accent-dark); transform: scale(1.1); }
-        .testimonial-nav button:disabled { background-color: var(--border-color); cursor: not-allowed; transform: scale(1); }
-        
+        .testimonial-wrapper {
+        position: relative;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+        overflow: hidden;
+        padding-bottom: 2rem;
+        }
+
+        .testimonial-list {
+        display: flex;
+        gap: 1.5rem;
+        transition: transform 0.5s ease-in-out;
+        }
+
+        .testimonial-card-v2 {
+        background: var(--card-bg);
+        border-radius: 12px;
+        padding: 2rem;
+        flex: 0 0 100%;
+        border: 1px solid var(--border-color);
+        text-align: left;
+        }
+
+        @media (min-width: 640px) {
+        .testimonial-card-v2 {
+            flex: 0 0 48%;
+        }
+        }
+
+        @media (min-width: 992px) {
+        .testimonial-card-v2 {
+            flex: 0 0 31%;
+        }
+        }
+
+        /* transicao w1 na midia */
+        .section-divider {
+        display: block;
+        height: 80px;
+        overflow: hidden;
+        line-height: 0;
+        background-color: transparent;
+        }
+
+        .section-divider svg {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+        }   
+
+
+        /* W1 na Midia */
+        .media-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            flex-shrink: 0;
+            width: 200px;
+            transition: transform .3s, box-shadow .3s;
+            }
+        .media-card img {
+            border-radius: 4px;
+            margin-bottom: .5rem;
+            width: 100%; height: auto;
+            }
+            .media-card h3 {
+            font-size: 1rem; font-weight: 600;
+            }
+            .media-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            }
+
+
+
         /* About Section */
         .about-container { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center; }
         @media (min-width: 992px) { .about-container { grid-template-columns: calc(55% - 2rem) calc(45% - 2rem); gap: 4rem; } .about-image { order: 2; } .about-text { order: 1; } }
@@ -359,6 +613,33 @@
         .footer-social a:hover { color: var(--text-white); transform: scale(1.15) translateY(-2px); }
         .footer-social svg { height:28px; width:28px; }
         .footer-bottom { text-align: center; font-size: 0.875rem; margin-top: 2.5rem; color: #9ca3af; }
+        .carousel-container { position: relative; overflow: hidden; }
+        .carousel-wrapper {
+        display:flex; scroll-snap-type:x mandatory; transition: transform .5s;
+        }
+        .carousel-item {
+        min-width:100%; position:relative; scroll-snap-align:start;
+        border-radius:12px; overflow:hidden;
+        }
+        .carousel-item img {
+        width:100%; height:auto; display:block;
+        }
+        .carousel-text {
+        position:absolute; inset:2rem; color:#fff;
+        }
+        .carousel-text h3 {
+        font-size:3rem; margin:0;
+        }
+        .carousel-text p { margin:.5rem 0; }
+        .carousel-nav {
+        position:absolute; top:50%; transform:translateY(-50%);
+        background:rgba(0,0,0,0.5); border:none; color:#fff;
+        font-size:2rem; width:3rem; height:3rem; border-radius:50%;
+        cursor:pointer;
+        }
+        .carousel-nav.prev { left:1rem; }
+        .carousel-nav.next { right:1rem; }
+
     </style>
 </head>
 <body>
@@ -379,7 +660,7 @@
                     <li><a href="#testimonials">Depoimentos</a></li>
                     <li><a href="#faq">FAQ</a></li>
                     <li><a href="#contact" class="btn btn-primary">Fale Comigo
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 18 10" fill="none" stroke-width="2.5">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 18 10" fill="none" stroke-width="2.5" stroke="currentColor">
                             <path d="M0 5H17M17 5L13 1M17 5L13 9"></path>
                         </svg>
                     </a></li>
@@ -394,14 +675,20 @@
             <div class="hero-content">
                 <span class="section-tag">Planejamento Financeiro Pessoal</span>
                 <h1>Sinta a sensação de transformar seus objetivos em conquistas</h1>
-                <p>Meu Planejamento Financeiro 100% personalizado está a um clique de distância. Vamos construir juntos o futuro que você deseja.</p>
-                <a href="#contact" class="btn btn-primary">Fale com um especialista
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="10" viewBox="0 0 18 10" fill="none" stroke-width="2.5">
-                        <path d="M0 5H17M17 5L13 1M17 5L13 9"></path>
-                    </svg>
+        <p>
+                    Planejamento Financeiro 100% personalizado está a um clique de distância.
+                Vamos construir juntos o futuro que você deseja.
+                </p>
+                <a href="#contact" class="btn-primary">
+                Fale com um especialista
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="10"
+                    viewBox="0 0 18 10" fill="none" stroke-width="2.5" stroke="currentColor">
+                    <path d="M0 5H17M17 5L13 1M17 5L13 9"/>
+                </svg>
                 </a>
             </div>
-        </section>
+            </section>
+
 
         <!-- Solutions Section -->
         <section class="solutions-pf" id="solutions">
@@ -414,90 +701,110 @@
                 <div class="solutions-pf-grid">
                     <div class="solution-pf-card">
                         <div class="solution-pf-icon">
-                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8.009 8.009 0 0 1-8 8z"></path><path d="M12 10.5a.5.5 0 0 0-.5.5v5a.5.5 0 0 0 1 0v-5a.5.5 0 0 0-.5-.5zM12 7a1 1 0 1 0 1 1 1 1 0 0 0-1-1z"></path></svg>
+                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0h9.75m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" /></svg>
                         </div>
-                        <h3>Planejamento Financeiro 360º</h3>
-                        <p>Uma visão completa da sua vida financeira, organizando seu presente para construir o futuro que você deseja com segurança e clareza.</p>
+                        <h3>Gestão de Fluxo de Caixa Inteligente</h3>
+                        <p>Organize suas receitas e despesas, elimine gastos desnecessários e potencialize sua capacidade de poupar e investir todos os meses.</p>
                         <a href="#contact">Saiba Mais &rarr;</a>
                     </div>
                     <div class="solution-pf-card">
                         <div class="solution-pf-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M7 17a3 3 0 1 0-3-3 3.003 3.003 0 0 0 3 3zm0-4a1 1 0 1 1-1 1 1 1 0 0 1 1-1zm10 4a3 3 0 1 0-3-3 3.003 3.003 0 0 0 3 3zm0-4a1 1 0 1 1-1 1 1 1 0 0 1 1-1zM4 6a1 1 0 0 0-1 1v1h16V7a1 1 0 0 0-1-1H4zm14 4H6v1h12V10zM6 13h12v-1H6v1z"></path></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286zm0 13.036h.008v.008h-.008v-.008z" /></svg>
                         </div>
-                        <h3>Wealth Management</h3>
-                        <p>Gestão de patrimônio sofisticada para proteger e multiplicar seus bens, com estratégias de alocação alinhadas ao seu perfil.</p>
+                        <h3>Blindagem Pessoal e Patrimonial</h3>
+                        <p>Proteja você, sua família e seus bens com as melhores soluções de seguros e planejamento sucessório, garantindo tranquilidade para o futuro.</p>
                         <a href="#contact">Saiba Mais &rarr;</a>
                     </div>
                     <div class="solution-pf-card">
                         <div class="solution-pf-icon">
-                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12.553 2.11a1 1 0 0 0-1.106 0l-7.5 5a1 1 0 0 0 .553 1.838l.947-.315v9.117a1 1 0 0 0 1 1h2v-4a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v4h2a1 1 0 0 0 1-1V8.633l.947.315a1 1 0 0 0 .553-1.838l-7.5-5zM12 6.649l5.5 3.667V18.5h-2v-4a3 3 0 0 0-3-3h-1a3 3 0 0 0-3 3v4H6V10.316L12 6.649z"></path></svg>
+                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 01-8.314 1.442zM2.25 18a11.95 11.95 0 015.302-9.622l1.012-1.012a3.75 3.75 0 015.303 0l4.306 4.306a3.75 3.75 0 010 5.303l-1.012 1.012A11.95 11.95 0 012.25 18z" /></svg>
                         </div>
-                        <h3>Planejamento de Aposentadoria</h3>
-                        <p>Construa um plano sólido para garantir uma aposentadoria tranquila e com o padrão de vida que você planejou.</p>
+                        <h3>Plano de Investimentos</h3>
+                        <p>Construa uma carteira de investimentos sólida e diversificada, alinhada ao seu perfil de risco e objetivos, para fazer seu dinheiro render de verdade.</p>
                         <a href="#contact">Saiba Mais &rarr;</a>
                     </div>
                     <div class="solution-pf-card">
                         <div class="solution-pf-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12.51 2.046a1.5 1.5 0 0 0-1.02 0l-8.5 4.907a1.5 1.5 0 0 0-.75 1.3V15.7c0 .53.28.99.75 1.3l8.5 4.907a1.5 1.5 0 0 0 1.5 0l8.5-4.907a1.5 1.5 0 0 0 .75-1.3V8.25a1.5 1.5 0 0 0-.75-1.3l-8.5-4.907zM12 3.81l7 4.043v7.29L12 19.18V3.811zM3.5 8.253L11.25 12.6v7.45L3.5 15.7v-7.45z"></path></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.003L7.5 12.75l2.25 2.25 4.5-4.5L16.5 14.25l4.5-4.5m-2.121-3.535l-4.142-4.142a.75.75 0 00-1.061 0L3 11.25l4.142 4.142a.75.75 0 001.061 0l4.142-4.142a.75.75 0 000-1.06z" /></svg>
                         </div>
-                        <h3>Planejamento Sucessório e de Legado</h3>
-                        <p>Estruture a transição do seu patrimônio com segurança jurídica e fiscal, garantindo a proteção da sua família e a perenidade do seu legado.</p>
+                        <h3>Crescimento de Patrimônio</h3>
+                        <p>Estratégias avançadas de alocação de ativos e otimização fiscal para acelerar a construção e a perpetuação do seu legado financeiro.</p>
                         <a href="#contact">Saiba Mais &rarr;</a>
                     </div>
                 </div>
             </div>
         </section>
+        
 
         <!-- Passo a Passo Section -->
         <section class="passo-a-passo dark-section" id="passo-a-passo">
             <div class="container">
                  <div class="section-header">
-                    <span class="section-tag">Como Funciona</span>
-                    <h2 class="section-title">Permita-se Viver o Futuro Financeiro que Você Sempre Quis</h2>
-                    <p class="section-subtitle">Descubra as etapas da minha consultoria, um processo transparente e focado em você.</p>
+                    <span class="section-tag">Etapas da Consultoria</span>
+                    <h2 class="section-title">Um Processo Simples e Transparente para o Seu Sucesso</h2>
+                    <p class="section-subtitle">Descubra como funciona a consultoria, guiando você em cada passo da sua jornada financeira.</p>
                 </div>
                 <ul class="timeline">
                     <li class="timeline-item">
                         <div class="timeline-number">01</div>
                         <div class="timeline-content">
-                            <h3>Agendamento e Reunião Inicial</h3>
-                            <p>Tudo começa com uma conversa. Você preenche o formulário e agendamos um primeiro encontro para entender seus objetivos, sonhos e sua situação financeira atual.</p>
+                            <h3>Análise e Diagnóstico</h3>
+                            <p>Tudo começa com uma conversa profunda para entender sua vida, seus sonhos e seus números. Analiso seu perfil e sua situação atual para traçar um diagnóstico financeiro completo.</p>
                         </div>
                     </li>
                     <li class="timeline-item">
                         <div class="timeline-number">02</div>
                         <div class="timeline-content">
-                            <h3>Diagnóstico Financeiro</h3>
-                            <p>Com as informações que você compartilhou, realizo um diagnóstico completo, mapeando oportunidades de melhoria e as melhores estratégias para seus objetivos de curto, médio e longo prazo.</p>
+                            <h3>Avaliação e Estratégia</h3>
+                            <p>Com o diagnóstico em mãos, apresento uma avaliação clara das oportunidades e desenvolvo as melhores estratégias personalizadas para cada um dos seus objetivos de vida.</p>
                         </div>
                     </li>
                      <li class="timeline-item">
                         <div class="timeline-number">03</div>
                         <div class="timeline-content">
-                            <h3>Apresentação do Plano</h3>
-                            <p>Apresento seu Planejamento Financeiro 100% personalizado. Aqui, você terá clareza sobre o caminho a seguir, com estratégias de investimentos, proteção e sucessão.</p>
+                            <h3>Consultoria e Plano de Ação</h3>
+                            <p>Você recebe seu Planejamento Financeiro 360º. Um guia detalhado com todas as estratégias, desde investimentos até proteção, para que você tenha total clareza do caminho a seguir.</p>
                         </div>
                     </li>
                      <li class="timeline-item">
                         <div class="timeline-number">04</div>
                         <div class="timeline-content">
-                            <h3>Implementação e Acompanhamento</h3>
-                            <p>Após sua aprovação, iniciamos a implementação do plano. Estarei ao seu lado continuamente, monitorando os resultados e ajustando as estratégias sempre que necessário.</p>
+                            <h3>Acompanhamento e Conquistas</h3>
+                            <p>Estarei ao seu lado na implementação do plano, com reuniões recorrentes para acompanhar seu progresso, fazer ajustes e celebrar cada conquista na sua jornada.</p>
                         </div>
                     </li>
                 </ul>
             </div>
         </section>
 
+
+
+        <!-- Seção de Tecnologia - S1nc -->
+        <section id="w1-technology" class="feature">
+        <div class="container" style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; align-items:center; padding:4rem 0;">
+            <div class="text-block">
+            <span class="section-tag">W1 Technology</span>
+            <h2 class="section-title">Planejamento financeiro data-driven potencializado por alta tecnologia</h2>
+            <p>Permita-se experimentar um planejamento financeiro onde vamos juntos vamos tomar controle da sua vida financeira centralizando e planejando tudo em um só lugar.</p>
+            <a href="#contato" class="btn btn-primary">Quero potencializar minhas finanças</a>
+            </div>
+            <div class="video-block" style="aspect-ratio:16/9;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/GFbWryCtSBU?si=pyyGpS7I_HuNSzHn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+        </section>
+
+        
         <!-- Social Proof Section -->
         <section class="social-proof" id="social-proof">
-            <div class="container">
-                <div class="social-proof-content">
-                    <h2>94%</h2>
-                    <p>Dos meus clientes me recomendariam a um amigo ou familiar.</p>
-                    <a href="#contact" class="btn btn-primary">Quero Ser o Próximo</a>
-                </div>
+        <div class="social-proof-overlay">
+            <div class="social-proof-content">
+            <h2><span class="highlight-number">94%</span></h2>
+            <p>dos meus clientes me recomendam para amigos e familiares.<br>
+                Porque quando alguém sente clareza financeira, quer dividir isso com quem ama.</p>
+            <a href="#contact" class="btn btn-primary">Quero Ser o Próximo</a>
             </div>
+        </div>
         </section>
 
         <!-- Testimonials Section -->
@@ -505,26 +812,35 @@
             <div class="container">
                 <div class="section-header">
                     <span class="section-tag">Resultados Reais</span>
-                    <h2 class="section-title">O Que Meus Clientes Dizem</h2>
+                    <h2 class="section-title">O Valor de uma Consultoria de Confiança</h2>
                     <p class="section-subtitle">Pessoas que transformaram suas finanças com uma consultoria personalizada e estratégica.</p>
                 </div>
                 <div class="testimonial-wrapper">
                     <div class="testimonial-list" id="testimonialList">
-                        <div class="testimonial-card">
-                            <div class="quote-icon">“</div>
+                        <div class="testimonial-card-v2">
+                            <div class="quote-icon">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="58" height="22" viewBox="0 0 58 22" fill="none"><rect x="1" y="12" width="57" height="10" fill="#F6F8F8"></rect><rect width="57" height="12" fill="white"></rect><path d="M31.9316 18V10.6398L37.9829 0H41.0441L37.0574 9.41949L40.1542 9.61017V18H31.9316ZM19.117 18V10.6398L25.2039 0H28.2652L24.2784 9.41949L27.3397 9.61017V18H19.117Z" fill="#CBDAD9"></path></svg>
+                            </div>
                             <p class="quote">"Não conhecia quase nada de economia e investimentos. Com a ajuda do Leonardo, fiz meu primeiro planejamento e hoje tenho segurança para investir e pensar no futuro."</p>
+                            <div class="author-separator"></div>
                             <div class="testimonial-author">Vitor M.</div>
                             <div class="testimonial-role">Engenheiro de Software</div>
                         </div>
-                        <div class="testimonial-card">
-                             <div class="quote-icon">“</div>
+                        <div class="testimonial-card-v2">
+                             <div class="quote-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="58" height="22" viewBox="0 0 58 22" fill="none"><rect x="1" y="12" width="57" height="10" fill="#F6F8F8"></rect><rect width="57" height="12" fill="white"></rect><path d="M31.9316 18V10.6398L37.9829 0H41.0441L37.0574 9.41949L40.1542 9.61017V18H31.9316ZM19.117 18V10.6398L25.2039 0H28.2652L24.2784 9.41949L27.3397 9.61017V18H19.117Z" fill="#CBDAD9"></path></svg>
+                             </div>
                             <p class="quote">"Eu comecei sem nada. Hoje, com o planejamento do Léo, tenho duas academias, um box de crossfit e estou prestes a abrir mais duas. A organização que ele trouxe foi fundamental."</p>
+                            <div class="author-separator"></div>
                             <div class="testimonial-author">Guilherme</div>
                             <div class="testimonial-role">Empreendedor</div>
                         </div>
-                        <div class="testimonial-card">
-                            <div class="quote-icon">“</div>
+                        <div class="testimonial-card-v2">
+                            <div class="quote-icon">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="58" height="22" viewBox="0 0 58 22" fill="none"><rect x="1" y="12" width="57" height="10" fill="#F6F8F8"></rect><rect width="57" height="12" fill="white"></rect><path d="M31.9316 18V10.6398L37.9829 0H41.0441L37.0574 9.41949L40.1542 9.61017V18H31.9316ZM19.117 18V10.6398L25.2039 0H28.2652L24.2784 9.41949L27.3397 9.61017V18H19.117Z" fill="#CBDAD9"></path></svg>
+                            </div>
                             <p class="quote">"Estou passando para agradecer a consultoria. Foi essencial para eu ter clareza e tomar as melhores decisões para proteger o futuro da minha família. Recomendo de olhos fechados!"</p>
+                            <div class="author-separator"></div>
                             <div class="testimonial-author">Guilherme C.</div>
                             <div class="testimonial-role">Médico</div>
                         </div>
@@ -719,8 +1035,9 @@
 
         (function() {
             const bar = document.getElementById('progressBar');
+            if (!bar) return;
             const header = document.querySelector('header');
-            if (!bar || !header) return;
+            if(!header) return;
             let headerHeight = header.offsetHeight;
 
             function updateProgressBar() {
@@ -811,7 +1128,7 @@
             }
 
             function showCard(i) {
-                list.style.transform = `translateX(-${i * 100}%)`;
+                list.style.transform = translateX(-${i * 100}%);
                 updateButtons();
             }
             list.style.display = 'flex';
@@ -844,7 +1161,7 @@
 
             function createCloseButton() {
                 const button = document.createElement('button');
-                button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`;
+                button.innerHTML = <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>;
                 button.classList.add('mobile-menu-btn', 'close-btn');
                 button.setAttribute('aria-label', 'Fechar menu');
                 button.addEventListener('click', toggleMenu);
@@ -894,7 +1211,7 @@
 
                 if (webhookUrl === 'SUA_URL_DO_WEBHOOK_AQUI' || webhookUrl === '') {
                     console.error('URL do Webhook não definida.');
-                    if(formStatus) formStatus.innerHTML = `<p style="color: #ff6b6b;">Erro de configuração do servidor. Tente mais tarde.</p>`;
+                    if(formStatus) formStatus.innerHTML = <p style="color: #ff6b6b;">Erro de configuração do servidor. Tente mais tarde.</p>;
                     return;
                 }
                 
@@ -925,7 +1242,7 @@
                 .then(data => {
                     console.log('Sucesso:', data);
                     form.reset(); 
-                    if(formStatus) formStatus.innerHTML = `<p style="color: var(--accent);">Obrigado! Sua mensagem foi enviada com sucesso. Entraremos em contato em breve.</p>`;
+                    if(formStatus) formStatus.innerHTML = <p style="color: var(--accent);">Obrigado! Sua mensagem foi enviada com sucesso. Entraremos em contato em breve.</p>;
                     submitButton.innerHTML = 'Enviado!';
                     setTimeout(() => {
                         submitButton.disabled = false;
@@ -935,7 +1252,7 @@
                 })
                 .catch((error) => {
                     console.error('Erro:', error);
-                    if(formStatus) formStatus.innerHTML = `<p style="color: #ff6b6b;">Desculpe, ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente mais tarde.</p>`;
+                    if(formStatus) formStatus.innerHTML = <p style="color: #ff6b6b;">Desculpe, ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente mais tarde.</p>;
                     submitButton.disabled = false;
                     submitButton.innerHTML = originalButtonHTML;
                 });
@@ -943,5 +1260,53 @@
         })();
 
     </script>
+    <script>
+        const testimonialList = document.getElementById('testimonialList');
+        const prevBtn = document.getElementById('prevTestimonial');
+        const nextBtn = document.getElementById('nextTestimonial');
+
+        let currentSlide = 0;
+        let totalCards = testimonialList.children.length;
+
+        function getVisibleCount() {
+            if (window.innerWidth >= 992) return 3;
+            if (window.innerWidth >= 640) return 2;
+            return 1;
+        }
+
+        function updateSlider() {
+            const visible = getVisibleCount();
+            const offset = -currentSlide * (100 / visible);
+            testimonialList.style.transform = `translateX(${offset}%)`;
+
+            // Habilita ou desabilita os botões
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide >= Math.ceil(totalCards / visible) - 1;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 0) {
+            currentSlide--;
+            updateSlider();
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            const maxSlides = Math.ceil(totalCards / getVisibleCount());
+            if (currentSlide < maxSlides - 1) {
+            currentSlide++;
+            updateSlider();
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            currentSlide = 0;
+            updateSlider();
+        });
+
+        updateSlider();
+</script>
+
+
 </body>
 </html>
