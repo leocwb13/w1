@@ -146,6 +146,25 @@
         /* MOBILE (< 992 px) – ESCONDE MENU e HAMBÚRGUER */
         @media (max-width: 991px) {
         nav, .mobile-menu-btn { display: none !important; }
+        /* 1. o contêiner de texto ocupa 90 % da largura
+        e fica centralizado na tela                */
+        .hero-content{
+            max-width: 90%;
+            margin: 0 auto;          /* tira a margem-left:5% */
+        }
+
+        /* 2. título e parágrafo com largura total,
+                evitando linhas curtinhas                    */
+        .hero-content h1{          /* (tamanho do texto já
+                                        está reponsivo pelo clamp) */
+            line-height: 1.25;
+        }
+
+        .hero-content p{
+            max-width: 100%;         /* antes herdava 700 px  */
+            color: rgba(255,255,255,.92);  /* branco “vivo”   */
+        }
+
         }
 
         /* === BOTÃO FLUTUANTE “Fale comigo” =================================== */
