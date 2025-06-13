@@ -82,7 +82,7 @@
 
         /* === HEADER ========================================================== */
         header {
-        background: var(--card-bg);
+        background: #012028;
         position: fixed;
         top: 0; left: 0; right: 0;
         z-index: 1000;
@@ -106,6 +106,23 @@
         color: var(--text-dark);
         cursor: pointer;
         padding: .5rem;
+        }
+
+        /* iframe totalmente fluido e sem overflow lateral ------------------ */
+        .video-block{
+        width:100%;
+        aspect-ratio:16/9;             /* já existia – mantemos            */
+        }
+        .video-block iframe{
+        width:100%!important;
+        height:100%!important;
+        border:0;
+        }
+        /* garante que o grid mude para 1 coluna abaixo de 768 px ------------ */
+        @media(max-width:767px){
+        #w1-technology .container{
+            grid-template-columns:1fr!important;
+        }
         }
 
         /* NAV DESKTOP */
@@ -217,13 +234,13 @@
             .hero-content h1 {
             font-size: clamp(2rem,5vw,3rem);
             font-weight: 300;
-            color: var(--text-white);
+            color: #ffffff;
             line-height: 1.2;
             margin-bottom: 1rem;
             }
             .hero-content p {
             font-size: clamp(1rem,2.5vw,1.25rem);
-            color: var(--text-light);
+            color: rgba(255,255,255,.92);
             margin-bottom: 2rem;
             }
             .btn-primary {
@@ -411,6 +428,15 @@
         }
         .social-proof-content .btn-primary:hover {
         background: #28c2b7;
+        }
+        @media(max-width:767px){
+        .social-proof-content h2,
+        .social-proof-content p{color:#ffffff}
+        .social-proof::before{
+            background:linear-gradient(to right,
+                rgba(2,23,31,.93) 45%,
+                rgba(2,23,31,.55) 100%);
+        }
         }
 
         /* Clientes Parceiros*/
