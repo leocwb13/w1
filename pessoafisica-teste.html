@@ -80,103 +80,91 @@
         .dark-section .section-title, .dark-section .section-subtitle { color: var(--text-white); }
         .dark-section .section-subtitle { color: rgba(255,255,255,0.85); }
 
-        /* Header */
-        header { 
-            background: var(--card-bg); position: fixed;
-            top:0; left:0; right:0; z-index: 1000;
-            border-bottom: 1px solid var(--border-color); 
-            box-shadow: var(--shadow-sm); height: var(--header-height);
-            display: flex; align-items: center;
+        /* === HEADER ========================================================== */
+        header {
+        background: var(--card-bg);
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 1000;
+        border-bottom: 1px solid var(--border-color);
+        box-shadow: var(--shadow-sm);
+        height: var(--header-height);
+        display: flex;
+        align-items: center;
         }
-        .header-inner { display: flex; justify-content: space-between; align-items: center; width:100%; }
-        .logo-link { display: inline-block; }
-        .logo-img { height: 38px; width: auto; }
-        
-        nav { display: none; }
-        .nav-list { list-style: none; }
-        
-        .btn {
-            display: inline-flex; align-items: center; justify-content: center;
-            padding: 0.75rem 1.5rem; border-radius: 8px; 
-            font-weight: 600; font-size: 1rem; 
-            line-height: 1.5; transition: all var(--transition);
-            cursor: pointer; border: 1px solid transparent; text-align:center;
+        .header-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
         }
-        .btn-primary { 
-            background: var(--accent); color: var(--bg-dark); border-color: var(--accent);
-            box-shadow: 0 2px 4px rgba(50, 221, 201, 0.2);
+        /* hambúrguer só desktop, some depois */
+        .mobile-menu-btn {
+        background: none;
+        border: none;
+        font-size: 1.75rem;
+        color: var(--text-dark);
+        cursor: pointer;
+        padding: .5rem;
         }
-        .btn-primary:hover { 
-            background: var(--card-bg); 
-            color: var(--text-dark); 
-            border-color: var(--card-bg); 
-            transform: translateY(-3px); 
-            box-shadow: 0 6px 12px rgba(50, 221, 201, 0.3); 
-        }
-        .btn-primary svg { margin-left: 0.6rem; stroke: var(--bg-dark); transition: transform 0.2s ease; }
-        .btn-primary:hover svg { stroke: var(--text-dark); transform: translateX(4px); }
 
-        .btn-secondary { background: transparent; color: var(--text-dark); border: 2px solid var(--border-color); }
-        .btn-secondary:hover { background-color: var(--accent); color:var(--bg-dark); border-color: var(--accent); transform: translateY(-2px); }
-        
-        .rfm-marquee-container { position: relative; overflow: hidden; }
-        .rfm-overlay {
-        position:absolute; inset:0;
-        background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 20%, rgba(255,255,255,0) 80%, rgba(255,255,255,1) 100%);
-        pointer-events:none;
-        }
-        .rfm-marquee {
-        display: flex; gap: 2rem;
-        animation: marquee var(--duration) linear var(--iteration-count);
-        }
-        @keyframes marquee {
-        0%   { transform: translateX(0); }
-        100% { transform: translateX(calc(-1 * var(--width) / 2)); }
-        }
-        .client-logo { flex-shrink: 0; min-width: var(--min-width); object-fit: contain; }
-
-
-        .mobile-menu-btn { 
-            font-size: 1.75rem; background: none; border: none; 
-            color: var(--text-dark); cursor: pointer; display: block; padding: 0.5rem;
-        }
-        
+        /* NAV DESKTOP */
         @media (min-width: 992px) {
-            nav { display: block; }
-            .nav-list { display: flex; gap: 2rem; align-items: center; }
-            .nav-list a:not(.btn) { font-size: 0.95rem; color: var(--text-medium); font-weight: 500; position: relative; padding-bottom: 0.3rem;}
-            .nav-list a:not(.btn)::after {
-                content: ''; position: absolute; bottom: 0; left: 0;
-                width: 0; height: 2px; background-color: var(--accent);
-                transition: width 0.3s ease;
-            }
-            .nav-list a:not(.btn):hover::after { width: 100%; }
-            .nav-list a:not(.btn):hover { color: var(--text-dark); }
-            .mobile-menu-btn { display: none; }
+        nav { display: block; }
+        .mobile-menu-btn { display: none; }
+        .nav-list { display: flex; gap: 2rem; align-items: center; list-style: none; }
+        .nav-list a:not(.btn) {
+            font-size: .95rem; color: var(--text-medium); font-weight: 500;
+            position: relative; padding-bottom: .3rem;
+        }
+        .nav-list a:not(.btn)::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 0; height: 2px; background: var(--accent);
+            transition: width .3s ease;
+        }
+        .nav-list a:not(.btn):hover { color: var(--text-dark); }
+        .nav-list a:not(.btn):hover::after { width: 100%; }
         }
 
+        /* MOBILE (< 992 px) – ESCONDE MENU e HAMBÚRGUER */
         @media (max-width: 991px) {
-            body.menu-open { overflow: hidden; }
-            nav { 
-                position: fixed; top: 0; right: -100%; 
-                width: 300px; max-width: 85%;
-                height: 100vh; background: var(--card-bg); 
-                box-shadow: var(--shadow-lg); padding-top: var(--header-height); 
-                transition: right 0.35s cubic-bezier(0.23, 1, 0.32, 1); 
-                overflow-y: auto; z-index: 999; 
-            }
-            nav.open { right: 0; }
-            .nav-list { flex-direction: column; gap: 0; align-items: stretch; }
-            .nav-list li { border-bottom: 1px solid var(--border-color); }
-            .nav-list li:first-child { border-top: 1px solid var(--border-color); }
-            .nav-list a { display: block; padding: 1.25rem 1.5rem; color: var(--text-dark); font-size: 1rem; font-weight:500;}
-            .nav-list a:hover { background-color: var(--bg-light); color: var(--accent); }
-            .nav-list a.btn { margin: 1.5rem; display: block; text-align: center; }
-            .mobile-menu-btn.close-btn { position: absolute; top: calc( (var(--header-height) - 30px ) / 2) ; right: 1rem; font-size: 2rem; z-index: 1001; }
+        nav, .mobile-menu-btn { display: none !important; }
         }
+
+        /* === BOTÃO FLUTUANTE “Fale comigo” =================================== */
+        .mobile-cta {
+        position: fixed;
+        bottom: 1rem;
+        right: 1rem;
+        z-index: 999;
+        background: var(--accent);
+        color: #012025;
+        padding: .9rem 1.6rem;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 1rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,.25);
+        transition: background .25s, transform .25s;
+        }
+        .mobile-cta:hover {
+        background: var(--accent-dark);
+        transform: translateY(-2px);
+        }
+        @media (min-width: 992px) {
+        .mobile-cta { display: none; }
+        }
+
 
         /* Progress Bar */
-        .progress-bar { position: fixed; top: var(--header-height); left: 0; width: 0%; height: 4px; background: var(--accent); z-index: 1001; transition: width 0.15s ease-out; }
+        .progress-bar { 
+            position: fixed; 
+            top: var(--header-height); 
+            left: 0; 
+            width: 0%; 
+            height: 4px; 
+            background: var(--accent); 
+            z-index: 1001; 
+            transition: width 0.15s ease-out; }
 
             /* Hero Section */
             .hero {
@@ -648,8 +636,15 @@
             <a href="#hero" class="logo-link">
                 <img src="https://cdn.sanity.io/images/vtdu2snp/production/1134c0bb26207343c7833808c1e7e14a1dd4050e-72x36.svg" alt="W1 Consultoria Logo" class="logo-img">
             </a>
-            <button class="mobile-menu-btn" id="mobileMenuOpen" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainNav">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            <!-- Botão hambúrguer agora só é mostrado em desktop (> 992 px) enquanto o nav também aparece
+            — nos mobiles ambos ficam ocultos -->
+            <button class="mobile-menu-btn" aria-label="Abrir menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
             </button>
             <nav id="mainNav">
                 <ul class="nav-list" id="navList">
@@ -668,7 +663,7 @@
             </nav>
         </div>
     </header>
-
+    <div class="progress-bar" id="progressBar"></div>
     <main>
         <!-- Hero Section -->
         <section class="hero" id="hero">
@@ -1034,27 +1029,6 @@
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
         (function() {
-            const bar = document.getElementById('progressBar');
-            if (!bar) return;
-            const header = document.querySelector('header');
-            if(!header) return;
-            let headerHeight = header.offsetHeight;
-
-            function updateProgressBar() {
-                headerHeight = header.offsetHeight;
-                bar.style.top = headerHeight + 'px'; 
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-                const pct = totalHeight > 0 ? (scrollTop / totalHeight) * 100 : 0;
-                bar.style.width = Math.min(100, Math.max(0, pct)) + '%';
-            }
-            window.addEventListener('scroll', updateProgressBar);
-            window.addEventListener('resize', updateProgressBar);
-            updateProgressBar();
-            setTimeout(updateProgressBar, 100); 
-        })();
-
-        (function() {
             const counters = document.querySelectorAll('.stat-number');
             if (counters.length === 0) return;
             const obsOptions = { threshold: 0.3, rootMargin: '0px 0px -50px 0px' };
@@ -1307,6 +1281,41 @@
         updateSlider();
 </script>
 
+    <!-- Progress Bar Script -->
+    <script> 
+        (function() {
+        const bar = document.getElementById('progressBar');
+        if (!bar) return;
+        const header = document.querySelector('header');
+        if (!header) return;
 
+        function updateProgressBar() {
+            const headerHeight = header.offsetHeight;
+            bar.style.top = headerHeight + 'px';
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = totalHeight > 0 ? (scrollTop / totalHeight) * 100 : 0;
+            bar.style.width = Math.min(100, Math.max(0, pct)) + '%';
+        }
+
+        window.addEventListener('scroll', updateProgressBar);
+        window.addEventListener('resize', updateProgressBar);
+        updateProgressBar();
+        setTimeout(updateProgressBar, 100);
+        })();
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleBtn = document.getElementById('mobileToggle');
+            const nav = document.getElementById('navMenu');
+
+            toggleBtn.addEventListener('click', () => {
+            nav.classList.toggle('open');
+            toggleBtn.classList.toggle('active');
+            });
+        });
+    </script>
+
+    <a href="#contact" class="mobile-cta">Fale comigo</a>
 </body>
 </html>
