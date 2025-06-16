@@ -4,76 +4,18 @@
   <meta charset="UTF-8" />
   <title>MyAMI – Registro de Reuniões</title>
   <style>
-    body {
-      margin: 0;
-      padding: 2rem;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f7f7f7;
-    }
-    .wrapper {
-      max-width: 820px;
-      margin: auto;
-      background: #fff;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    }
-    label {
-      display: block;
-      font-weight: 600;
-      margin: 0.4rem 0;
-    }
-    input,
-    select,
-    textarea {
-      width: 100%;
-      padding: 0.55rem;
-      font-size: 0.95rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      margin-bottom: 1rem;
-    }
-    button {
-      cursor: pointer;
-      border: none;
-      border-radius: 4px;
-      background: #0070f3;
-      color: #fff;
-      font-size: 1rem;
-      padding: 0.65rem 1.2rem;
-    }
-    .results {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-    .card {
-      background: #4b305d;
-      color: #fff;
-      border-radius: 6px;
-      padding: 1rem;
-      cursor: pointer;
-      transition: transform 0.1s;
-    }
-    .card:hover {
-      transform: translateY(-2px);
-    }
-    .card.selected {
-      outline: 3px solid #ffc107;
-    }
-    .card small {
-      display: block;
-      font-size: 0.8rem;
-      opacity: 0.85;
-    }
-    .card .name {
-      font-weight: 700;
-      margin-bottom: 0.3rem;
-    }
-    .hidden {
-      display: none;
-    }
+    body{margin:0;padding:2rem;font-family:Arial,Helvetica,sans-serif;background:#f7f7f7}
+    .wrapper{max-width:820px;margin:auto;background:#fff;padding:2rem;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+    label{display:block;font-weight:600;margin:.4rem 0}
+    input,select,textarea{width:100%;padding:.55rem;font-size:.95rem;border:1px solid #ccc;border-radius:4px;margin-bottom:1rem}
+    button{cursor:pointer;border:none;border-radius:4px;background:#0070f3;color:#fff;font-size:1rem;padding:.65rem 1.2rem}
+    .results{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin-bottom:1rem}
+    .card{background:#4b305d;color:#fff;border-radius:6px;padding:1rem;cursor:pointer;transition:transform .1s}
+    .card:hover{transform:translateY(-2px)}
+    .card.selected{outline:3px solid #ffc107}
+    .card small{display:block;font-size:.8rem;opacity:.85}
+    .card .name{font-weight:700;margin-bottom:.3rem}
+    .hidden{display:none}
   </style>
 </head>
 <body>
@@ -82,11 +24,11 @@
 
     <!-- BUSCA -->
     <label for="search-term">Buscar Cliente</label>
-    <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem">
+    <div style="display:flex;gap:.5rem;margin-bottom:1rem">
       <input id="search-term" type="text" placeholder="Digite o nome…" />
       <button id="btn-search" type="button">Buscar</button>
     </div>
-    <p id="error-msg" class="hidden" style="color: #e00"></p>
+    <p id="error-msg" class="hidden" style="color:#e00"></p>
     <div id="results" class="results"></div>
 
     <!-- FORM PRINCIPAL -->
@@ -109,180 +51,111 @@
       </select>
 
       <label for="transcription">Transcrição da Reunião</label>
-      <textarea
-        id="transcription"
-        rows="8"
-        placeholder="Cole aqui a transcrição…"
-        required
-      ></textarea>
+      <textarea id="transcription" rows="8" placeholder="Cole aqui a transcrição…" required></textarea>
 
-      <label>
-        <input id="copy-email" type="checkbox" /> Enviar cópia por e-mail
-      </label>
+      <label><input id="copy-email" type="checkbox" /> Enviar cópia por e-mail</label>
       <input id="copy-email-address" type="email" placeholder="E-mail para cópia" disabled />
 
       <button type="submit">Enviar para Análise</button>
     </form>
   </div>
 
-  <script>
-    // === Config ===
-    const ENDPOINTS = {
-      search:
-        "https://primary-production-a61c.up.railway.app/webhook/buscar-clientes-notion",
-      send: "https://primary-production-a61c.up.railway.app/webhook/processa-transcricao",
-    };
+<script>
+// === Config ===
+const ENDPOINTS = {
+  search: 'https://primary-production-a61c.up.railway.app/webhook/buscar-clientes-notion',
+  send  : 'https://primary-production-a61c.up.railway.app/webhook/processa-transcricao'
+};
 
-    // === DOM ===
-    const searchTermEl = document.getElementById("search-term");
-    const btnSearch = document.getElementById("btn-search");
-    const resultsEl = document.getElementById("results");
-    const errorEl = document.getElementById("error-msg");
-    const form = document.getElementById("myami-form");
-    const clientIdEl = document.getElementById("client-id");
-    const copyChkEl = document.getElementById("copy-email");
-    const copyAddrEl = document.getElementById("copy-email-address");
+// === DOM refs ===
+const searchTermEl = document.getElementById('search-term');
+const btnSearch    = document.getElementById('btn-search');
+const resultsEl    = document.getElementById('results');
+const errorEl      = document.getElementById('error-msg');
+const form         = document.getElementById('myami-form');
+const clientIdEl   = document.getElementById('client-id');
+const copyChkEl    = document.getElementById('copy-email');
+const copyAddrEl   = document.getElementById('copy-email-address');
 
-    copyChkEl.onchange = () => {
-      copyAddrEl.disabled = !copyChkEl.checked;
-      if (!copyChkEl.checked) copyAddrEl.value = "";
-    };
+copyChkEl.onchange = () => { copyAddrEl.disabled = !copyChkEl.checked; if(!copyChkEl.checked) copyAddrEl.value=''; };
 
-    // Debounce utilitário (evita spam de requisições)
-    const debounce = (fn, delay = 300) => {
-      let t; return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), delay); };
-    };
+// debounce
+const debounce = (fn, ms=300) => { let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a), ms);} };
 
-    // Busca clientes
-    async function searchClients(name) {
-      try {
-        errorEl.classList.add("hidden");
-        const res = await fetch(
-          `${ENDPOINTS.search}?nome=${encodeURIComponent(name)}`,
-          { mode: "cors" }
-        );
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        let data = await res.json();
+// Busca clientes
+async function searchClients(name){
+  try{
+    errorEl.classList.add('hidden');
+    const res = await fetch(`${ENDPOINTS.search}?nome=${encodeURIComponent(name)}`, {mode:'cors'});
+    if(!res.ok) throw new Error(`HTTP ${res.status}`);
+    let data = await res.json();
+    if(data?.response?.body?.results) data = data.response.body.results;
+    else if(data?.results)            data = data.results;
+    else if(data?.response?.body)     data = data.response.body;
+    if(data && !Array.isArray(data))  data = [data];
+    if(!data.length)                  throw new Error('Nenhum cliente encontrado');
+    renderCards(data);
+  }catch(err){
+    resultsEl.innerHTML=''; errorEl.textContent=err.message; errorEl.classList.remove('hidden');
+  }
+}
 
-        /* 🔍 Normaliza estruturas diferentes que o N8N/Notion podem devolver
-           1. {response:{body:{results:[...]}}}
-           2. {results:[...]}
-           3. {response:{body:[...]}}
-           4. [{...},{...}] */
-        if (data?.response?.body?.results) data = data.response.body.results;
-        else if (data?.results)            data = data.results;
-        else if (data?.response?.body)     data = data.response.body;
+// Renderiza cards
+function renderCards(clients){
+  resultsEl.innerHTML='';
+  clients.forEach(c=>{
+    const card = document.createElement('div'); card.className='card';
+    const name = document.createElement('div'); name.className='name'; name.textContent = c.property_nome||c.nome||'Sem nome'; card.appendChild(name);
+    const details = [
+      `Último contato: ${c.property_ltimo_contato||c.property_ultimo_contato||'—'}`,
+      `WhatsApp: ${c.property_whatsapp||'—'}`,
+      `Email: ${c.property_e_mail||c.property_email||'—'}`,
+      `Origem: ${c.property_origem_do_lead||'—'}`,
+      `Recomendador: ${Array.isArray(c.property_recomendador)&&c.property_recomendador.length?c.property_recomendador.join(', '):'—'}`,
+      `Momentum: ${c.property_momentum||'—'}`
+    ];
+    details.forEach(t=>{ const s=document.createElement('small'); s.textContent=t; card.appendChild(s); });
+    card.onclick = ()=>selectCard(card,c);
+    resultsEl.appendChild(card);
+  });
+}
 
-        if (data && !Array.isArray(data))  data = [data];
-        if (!data.length)                  throw new Error("Nenhum cliente encontrado");
-        renderCards(data);
-      } catch (err) {
-        resultsEl.innerHTML = "";
-        errorEl.textContent = err.message;
-        errorEl.classList.remove("hidden");
-      }
-    }
-      } catch (err) {
-        resultsEl.innerHTML = "";
-        errorEl.textContent = err.message;
-        errorEl.classList.remove("hidden");
-      }
-    }
+function selectCard(card,client){
+  document.querySelectorAll('.card.selected').forEach(el=>el.classList.remove('selected'));
+  card.classList.add('selected');
+  clientIdEl.value = client.id;
+  form.classList.remove('hidden');
+  form.scrollIntoView({behavior:'smooth'});
+}
 
-    function renderCards(clients) {
-      resultsEl.innerHTML = "";
-      clients.forEach((c) => {
-        const card = document.createElement("div");
-        card.className = "card";
+btnSearch.onclick = debounce(()=>{
+  const term = searchTermEl.value.trim();
+  if(term.length<2){ alert('Digite pelo menos 2 caracteres'); return; }
+  searchClients(term);
+});
 
-        const name = document.createElement("div");
-        name.className = "name";
-        name.textContent = c.property_nome || c.nome || "Sem nome";
-        card.appendChild(name);
+// Envio
+form.onsubmit = async e => {
+  e.preventDefault();
+  if(!clientIdEl.value){ alert('Selecione um cliente primeiro'); return; }
+  const payload = {
+    client_id    : clientIdEl.value,
+    meeting_date : document.getElementById('meeting-date').value,
+    meeting_type : document.getElementById('meeting-type').value,
+    transcription: document.getElementById('transcription').value.trim(),
+    send_copy    : copyChkEl.checked,
+    copy_email   : copyChkEl.checked ? copyAddrEl.value.trim() : ''
+  };
+  try{
+    const res = await fetch(ENDPOINTS.send,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    if(!res.ok) throw new Error(await res.text() || res.status);
+    alert('Enviado com sucesso!'); resetAll();
+  }catch(err){ alert('Erro: '+err.message); console.error(err); }
+};
 
-        const details = [
-          `Último contato: ${
-            c.property_ltimo_contato || c.property_ultimo_contato || "—"
-          }`,
-          `WhatsApp: ${c.property_whatsapp || "—"}`,
-          `Email: ${c.property_e_mail || c.property_email || "—"}`,
-          `Origem: ${c.property_origem_do_lead || "—"}`,
-          `Recomendador: ${
-            Array.isArray(c.property_recomendador) && c.property_recomendador.length
-              ? c.property_recomendador.join(", ")
-              : "—"
-          }`,
-          `Momentum: ${c.property_momentum || "—"}`,
-        ];
-        details.forEach((txt) => {
-          const s = document.createElement("small");
-          s.textContent = txt;
-          card.appendChild(s);
-        });
-
-        card.onclick = () => selectCard(card, c);
-        resultsEl.appendChild(card);
-      });
-    }
-
-    function selectCard(card, client) {
-      document
-        .querySelectorAll(".card.selected")
-        .forEach((el) => el.classList.remove("selected"));
-      card.classList.add("selected");
-      clientIdEl.value = client.id;
-      form.classList.remove("hidden");
-      form.scrollIntoView({ behavior: "smooth" });
-    }
-
-    btnSearch.onclick = debounce(() => {
-      const t = searchTermEl.value.trim();
-      if (t.length < 2) {
-        alert("Digite pelo menos 2 caracteres");
-        return;
-      }
-      searchClients(t);
-    }, 300);
-
-    // Envio
-    form.onsubmit = async (e) => {
-      e.preventDefault();
-      if (!clientIdEl.value) {
-        alert("Selecione um cliente primeiro");
-        return;
-      }
-      const payload = {
-        client_id: clientIdEl.value,
-        meeting_date: document.getElementById("meeting-date").value,
-        meeting_type: document.getElementById("meeting-type").value,
-        transcription: document
-          .getElementById("transcription")
-          .value.trim(),
-        send_copy: copyChkEl.checked,
-        copy_email: copyChkEl.checked ? copyAddrEl.value.trim() : "",
-      };
-      try {
-        const res = await fetch(ENDPOINTS.send, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
-        if (!res.ok) throw new Error((await res.text()) || res.status);
-        alert("Enviado com sucesso!");
-        resetAll();
-      } catch (err) {
-        alert("Erro: " + err.message);
-        console.error(err);
-      }
-    };
-
-    function resetAll() {
-      form.reset();
-      form.classList.add("hidden");
-      resultsEl.innerHTML = "";
-      clientIdEl.value = "";
-      copyAddrEl.disabled = true;
-    }
-  </script>
+function resetAll(){
+  form.reset(); form.classList.add('hidden'); resultsEl.innerHTML=''; clientIdEl.value=''; copyAddrEl.disabled=true;
+}
+</script>
 </body>
 </html>
