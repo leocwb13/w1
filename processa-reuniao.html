@@ -129,8 +129,8 @@
     // === Config ===
     const ENDPOINTS = {
       search:
-        "https://primary-production-a61c.up.railway.app/webhook/buscar-clientes-notion",
-      send: "https://primary-production-a61c.up.railway.app/webhook/processa-transcricao",
+        "https://primary-production-a61c.up.railway.app/webhook-test/buscar-clientes-notion",
+      send: "https://primary-production-a61c.up.railway.app/webhook-test/myami",
     };
 
     // === DOM ===
@@ -163,10 +163,25 @@
         );
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         let data = await res.json();
-        if (data?.response?.body) data = data.response.body; // desenvólucro N8N
-        if (data && !Array.isArray(data)) data = [data];
-        if (!data.length) throw new Error("Nenhum cliente encontrado");
+
+        /* 🔍 Normaliza estruturas diferentes que o N8N/Notion podem devolver
+           1. {response:{body:{results:[...]}}}
+           2. {results:[...]}
+           3. {response:{body:[...]}}
+           4. [{...},{...}] */
+        if (data?.response?.body?.results) data = data.response.body.results;
+        else if (data?.results)            data = data.results;
+        else if (data?.response?.body)     data = data.response.body;
+
+        if (data && !Array.isArray(data))  data = [data];
+        if (!data.length)                  throw new Error("Nenhum cliente encontrado");
         renderCards(data);
+      } catch (err) {
+        resultsEl.innerHTML = "";
+        errorEl.textContent = err.message;
+        errorEl.classList.remove("hidden");
+      }
+    }
       } catch (err) {
         resultsEl.innerHTML = "";
         errorEl.textContent = err.message;
