@@ -1170,107 +1170,52 @@
             updateButtons();
         })();
 
-        (function() {
-            const openBtn = document.getElementById('mobileMenuOpen');
-            const nav = document.getElementById('mainNav');
-            const navList = document.getElementById('navList');
-            let closeBtnInstance = null;
+       // ...substitua o bloco antigo pelo novo abaixo...
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+    if (!form) return;
 
-            if (!openBtn || !nav) return;
+    const submitButton = form.querySelector('button[type="submit"]');
+    const originalButtonHTML = submitButton.innerHTML;
+    const webhookUrl = 'https://primary-production-a61c.up.railway.app/webhook-test/pessoa-fisica';
 
-            function createCloseButton() {
-                const button = document.createElement('button');
-                button.innerHTML = <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>;
-                button.classList.add('mobile-menu-btn', 'close-btn');
-                button.setAttribute('aria-label', 'Fechar menu');
-                button.addEventListener('click', toggleMenu);
-                nav.insertBefore(button, nav.firstChild);
-                return button;
-            }
+    form.addEventListener('submit', async function(event) {
+        event.preventDefault();
 
-            function toggleMenu() {
-                const isOpen = nav.classList.toggle('open');
-                openBtn.setAttribute('aria-expanded', isOpen.toString());
-                document.body.classList.toggle('menu-open', isOpen);
+        if(formStatus) formStatus.innerHTML = '';
+        submitButton.disabled = true;
+        submitButton.innerHTML = 'Enviando...';
 
-                if (isOpen) {
-                    if (!closeBtnInstance) closeBtnInstance = createCloseButton();
-                    closeBtnInstance.style.display = 'block';
-                    openBtn.style.display = 'none';
-                } else {
-                    if (closeBtnInstance) closeBtnInstance.style.display = 'none';
-                    openBtn.style.display = 'block';
-                }
-            }
+        const formData = new FormData(form);
+        const data = {};
+        formData.forEach((value, key) => { data[key] = value; });
 
-            openBtn.addEventListener('click', toggleMenu);
-
-            if (navList) {
-                navList.addEventListener('click', function(event) {
-                    if (event.target.tagName === 'A' && nav.classList.contains('open')) {
-                        if (event.target.getAttribute('href').startsWith('#')) {
-                             setTimeout(toggleMenu, 100);
-                        }
-                    }
-                });
-            }
-        })();
-        
-        (function() {
-            const form = document.getElementById('contactForm');
-            const formStatus = document.getElementById('formStatus');
-            if (!form) return;
-
-            const submitButton = form.querySelector('button[type="submit"]');
-            const originalButtonHTML = submitButton.innerHTML;
-
-            form.addEventListener('submit', function(event) {
-                event.preventDefault(); 
-                const webhookUrl = 'https://primary-production-a61c.up.railway.app/webhook/pessoa-fisica';
-
-                submitButton.disabled = true;
-                submitButton.innerHTML = 'Enviando...';
-                if(formStatus) formStatus.innerHTML = '';
-
-                const formData = new FormData(form);
-                const data = {};
-                formData.forEach((value, key) => {
-                    data[key] = value;
-                });
-
-                // Log para depuração
-                console.log('Enviando para webhook:', webhookUrl);
-                console.log('Dados enviados:', data);
-                
-                fetch(webhookUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                })
-                .then(response => {
-                    console.log('Status da resposta:', response.status);
-                    if (response.ok) {
-                        return response.text();
-                    }
-                    throw new Error('Ocorreu um erro no servidor.');
-                })
-                .then(data => {
-                    console.log('Sucesso:', data);
-                    form.reset();
-                    // window.location.href = 'obrigado.html'; // Redireciona após sucesso
-                    alert('Cadastro enviado com sucesso! Redirecionando...');
-                })
-                .catch((error) => {
-                    console.error('Erro no envio do webhook:', error);
-                    if(formStatus) formStatus.innerHTML = '<p style="color: #ff6b6b;">Desculpe, ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente mais tarde.</p>';
-                    submitButton.disabled = false;
-                    submitButton.innerHTML = originalButtonHTML;
-                });
+        try {
+            const response = await fetch(webhookUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
             });
-        })();
+
+            if (!response.ok) {
+                throw new Error('Erro ao enviar. Código: ' + response.status);
+            }
+
+            form.reset();
+            if(formStatus) formStatus.innerHTML = '<p style="color: #32ddc9;">Cadastro enviado com sucesso! Redirecionando...</p>';
+            setTimeout(() => {
+                window.location.href = 'obrigado.html';
+            }, 1200);
+        } catch (error) {
+            if(formStatus) formStatus.innerHTML = '<p style="color: #ff6b6b;">Erro ao enviar. Tente novamente.</p>';
+            console.error('Erro no envio:', error);
+        } finally {
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalButtonHTML;
+        }
+    });
+});
 
     </script>
     <script>
