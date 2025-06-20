@@ -1228,7 +1228,7 @@
                 event.preventDefault(); 
                 const webhookUrl = 'https://primary-production-a61c.up.railway.app/webhook-test/pessoa-fisica';
 
-                if (webhookUrl === 'https://primary-production-a61c.up.railway.app/webhook-test/pessoa-fisica' || webhookUrl === '') {
+                if (webhookUrl === '' || webhookUrl === '') {
                     console.error('URL do Webhook não definida.');
                     if(formStatus) formStatus.innerHTML = '<p style="color: #ff6b6b;">Erro de configuração do servidor. Tente mais tarde.</p>';
                     return;
