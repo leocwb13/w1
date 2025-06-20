@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Obrigado pelo Contato – W1 Consultoria</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #32ddc9;
+            --accent-dark: #28b0a4;
+            --bg-dark: #022028;
+            --bg-medium-dark: #0a131a;
+            --bg-light: #f4f6f8;
+            --card-bg: #ffffff;
+            --text-dark: #1f2937;
+            --text-medium: #4b5563;
+            --text-light: #6b7280;
+            --text-white: #ffffff;
+            --border-color: #e5e7eb;
+            --border-dark-theme: #374151;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --transition: 0.3s ease;
+            --container-padding: 1.5rem;
+            --header-height: 70px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        main { padding-top: var(--header-height); }
+        .container {
+            width: 90%;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 3rem var(--container-padding);
+            background: var(--card-bg);
+            box-shadow: var(--shadow-lg);
+            border-left: 6px solid var(--accent);
+            border-radius: 12px;
+            text-align: center;
+        }
+        .cta-whatsapp {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 2rem;
+            background: #25d366;
+            color: #fff;
+            border-radius: 9px;
+            padding: 16px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: box-shadow .15s, transform .15s;
+        }
+        .cta-whatsapp:hover {
+            box-shadow: 0 6px 16px rgba(93,203,203,.35);
+            transform: translateY(-2px);
+        }
+        .cta-whatsapp svg { width: 22px; height: 22px; }
+        footer { margin-top: 2rem; font-size: .8rem; color: var(--text-medium); text-align: center; }
+        .topnav {background:#07151A;padding:12px 6vw;display:flex;gap:38px;align-items:center}
+        .topnav a{color:#fff;text-decoration:none;font-family:Montserrat,font-weight:600;font-size:1rem}
+        .topnav a:hover{color:#33E0CB}
+        @media(max-width:700px){.topnav{flex-wrap:wrap;gap:18px}}
+    </style>
+</head>
+<body>
+    <nav class="topnav">
+      <a href="/">Início</a>
+      <a href="/blog/">Blog</a>
+      <a href="/pessoa-fisica.html">Consultoria PF</a>
+      <a href="/empresas.html">Consultoria PJ</a>
+    </nav>
+    <main>
+        <div class="container">
+            <h1>Obrigado pelo contato!</h1>
+            <p class="subheadline">Recebemos suas informações e em breve nossa equipe entrará em contato para apresentar as soluções de consultoria financeira para pessoa física e empresas.</p>
+            <a href="https://wa.me/5541991937663" class="cta-whatsapp" target="_blank">
+                <svg fill="none" viewBox="0 0 24 24"><path fill="#fff" d="M16.58 13.79c-.23-.12-1.35-.67-1.56-.74-.21-.08-.36-.12-.51.12-.15.23-.58.74-.71.89-.13.15-.26.17-.48.06-.23-.12-.98-.36-1.87-1.13-.69-.62-1.16-1.39-1.29-1.62-.13-.23-.01-.35.1-.46.11-.12.23-.31.34-.46.12-.15.15-.26.23-.43.08-.17.04-.32-.02-.45-.07-.12-.51-1.23-.7-1.68-.19-.46-.38-.4-.51-.41-.13-.01-.28-.01-.43-.01-.15 0-.4.06-.61.28-.21.22-.8.78-.8 1.9 0 1.12.82 2.2.93 2.36.11.15 1.61 2.45 3.95 3.34.55.19.98.31 1.31.4.55.14 1.04.12 1.43.07.44-.07 1.35-.55 1.54-1.08.19-.53.19-.98.14-1.08-.06-.1-.21-.16-.44-.28Z"/><path fill="#fff" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+                Falar no WhatsApp
+            </a>
+            <footer>Leonardo Graciano © 2025</footer>
+        </div>
+        <div id="cookie-placeholder"></div>
+    </main>
+    <script>
+        fetch('/partials/cookie-banner.html')
+          .then(r=>r.text())
+          .then(h=>{document.getElementById('cookie-placeholder').innerHTML=h});
+    </script>
+</body>
+</html>
