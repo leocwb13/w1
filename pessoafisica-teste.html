@@ -1147,7 +1147,7 @@
             }
 
             function showCard(i) {
-                list.style.transform = translateX(-${i * 100}%);
+                list.style.transform = `translateX(-${i * 100}%)`;
                 updateButtons();
             }
             list.style.display = 'flex';
@@ -1228,12 +1228,6 @@
                 event.preventDefault(); 
                 const webhookUrl = 'https://primary-production-a61c.up.railway.app/webhook-test/pessoa-fisica';
 
-                if (webhookUrl === '' || webhookUrl === '') {
-                    console.error('URL do Webhook não definida.');
-                    if(formStatus) formStatus.innerHTML = '<p style="color: #ff6b6b;">Erro de configuração do servidor. Tente mais tarde.</p>';
-                    return;
-                }
-                
                 submitButton.disabled = true;
                 submitButton.innerHTML = 'Enviando...';
                 if(formStatus) formStatus.innerHTML = '';
@@ -1243,6 +1237,10 @@
                 formData.forEach((value, key) => {
                     data[key] = value;
                 });
+
+                // Log para depuração
+                console.log('Enviando para webhook:', webhookUrl);
+                console.log('Dados enviados:', data);
                 
                 fetch(webhookUrl, {
                     method: 'POST',
@@ -1253,6 +1251,7 @@
                     body: JSON.stringify(data)
                 })
                 .then(response => {
+                    console.log('Status da resposta:', response.status);
                     if (response.ok) {
                         return response.text();
                     }
@@ -1261,17 +1260,11 @@
                 .then(data => {
                     console.log('Sucesso:', data);
                     form.reset();
-                    window.location.href = 'obrigado.html';
-                    if(formStatus) formStatus.innerHTML = '<p style="color: var(--accent);">Obrigado! Sua mensagem foi enviada com sucesso. Entraremos em contato em breve.</p>';
-                    submitButton.innerHTML = 'Enviado!';
-                    setTimeout(() => {
-                        submitButton.disabled = false;
-                        submitButton.innerHTML = originalButtonHTML;
-                        if(formStatus) formStatus.innerHTML = '';
-                    }, 5000);
+                    // window.location.href = 'obrigado.html'; // Redireciona após sucesso
+                    alert('Cadastro enviado com sucesso! Redirecionando...');
                 })
                 .catch((error) => {
-                    console.error('Erro:', error);
+                    console.error('Erro no envio do webhook:', error);
                     if(formStatus) formStatus.innerHTML = '<p style="color: #ff6b6b;">Desculpe, ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente mais tarde.</p>';
                     submitButton.disabled = false;
                     submitButton.innerHTML = originalButtonHTML;
