@@ -1260,7 +1260,8 @@
                 })
                 .then(data => {
                     console.log('Sucesso:', data);
-                    form.reset(); 
+                    form.reset();
+                    window.location.href = 'obrigado.html';
                     if(formStatus) formStatus.innerHTML = <p style="color: var(--accent);">Obrigado! Sua mensagem foi enviada com sucesso. Entraremos em contato em breve.</p>;
                     submitButton.innerHTML = 'Enviado!';
                     setTimeout(() => {
